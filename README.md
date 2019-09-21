@@ -21,6 +21,8 @@ After completing all the guides, you should have a fairly good understanding of 
 
 Basics on creating a cluster and configuring the CLI to work efficiently.
 
+[01 - Create a cluster](01-create-a-cluster/README.md)
+
 ## 02 - Build a simple Spring Boot microservice
 
 The simplest possible Spring Boot microservice, made with [https://start.spring.io/](https://start.spring.io/).
