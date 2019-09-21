@@ -14,7 +14,7 @@ Create a new working directory and use it:
 mkdir simple-microservice && cd simple-microservice
 ```
 
-To create your microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```
 curl https://start.spring.io/starter.tgz -d dependencies=web \ -d baseDir=simple-microservice | tar -xzvf -
