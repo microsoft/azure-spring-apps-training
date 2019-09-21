@@ -17,11 +17,9 @@ After completing all the guides, you should have a fairly good understanding of 
 - Java 11 or above
 - The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois)
 
-## 01 - Create a cluster
+## [01 - Create a cluster](01-create-a-cluster/README.md)
 
 Basics on creating a cluster and configuring the CLI to work efficiently.
-
-[01 - Create a cluster](01-create-a-cluster/README.md)
 
 ## 02 - Build a simple Spring Boot microservice
 
