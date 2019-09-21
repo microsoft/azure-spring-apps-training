@@ -56,7 +56,7 @@ Run the project:
 ./mvnw spring-boot:run
 ```
 
-Requestion the `/hello` endpoint should return the "Hello from Azure Spring Cloud" message.
+Requesting the `/hello` endpoint should return the "Hello from Azure Spring Cloud" message.
 
 ```
 curl http://127.0.0.1:8080/hello
