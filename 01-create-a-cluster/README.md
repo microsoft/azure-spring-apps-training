@@ -34,7 +34,7 @@ az extension add -y --source https://github.com/VSChina/azure-cli-extensions/rel
 
 __This is temporary, and will not be necessary when the service is released__
 
-[Click here](https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=AppPlatformExtension#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home/searchQuery/spring) to access the cluster creation page.
+[Click here](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois&microsoft_azure_marketplace_ItemHideKey=AppPlatformExtension#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home/searchQuery/spring) to access the cluster creation page.
 
 ![Cluster creation](01-create-azure-spring-cloud.png)
 
