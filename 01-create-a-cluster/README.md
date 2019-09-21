@@ -12,6 +12,16 @@ Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure
 az login
 ```
 
+Configure the CLI to use Azure subscription you want to use for this training:
+
+```
+# List all subscriptions
+az account list -o table
+
+# Set active subscription
+az account set --subscription <target subscription ID>
+```
+
 ## Install the Azure Spring Cloud CLI extension
 
 __This is temporary, and will not be necessary when the service is released__
@@ -33,3 +43,14 @@ __This is temporary, and will not be necessary when the service is released__
 - Once everything is validated, the cluster can be created
 
 ![Cluster configuration](02-creation-details.png)
+
+Creating the cluster will take a few minutes.
+
+## Configure the CLI to use that cluster
+
+Using the cluster's resource group and name by default will save you a lot of typing later:
+
+```
+az configure --defaults group=<resource group name>
+az configure --defaults spring-cloud=<service instance name>
+```
