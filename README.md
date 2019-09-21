@@ -21,30 +21,34 @@ After completing all the guides, you should have a fairly good understanding of 
 
 Basics on creating a cluster and configuring the CLI to work efficiently.
 
-## 02 - Build a simple Spring Boot microservice
+## [02 - Build a simple Spring Boot microservice](02-build-a-simple-spring-boot-microservice/README.md)
 
-The simplest possible Spring Boot microservice, made with [https://start.spring.io/](https://start.spring.io/).
+Build the simplest possible Spring Boot microservice, made with [https://start.spring.io/](https://start.spring.io/).
 
-## 03 - Debug and monitor applications on Azure Spring Cloud
+## [03 - Debug and monitor applications on Azure Spring Cloud](03-debug-and-monitor-applications-on-azure-spring-cloud/README.md)
 
-## 04 - Configure a Spring Cloud Config server
+Access Spring Boot applications logs and metrics to understand common issues.
+
+## [04 - Configure a Spring Cloud Config server](04-configure-a-spring-cloud-config-server/README.md)
 
 Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), that will be entirely managed and supported by Azure Spring Cloud, to be used by Spring Boot microservices.
 
-## 05 - Build a Spring Boot microservice using Spring Cloud features
+## [05 - Build a Spring Boot microservice using Spring Cloud features](05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)
 
-A simple Spring Boot microservice that is cloud-enabled: it uses a discovery server ([Eureka](https://github.com/Netflix/eureka)) and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) which are both managed and supported by Azure Spring Cloud.
+Build a Spring Boot microservice that is cloud-enabled: it uses a discovery server ([Eureka](https://github.com/Netflix/eureka)) and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) which are both managed and supported by Azure Spring Cloud.
 
-## 06 - Build a reactive Spring Boot microservice using CosmosDB
+## [06 - Build a reactive Spring Boot microservice using CosmosDB](06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md)
 
-A reactive Spring Boot application, that uses the [Spring reactive stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and is binded to a [CosmosDB database](https://docs.microsoft.com/en-us/azure/cosmos-db/?WT.mc_id=azurespringcloud-github-judubois) in order to access a globally-distributed database without optimum performance.
+Build a reactive Spring Boot microservice, that uses the [Spring reactive stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and is binded to a [CosmosDB database](https://docs.microsoft.com/en-us/azure/cosmos-db/?WT.mc_id=azurespringcloud-github-judubois) in order to access a globally-distributed database without optimum performance.
 
-## 07 - Build a Spring Boot microservice using MySQL
+## [07 - Build a Spring Boot microservice using MySQL](07-build-a-spring-boot-microservice-using-mysql/README.md)
 
-A classical Spring Boot application that uses JPA to acess a [MySQL database managed by Azure](https://docs.microsoft.com/en-us/azure/mysql/?WT.mc_id=azurespringcloud-github-judubois).
+Build a classical Spring Boot application that uses JPA to acess a [MySQL database managed by Azure](https://docs.microsoft.com/en-us/azure/mysql/?WT.mc_id=azurespringcloud-github-judubois).
 
 ## 08 - Build a Spring Boot gateway
 
-## 09 - Putting it all together, a complete microservice stack
+TO BE DEFINED
 
+## [09 - Putting it all together, a complete microservice stack](09-putting-it-all-together-a-complete-microservice-stack/README.md)
 
+Run several microservices together and expose them with a gateway, in order to have a full microservices stack running. Will we use Azure Cloud Service's distributing tracing mechanism to better understand this system.
