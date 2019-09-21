@@ -62,7 +62,7 @@ Requesting the `/hello` endpoint should return the "Hello from Azure Spring Clou
 curl http://127.0.0.1:8080/hello
 ```
 
-## Create and deploy an application on Azure Spring Cloud
+## Create and deploy the application on Azure Spring Cloud
 
 In order to create the application graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
@@ -82,3 +82,12 @@ You can now build your "simple-microservice" project and send it to Azure Spring
 az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
+## Test the project in the cloud
+
+Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+
+- Look for your Azure Spring Cloud cluster in your resource group
+- Go to "App Management" and selet "simple-microservice"
+- Copy/paste the "Test Endpoint" that is provided
+
+You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.
