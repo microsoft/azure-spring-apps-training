@@ -27,3 +27,9 @@ __This is temporary, and will not be necessary when the service is released__
 [Click here](https://portal.azure.com/?microsoft_azure_marketplace_ItemHideKey=AppPlatformExtension#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home/searchQuery/spring) to access the cluster creation page.
 
 ![Cluster creation](01-create-azure-spring-cloud.png)
+
+- Click on "Create"
+- Select your subscription, resource group name, name of the service and location
+- Once everything is validated, the cluster can be created
+
+![Cluster configuration](02-creation-details.png)
