@@ -99,7 +99,7 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.
 
-## Conclusino
+## Conclusion
 
 Congratulations, you have deployed your first Spring Boot microservice to Azure Spring Cloud!
 
