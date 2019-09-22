@@ -50,7 +50,7 @@ public class HelloController {
 }
 ```
 
-> The final project is available in the ["simple-microservice" folder](simple-microservice/).
+The final project is available in the ["simple-microservice" folder](simple-microservice/).
 
 ## Test the project locally
 
@@ -99,4 +99,5 @@ You can now use cURL again to test the `/hello` endpoint, this time served by Az
 ---
 
 Previous guide: [01 - Create a cluster](../01-create-a-cluster/README.md)
+
 Next guide: [03 - Debug and monitor applications on Azure Spring Cloud](../03-debug-and-monitor-applications-on-azure-spring-cloud/README.md)
