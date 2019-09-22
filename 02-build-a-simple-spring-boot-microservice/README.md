@@ -48,6 +48,8 @@ public class HelloController {
 }
 ```
 
+The final project is available in the ["simple-microservice" folder](simple-microservice/).
+
 ## Test the project locally
 
 Run the project:
