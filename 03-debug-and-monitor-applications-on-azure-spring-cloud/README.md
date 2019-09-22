@@ -24,6 +24,26 @@ There are actually three ways to access your application's logs: [Azure Storage]
 
 ![Send logs to the log analytics workspace](02-send-logs-to-log-analytics-workspace.png)
 
+## Query application logs
+
+Logs are now available in the "Logs" menu of you Azure Spring Cloud cluster.
+
+This is a shortcut to the Logs Analytics workspace that was created earlier, so you can access that workspace through both menus.
+
+This workspace allows to do queries on the aggregated logs, the most common one being to get the latest log from a specific application:
+
+__Important:__ Spring Boot applications logs have a dedicated `AppPlatformLogsforSpring` type.
+
+As we called the application in the [previous guide](../02-build-a-simple-spring-boot-microservice/README.md) "simple-microservice", here is how to get its 1,000 most recent logs of the `AppPlatformLogsforSpring` type for this application:
+
+```
+AppPlatformLogsforSpring
+| where AppName == "simple-microservice"
+| limit 1000
+```
+
+![Query logs](03-logs-query)
+
 ---
 
 ⬅️ Previous guide: [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md)
