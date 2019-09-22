@@ -27,7 +27,7 @@ Build the simplest possible Spring Boot microservice, made with [https://start.s
 
 ## [03 - Configure application logs](03-configure-application-logs/README.md)
 
-Access Spring Boot applications logs and metrics to understand common issues.
+Access Spring Boot applications logs to understand common issues.
 
 ## [04 - Configure a Spring Cloud Config server](04-configure-a-spring-cloud-config-server/README.md)
 
