@@ -34,12 +34,12 @@ This workspace allows to do queries on the aggregated logs, the most common one 
 
 __Important:__ Spring Boot applications logs have a dedicated `AppPlatformLogsforSpring` type.
 
-As we called the application in the [previous guide](../02-build-a-simple-spring-boot-microservice/README.md) "simple-microservice", here is how to get its 1,000 most recent logs of the `AppPlatformLogsforSpring` type for this application:
+As we called the application in the [previous guide](../02-build-a-simple-spring-boot-microservice/README.md) "simple-microservice", here is how to get its 50 most recent logs of the `AppPlatformLogsforSpring` type for this application:
 
 ```
 AppPlatformLogsforSpring
 | where AppName == "simple-microservice"
-| limit 1000
+| limit 50
 ```
 
 ![Query logs](03-logs-query.png)
