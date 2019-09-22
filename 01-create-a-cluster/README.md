@@ -59,4 +59,4 @@ az configure --defaults spring-cloud=<service instance name>
 
 ---
 
-Next guide: [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md)
+➡️ Next guide: [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md)
