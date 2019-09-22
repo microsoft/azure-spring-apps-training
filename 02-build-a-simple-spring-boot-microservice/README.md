@@ -10,24 +10,16 @@ Build the simplest possible Spring Boot microservice, made with [https://start.s
 
 The microservice that we create in this guide is [available here](simple-microservice/).
 
-Create a new working directory and use it:
-
-```
-mkdir simple-microservice && cd simple-microservice
-```
-
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=web \ -d baseDir=simple-microservice | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice | tar -xzvf -
 ```
 
-We recommend that you use Git to work on that project:
+Go into the `simple-microservice` directory to view what has been generated:
 
 ```
-git init
-git add .
-git commit -m 'Initial commit'
+cd simple-microservice
 ```
 
 ## Add a new Spring MVC Controller
@@ -108,11 +100,8 @@ If you need to check your code, the final project is available in the ["simple-m
 Here is the final script to build and deploy everything that was done in this guide:
 
 ```
-mkdir simple-microservice && cd simple-microservice
-curl https://start.spring.io/starter.tgz -d dependencies=web \ -d baseDir=simple-microservice | tar -xzvf -
-git init
-git add .
-git commit -m 'Initial commit'
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice | tar -xzvf -
+cd simple-microservice
 cat > HelloController.java << EOF
 package com.example.demo;
 
