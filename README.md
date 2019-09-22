@@ -16,6 +16,7 @@ After completing all the guides, you should have a fairly good understanding of 
 
 - Java 11 or above
 - The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois)
+- A [GitHub account](https://github.com)
 
 ## [01 - Create a cluster](01-create-a-cluster/README.md)
 
