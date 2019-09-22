@@ -72,6 +72,9 @@ In order to create the application graphically, you can use [the Azure portal](h
 
 - Look for your Azure Spring Cloud cluster in your resource group
 - Go to "App Management" and create an application
+- Create a new application named "simple-microservice" that uses Java 11
+
+![Create application](01-create-application.png)
 
 You can also use the command line, which is easier:
 
@@ -95,6 +98,41 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 - Copy/paste the "Test Endpoint" that is provided
 
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.
+
+## Conclusino
+
+Congratulations, you have deployed your first Spring Boot microservice to Azure Spring Cloud!
+
+If you need to check your code, the final project is available in the ["simple-microservice" folder](simple-microservice/).
+
+Here is the final script to build and deploy everything, using that sample project:
+
+```
+mkdir simple-microservice && cd simple-microservice
+curl https://start.spring.io/starter.tgz -d dependencies=web \ -d baseDir=simple-microservice | tar -xzvf -
+git init
+git add .
+git commit -m 'Initial commit'
+cat > HelloController.java << EOF
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello from Azure Spring Cloud";
+    }
+}
+EOF
+mv HelloController.java src/main/java/com/example/demo/HelloController.java
+az spring-cloud app create -n simple-microservice
+./mvnw package
+az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
+```
 
 ---
 
