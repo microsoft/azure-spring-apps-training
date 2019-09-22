@@ -42,7 +42,7 @@ AppPlatformLogsforSpring
 | limit 1000
 ```
 
-![Query logs](03-logs-query)
+![Query logs](03-logs-query.png)
 
 ---
 
