@@ -87,7 +87,7 @@ az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-S
 Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
 - Look for your Azure Spring Cloud cluster in your resource group
-- Go to "App Management" and selet "simple-microservice"
+- Go to "App Management" and select "simple-microservice"
 - Copy/paste the "Test Endpoint" that is provided
 
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.
