@@ -74,7 +74,7 @@ In order to create the application graphically, you can use [the Azure portal](h
 - Go to "App Management" and create an application
 - Create a new application named "simple-microservice" that uses Java 11
 
-![Create application](01-create-application.png)
+![Create application](media/01-create-application.png)
 
 You can also use the command line, which is easier:
 

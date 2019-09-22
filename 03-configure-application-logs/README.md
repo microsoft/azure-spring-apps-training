@@ -16,13 +16,13 @@ There are actually three ways to access your application's logs: [Azure Storage]
 - Search for "Log Analytics workspaces" in the search box.
 - Create a new workspace in your Azure Spring Cloud ressource group.
 
-![Create Log analytics workspace](01-create-logs-analytics-workspace.png)
+![Create Log analytics workspace](media/01-create-logs-analytics-workspace.png)
 
 - Now that the Log analytics workspace has been created, we must configure our Azure Spring Cloud cluster instance to send its data to this workspace.
 - Go to the "Overview" page of your Azure Spring Cloud cluster, and select "Diagnostic settings" in the menu.
 - Click on "Add diagnostic setting" and configure your cluster to send all its logs to the Log analytics workspace that we just created.
 
-![Send logs to the log analytics workspace](02-send-logs-to-log-analytics-workspace.png)
+![Send logs to the log analytics workspace](media/02-send-logs-to-log-analytics-workspace.png)
 
 ## Query application logs
 
@@ -42,7 +42,7 @@ AppPlatformLogsforSpring
 | limit 50
 ```
 
-![Query logs](03-logs-query.png)
+![Query logs](media/03-logs-query.png)
 
 ---
 
