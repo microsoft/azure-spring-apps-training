@@ -19,6 +19,8 @@ application:
     message: Configured by Azure Spring Cloud
 ```
 
+This sample configuration is available in the ["config/" folder](config/).
+
 ## Create a GitHub personal token
 
 Azure Spring Cloud can access Git repositories that are public (not recommended!), secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with GitHub.
