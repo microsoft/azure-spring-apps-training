@@ -1,4 +1,4 @@
-# 03 - Debug and monitor applications on Azure Spring Cloud
+# 03 - Configure application logs
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 

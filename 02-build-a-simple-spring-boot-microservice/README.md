@@ -138,4 +138,4 @@ az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-S
 
 ⬅️ Previous guide: [01 - Create a cluster](../01-create-a-cluster/README.md)
 
-➡️ Next guide: [03 - Debug and monitor applications on Azure Spring Cloud](../03-debug-and-monitor-applications-on-azure-spring-cloud/README.md)
+➡️ Next guide: [03 - Configure application logs](../03-configure-application-logs/README.md)
