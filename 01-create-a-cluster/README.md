@@ -4,6 +4,8 @@ __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
 Basics on creating a cluster and configuring the CLI to work efficiently.
 
+---
+
 ## Install the CLI and authenticate
 
 Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois) and log in to your account:
@@ -54,3 +56,7 @@ Using the cluster's resource group and name by default will save you a lot of ty
 az configure --defaults group=<resource group name>
 az configure --defaults spring-cloud=<service instance name>
 ```
+
+---
+
+Next guide: [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md)

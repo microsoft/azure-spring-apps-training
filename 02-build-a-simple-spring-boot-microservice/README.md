@@ -4,6 +4,8 @@ __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
 Build the simplest possible Spring Boot microservice, made with [https://start.spring.io/](https://start.spring.io/).
 
+---
+
 ## Create a simple Spring Boot microservice
 
 The microservice that we create in this guide is [available here](simple-microservice/).
@@ -48,7 +50,7 @@ public class HelloController {
 }
 ```
 
-The final project is available in the ["simple-microservice" folder](simple-microservice/).
+> The final project is available in the ["simple-microservice" folder](simple-microservice/).
 
 ## Test the project locally
 
@@ -93,3 +95,8 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 - Copy/paste the "Test Endpoint" that is provided
 
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.
+
+---
+
+Previous guide: [01 - Create a cluster](../01-create-a-cluster/README.md)
+Next guide: [03 - Debug and monitor applications on Azure Spring Cloud](../03-debug-and-monitor-applications-on-azure-spring-cloud/README.md)
