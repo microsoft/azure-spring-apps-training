@@ -32,7 +32,7 @@ Follow the [GitHub guide to create a personal token](https://help.github.com/en/
 - Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the overview page of your Azure Spring Cloud server, and select "Config server" in the menu
 - Configure the repository we previously created:
-  - Add the repository URL, for example `https://github.com/jdubois/azure-spring-cloud-config.git``
+  - Add the repository URL, for example `https://github.com/jdubois/azure-spring-cloud-config.git`
   - Click on `Authentication` and select `HTTP Basic``
   - The username is your GitHub login name
   - The password is the personal token we created in the previous section
