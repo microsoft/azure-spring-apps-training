@@ -3,3 +3,10 @@
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
 Run several microservices together and expose them with a gateway, in order to have a full microservices stack running. Will we use Azure Cloud Service's distributing tracing mechanism to better understand this system.
+
+---
+
+
+---
+
+⬅️ Previous guide: [08 - Build a Spring Boot gateway](../08-build-a-spring-boot-gateway/README.md)
