@@ -61,4 +61,26 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>cloud</id>
+			<repositories>
+				<repository>
+					<id>nexus-snapshots</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<dependencies>
+				<dependency>
+					<groupId>com.microsoft.azure</groupId>
+					<artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
+					<version>0.0.2-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
 </project>
