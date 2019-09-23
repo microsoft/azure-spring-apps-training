@@ -27,6 +27,36 @@ curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-
 
 > This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Eureka and the Spring Cloud Config Server.
 
+## Add a "cloud" Maven profile
+
+In order to securely connect to Azure Spring Cloud services (Eureka and Spring Cloud Config), we need to add a specific Maven dependency. We will add in a specific Maven profile, so it doesn't pollute the rest of the application.
+
+At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
+
+```xml
+	<profiles>
+		<profile>
+			<id>cloud</id>
+			<repositories>
+				<repository>
+					<id>nexus-snapshots</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<dependencies>
+				<dependency>
+					<groupId>com.microsoft.azure</groupId>
+					<artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
+					<version>0.0.2-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+```
+
 ## Add a new Spring MVC Controller
 
 Open the project with your favorite IDE, and next to the `DemoApplication` class, create a new class called `HelloController` with the following content:
@@ -76,7 +106,7 @@ az spring-cloud app create -n spring-cloud-microservice
 You can now build your "spring-cloud-microservice" project and send it to Azure Spring Cloud:
 
 ```
-./mvnw package
+./mvnw package -DskipTests -Pcloud
 az spring-cloud app deploy -n spring-cloud-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
@@ -103,36 +133,6 @@ Configured by Azure Spring Cloud
 Congratulations, you have deployed a complete Spring Cloud microservice, using Eureka and Spring Cloud Config Server!
 
 If you need to check your code, the final project is available in the ["spring-cloud-microservice" folder](spring-cloud-microservice/).
-
-Here is the final script to build and deploy everything that was done in this guide:
-
-```
-curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice | tar -xzvf -
-cd spring-cloud-microservice
-cat > HelloController.java << EOF
-package com.example.demo;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class HelloController {
-
-    @Value("${application.message:Not configured by a Spring Cloud Server}")
-    private String message;
-
-    @GetMapping("/hello")
-    public String hello() {
-        return message;
-    }
-}
-EOF
-mv HelloController.java src/main/java/com/example/demo/HelloController.java
-az spring-cloud app create -n spring-cloud-microservice
-./mvnw package
-az spring-cloud app deploy -n spring-cloud-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
-```
 
 ---
 
