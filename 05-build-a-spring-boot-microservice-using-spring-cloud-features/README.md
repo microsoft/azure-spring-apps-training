@@ -34,27 +34,27 @@ In order to securely connect to Azure Spring Cloud services (Eureka and Spring C
 At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
 
 ```xml
-  <profiles>
-    <profile>
-      <id>cloud</id>
-      <repositories>
-        <repository>
-          <id>nexus-snapshots</id>
-          <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-        </repository>
-      </repositories>
-      <dependencies>
-        <dependency>
-          <groupId>com.microsoft.azure</groupId>
-          <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-          <version>0.0.2-SNAPSHOT</version>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
+	<profiles>
+		<profile>
+			<id>cloud</id>
+			<repositories>
+				<repository>
+					<id>nexus-snapshots</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<dependencies>
+				<dependency>
+					<groupId>com.microsoft.azure</groupId>
+					<artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
+					<version>0.0.2-SNAPSHOT</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 ```
 
 ## Add a new Spring MVC Controller
