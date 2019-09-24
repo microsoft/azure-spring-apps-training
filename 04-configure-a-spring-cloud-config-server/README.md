@@ -6,11 +6,13 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 
 ---
 
+> If you want to go fast on this section, you can directly use the `https://github.com/jdubois/spring-cloud-config-public.git` Git repository with Public authentication, and skip next "Create a GitHub personal token" section.
+
 ## Create a Git repository for storing the application configuration
 
 On your [GitHub account](https://github.com), create a new **private** repository where the Spring Boot configurations will be stored.
 
-> We will store configuration information, which should not be shared in public, so be careful to create a private repository
+> We will store configuration information, which should not be shared in public, so we recommend creating a private repository
 
 In this repository, add a new `application.yml` file which will store configuration data for all our microservices. For the moment, it will just store a message to check if the configuration is successful:
 
@@ -20,8 +22,6 @@ application:
 ```
 
 Here is a sample repository containing that file: [https://github.com/jdubois/spring-cloud-config-public](https://github.com/jdubois/spring-cloud-config-public)
-
-> If you want to go fast, you can directly use the `https://github.com/jdubois/spring-cloud-config-public.git` Git repository with Public authentication, and skip next "Create a GitHub personal token" section.
 
 ## Create a GitHub personal token
 
