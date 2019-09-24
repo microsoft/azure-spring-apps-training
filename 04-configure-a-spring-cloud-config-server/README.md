@@ -6,30 +6,46 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 
 ---
 
-## Create a Git repository for storing the application configuration
+Two option are available to store your Spring Boot configuration:
 
-On your [GitHub account](https://github.com), create a new **private** repository where the Spring Boot configurations will be stored.
+- Use a public Git repository: this is the easiest option, as there is no security to configure
+- Use a private Git repository: this is the most secured option, but it's a bit more complicated to set up
 
-> We will store configuration information, which should not be shared in public, so be careful to create a private repository
-
-In this repository, add a new `application.yml` file which will store configuration data for all our microservices. For the moment, it will just store a message to check if the configuration is successful:
+For both options, we will use an `application.yml` file which will store configuration data for all our microservices. For the moment, it will just store a message to check if the configuration is successful:
 
 ```
 application:
-    message: Configured by Azure Spring Cloud
+    message: Configured by Spring Cloud Config Server
 ```
 
-This sample configuration is available in the ["config/" folder](config/).
+You can check this file in the following public GitHub repository:
 
-## Create a GitHub personal token
+[https://github.com/jdubois/spring-cloud-config-public](https://github.com/jdubois/spring-cloud-config-public)
 
-Azure Spring Cloud can access Git repositories that are public (not recommended!), secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with GitHub.
+## Configure a public Git repository
 
-Follow the [GitHub guide to create a personal token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) and save your token, as we will use it in the next section.
+_Skip this step if you want to set up a private Git repository, which is explained in the next section_
+
+We are going to use [https://github.com/jdubois/spring-cloud-config-public](https://github.com/jdubois/spring-cloud-config-public) directly, but you can create your own GitHub directory in which you you will add a custom `application.yml` if you want to do your own configuration.
+
+- Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
+- Go to the overview page of your Azure Spring Cloud server, and select "Config server" in the menu
+- Configure the Git repository:
+  - Add the repository URL: `https://github.com/jdubois/spring-cloud-config-public`
+  - Click on `Authentication` and select `Public`
+- Click on "Apply" and wait for the operation to succeeed
+
+## Configure a private Git repository
+
+_Ignore this step if you set up a public repository in the previous section_
+
+On your [GitHub account](https://github.com), create a new **private** repository where the Spring Boot configurations will be stored.
+
+In this repository, add a new `application.yml` file, as descibred above (you can copy the one from `https://github.com/jdubois/spring-cloud-config-public/blob/master/application.yml`).
+
+We know need to create a GitHub personnal token to access this repository: follow the [GitHub guide to create a personal token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) and save your token.
 
 ![GitHub personnal access token](media/01-github-personal-access-token.png)
-
-## Configure Azure Spring Cloud to access the Git repository
 
 - Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the overview page of your Azure Spring Cloud server, and select "Config server" in the menu
