@@ -31,7 +31,7 @@ We are going to use [https://github.com/jdubois/spring-cloud-config-public](http
 - Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the overview page of your Azure Spring Cloud server, and select "Config server" in the menu
 - Configure the Git repository:
-  - Add the repository URL: `https://github.com/jdubois/spring-cloud-config-public`
+  - Add the repository URL: `https://github.com/jdubois/spring-cloud-config-public.git`
   - Click on `Authentication` and select `Public`
 - Click on "Apply" and wait for the operation to succeeed
 
