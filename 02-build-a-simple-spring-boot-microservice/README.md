@@ -118,7 +118,7 @@ public class HelloController {
 }
 EOF
 mv HelloController.java src/main/java/com/example/demo/HelloController.java
-az spring-cloud app create -n simple-microservice
+az spring-cloud app create -n simple-microservice 
 ./mvnw package
 az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
