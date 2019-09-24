@@ -14,8 +14,8 @@ import java.util.List;
 public class CityController {
 
     private CosmosContainer container = CosmosClient.builder()
-                .endpoint("https://azure-spring-cloud-cosmosdb.documents.azure.com:443/")
-                .key("2YiKGyQfvJR1tm0jE4iW8PCq9hZYVxlbrGb6ncbud2leWqsCn9AQbUY6ixOSyPp3qRhWO1Kt65h1Zje4Vrb4rQ==")
+                .endpoint("https://XXXXXXXXXXXX.documents.azure.com:443/")
+                .key("XXXXXXXXXXXX")
                 .build()
                 .getDatabase("azure-spring-cloud-training")
                 .getContainer("City");
