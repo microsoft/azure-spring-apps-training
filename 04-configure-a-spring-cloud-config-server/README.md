@@ -6,7 +6,7 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 
 ---
 
-> If you want to go fast on this section, you can directly use the `https://github.com/jdubois/spring-cloud-config-public.git` Git repository with Public authentication.
+> If you want to skip this section, you can use the following public Git repository https://github.com/jdubois/spring-cloud-config-public.git
 
 ## Create a Git repository for storing the application configuration
 
@@ -18,10 +18,8 @@ In this repository, add a new `application.yml` file which will store configurat
 
 ```
 application:
-    message: Configured by Spring Cloud Config Server
+    message: Configured by Azure Spring Cloud
 ```
-
-Here is a sample repository containing that file: [https://github.com/jdubois/spring-cloud-config-public](https://github.com/jdubois/spring-cloud-config-public)
 
 ## Create a GitHub personal token
 

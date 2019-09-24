@@ -8,6 +8,6 @@ Build a classical Spring Boot application that uses JPA to acess a [MySQL databa
 
 ---
 
-⬅️ Previous guide: [06 - Build a reactive Spring Boot microservice using CosmosDB](../06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md)
+⬅️ Previous guide: [06 - Build a reactive Spring Boot microservice using Cosmos DB](../06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md)
 
 ➡️ Next guide: [08 - Build a Spring Boot gateway](../08-build-a-spring-boot-gateway/README.md)
