@@ -168,6 +168,8 @@ You can now use cURL to test the `/cities` endpoint, and it should give you the 
 [[{"name":"Paris, France"}]]
 ```
 
+If you need to check your code, the final project is available in the ["spring-boot-reactive-cosmosdb" folder](spring-boot-reactive-cosmosdb/).
+
 ---
 
 ⬅️ Previous guide: [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)
