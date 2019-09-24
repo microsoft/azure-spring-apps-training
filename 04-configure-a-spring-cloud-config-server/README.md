@@ -35,7 +35,7 @@ We are going to use [https://github.com/jdubois/spring-cloud-config-public](http
   - Click on `Authentication` and select `Public`
 - Click on "Apply" and wait for the operation to succeeed
 
-You're done! You can skip the next section and go to the guide: [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md).
+You're done! You can skip the next section and go to the next guide: ➡️ [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md).
 
 ## Configure a private Git repository
 
