@@ -6,7 +6,7 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 
 ---
 
-> If you want to go fast on this section, you can directly use the `https://github.com/jdubois/spring-cloud-config-public.git` Git repository with Public authentication, and skip next "Create a GitHub personal token" section.
+> If you want to go fast on this section, you can directly use the `https://github.com/jdubois/spring-cloud-config-public.git` Git repository with Public authentication.
 
 ## Create a Git repository for storing the application configuration
 
