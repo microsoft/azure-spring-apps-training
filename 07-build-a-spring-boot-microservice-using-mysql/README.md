@@ -70,6 +70,20 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
 	</profiles>
 ```
 
+## Create and deploy the application on Azure Spring Cloud
+
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-boot-mysql` application in your Azure Spring Cloud cluster:
+
+```
+az spring-cloud app create -n spring-boot-mysql
+```
+
+You can now build your "spring-boot-mysql" project and send it to Azure Spring Cloud:
+
+```
+./mvnw package -DskipTests -Pcloud
+az spring-cloud app deploy -n spring-boot-mysql --jar-path target/demo-0.0.1-SNAPSHOT.jar
+```
 
 
 ---
