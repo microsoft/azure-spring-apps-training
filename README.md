@@ -48,7 +48,7 @@ Build a classical Spring Boot application that uses JPA to acess a [MySQL databa
 
 ## [08 - Build a Spring Cloud gateway](08-build-a-spring-cloud-gateway/README.md)
 
-Build a 
+Build a [Spring Cloud gateway](https://spring.io/projects/spring-cloud-gateway) to route HTTP requests to the correct Spring Boot microservices.
 
 ## [09 - Putting it all together, a complete microservice stack](09-putting-it-all-together-a-complete-microservice-stack/README.md)
 
