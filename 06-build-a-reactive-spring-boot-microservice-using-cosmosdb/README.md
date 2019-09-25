@@ -55,7 +55,7 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
 
 ## Add a "cloud" Maven profile
 
-*To deploy to Azure Spring Cloud, we add a "cloud" Maven profile like in the previous section [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)*
+*To deploy to Azure Spring Cloud, we add a "cloud" Maven profile like in the previous guide [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)*
 
 At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
 
