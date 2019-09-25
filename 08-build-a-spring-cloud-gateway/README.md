@@ -58,7 +58,7 @@ spring.cloud.gateway.discovery.locator.enabled=true
 
 ## Create the application on Azure Spring Cloud
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `gateway` application in your Azure Spring Cloud cluster. As this application is a gateway, we had the `--is-public true` flag so it is exposed publicly.
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `gateway` application in your Azure Spring Cloud cluster. As this application is a gateway, we add the `--is-public true` flag so it is exposed publicly.
 
 ```
 az spring-cloud app create -n gateway --is-public true
