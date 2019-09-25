@@ -208,4 +208,4 @@ If you need to check your code, the final project is available in the ["weather-
 
 ⬅️ Previous guide: [06 - Build a reactive Spring Boot microservice using Cosmos DB](../06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md)
 
-➡️ Next guide: [08 - Build a Spring Cloud gateway](../08-build-a-spring-cloud-gateway/README.md)
+➡️ Next guide: [08 - Build a Spring Cloud Gateway](../08-build-a-spring-cloud-gateway/README.md)

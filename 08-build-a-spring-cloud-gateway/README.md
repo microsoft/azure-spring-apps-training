@@ -1,12 +1,12 @@
-## 08 - Build a Spring Cloud gateway
+## 08 - Build a Spring Cloud Gateway
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Build a [Spring Cloud gateway](https://spring.io/projects/spring-cloud-gateway) to route HTTP requests to the correct Spring Boot microservices.
+Build a [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) to route HTTP requests to the correct Spring Boot microservices.
 
 ---
 
-# Create a Spring Cloud gateway
+# Create a Spring Cloud Gateway
 
 The application that we create in this guide is [available here](gateway/).
 
@@ -48,6 +48,14 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
 	</profiles>
 ```
 
+## Configure the application
+
+In `src/main/resources/application.properties`, add this configuration line so that Spring Cloud Gateway uses Eureka to discover the available microservices:
+
+```
+spring.cloud.gateway.discovery.locator.enabled=true
+```
+
 ## Create the application on Azure Spring Cloud
 
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `gateway` application in your Azure Spring Cloud cluster. As this application is a gateway, we had the `--is-public true` flag so it is exposed publicly.
@@ -72,14 +80,12 @@ az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
   - Select `gateway` to have more information on the microservice.
 - Copy/paste the public endpoint that is provided (there is a "Test Endpoint" like for microservices, but the gateway is directly exposed on the Internet, so let's use this).
 
-As the gateway is connected to Eureka, it should have automatically opened routes to the available microservices, with URL paths in the form of `/microservice-name/**`:
+As the gateway is connected to Eureka, it should have automatically opened routes to the available microservices, with URL paths in the form of `/MICROSERVICE-ID/**`:
 
-- Test the `city-service` microservice endpoint by doing: `curl https://XXXXXXXX.azureapps.io/city-service/cities`
-- Test the `weather-service` microservice endpoint by doing: `curl https://XXXXXXXX.azureapps.io/weather-service/weather/city?name=Paris%2C%20France`
+- Test the `city-service` microservice endpoint by doing: `curl https://XXXXXXXX.azureapps.io/CITY-SERVICE/cities` (replacing XXXXXXXX by the name of your gateway)
+- Test the `weather-service` microservice endpoint by doing: `curl 'https://XXXXXXXX.azureapps.io/WEATHER-SERVICE/weather/city?name=Paris%2C%20France'` (replacing XXXXXXXX by the name of your gateway)
 
-
-
-If you need to check your code, the final project is available in the ["weather-service" folder](weather-service/).
+If you need to check your code, the final project is available in the ["gateway" folder](gateway/).
 
 ---
 

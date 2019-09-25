@@ -9,4 +9,4 @@ Run several microservices together and expose them with a gateway, in order to h
 
 ---
 
-⬅️ Previous guide: [08 - Build a Spring Cloud gateway](../08-build-a-spring-cloud-gateway/README.md)
+⬅️ Previous guide: [08 - Build a Spring Cloud Gateway](../08-build-a-spring-cloud-gateway/README.md)
