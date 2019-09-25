@@ -31,12 +31,12 @@ In that container, insert some sample items, for example:
 
 ## Create a Spring Webflux microservice
 
-The microservice that we create in this guide is [available here](spring-boot-reactive-cosmosdb/).
+The microservice that we create in this guide is [available here](city-service/).
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=spring-boot-reactive-cosmosdb | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service | tar -xzvf -
 ```
 
 > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
@@ -145,24 +145,24 @@ class City {
 
 ## Create and deploy the application on Azure Spring Cloud
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-boot-reactive-cosmosdb` application in your Azure Spring Cloud cluster:
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `city-service` application in your Azure Spring Cloud cluster:
 
 ```
-az spring-cloud app create -n spring-boot-reactive-cosmosdb
+az spring-cloud app create -n city-service
 ```
 
-You can now build your "spring-boot-reactive-cosmosdb" project and send it to Azure Spring Cloud:
+You can now build your "city-service" project and send it to Azure Spring Cloud:
 
 ```
 ./mvnw package -DskipTests -Pcloud
-az spring-cloud app deploy -n spring-boot-reactive-cosmosdb --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
 ## Test the project in the cloud
 
 - Go to "App Management" in your Azure Spring Cloud cluster
-  - Verify that `spring-boot-reactive-cosmosdb` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka
-  - Select `spring-boot-reactive-cosmosdb` to have more information on the microservice
+  - Verify that `city-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka
+  - Select `city-service` to have more information on the microservice
 - Copy/paste the "Test Endpoint" that is provided
 
 You can now use cURL to test the `/cities` endpoint, and it should give you the list of cities you created. For example, if you only created `Paris, France` like it is shown in this guide, you should get:
@@ -171,7 +171,7 @@ You can now use cURL to test the `/cities` endpoint, and it should give you the 
 [[{"name":"Paris, France"}]]
 ```
 
-If you need to check your code, the final project is available in the ["spring-boot-reactive-cosmosdb" folder](spring-boot-reactive-cosmosdb/).
+If you need to check your code, the final project is available in the ["city-service" folder](city-service/).
 
 ---
 
