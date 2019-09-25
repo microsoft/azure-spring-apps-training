@@ -169,7 +169,7 @@ az spring-cloud app create -n weather-service
 
 Azure Spring Cloud can automatically bind the MySQL database we created to our microservice.
 
-- Go to "App Management" in your Azure Spring Cloud cluster
+- Go to "App Management" in your Azure Spring Cloud cluster.
 - Select the `weather-service` application
 - Go to `Service bindings`
 - Click on `Create service binding``
@@ -191,10 +191,10 @@ az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPS
 
 ## Test the project in the cloud
 
-- Go to "App Management" in your Azure Spring Cloud cluster
-  - Verify that `weather-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka
-  - Select `weather-service` to have more information on the microservice
-- Copy/paste the "Test Endpoint" that is provided
+- Go to "App Management" in your Azure Spring Cloud cluster.
+  - Verify that `weather-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka.
+  - Select `weather-service` to have more information on the microservice.
+- Copy/paste the "Test Endpoint" that is provided.
 
 You can now use cURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.	
 

@@ -116,9 +116,9 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 
 - Look for your Azure Spring Cloud cluster in your resource group
 - Go to "App Management"
-  - Verify that `spring-cloud-microservice` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka
-  - Select `spring-cloud-microservice` to have more information on the microservice
-- Copy/paste the "Test Endpoint" that is provided
+  - Verify that `spring-cloud-microservice` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka.
+  - Select `spring-cloud-microservice` to have more information on the microservice.
+- Copy/paste the "Test Endpoint" that is provided.
 
 You can now use cURL again to test the `/hello` endpoint, this time it is served by Azure Spring Cloud and configured using the Spring Config Server from [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md).
 

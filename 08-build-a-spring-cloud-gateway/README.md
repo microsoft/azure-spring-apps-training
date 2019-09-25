@@ -48,6 +48,38 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
 	</profiles>
 ```
 
+## Create the application on Azure Spring Cloud
+
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `gateway` application in your Azure Spring Cloud cluster. As this application is a gateway, we had the `--is-public true` flag so it is exposed publicly.
+
+```
+az spring-cloud app create -n gateway --is-public true
+```
+
+## Deploy the application
+
+You can now build your "gateway" project and send it to Azure Spring Cloud:
+
+```
+./mvnw package -DskipTests -Pcloud
+az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
+```
+
+## Test the project in the cloud
+
+- Go to "App Management" in your Azure Spring Cloud cluster.
+  - Verify that `gateway` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka.
+  - Select `gateway` to have more information on the microservice.
+- Copy/paste the public endpoint that is provided (there is a "Test Endpoint" like for microservices, but the gateway is directly exposed on the Internet, so let's use this).
+
+As the gateway is connected to Eureka, it should have automatically opened routes to the available microservices, with URL paths in the form of `/microservice-name/**`:
+
+- Test the `city-service` microservice endpoint by doing: `curl https://XXXXXXXX.azureapps.io/city-service/cities`
+- Test the `weather-service` microservice endpoint by doing: `curl https://XXXXXXXX.azureapps.io/weather-service/weather/city?name=Paris%2C%20France`
+
+
+
+If you need to check your code, the final project is available in the ["weather-service" folder](weather-service/).
 
 ---
 
