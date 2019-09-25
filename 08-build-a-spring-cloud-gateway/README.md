@@ -78,7 +78,7 @@ az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
 - Go to "App Management" in your Azure Spring Cloud cluster.
   - Verify that `gateway` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka.
   - Select `gateway` to have more information on the microservice.
-- Copy/paste the public endpoint that is provided (there is a "Test Endpoint" like for microservices, but the gateway is directly exposed on the Internet, so let's use this).
+- Copy/paste the public URL that is provided (there is a "Test Endpoint" like for microservices, but the gateway is directly exposed on the Internet, so let's use this).
 
 As the gateway is connected to Eureka, it should have automatically opened routes to the available microservices, with URL paths in the form of `/MICROSERVICE-ID/**`:
 
