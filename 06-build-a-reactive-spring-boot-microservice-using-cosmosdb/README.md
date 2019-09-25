@@ -151,9 +151,6 @@ public class CityController {
 
     @PostConstruct
     public void init() {
-        System.out.println("-->" + cosmosDbUrl);
-        System.out.println("-->" + cosmosDbKey);
-        System.out.println("-->" + cosmosDbDatabase);
         container = CosmosClient.builder()
                 .endpoint(cosmosDbUrl)
                 .key(cosmosDbKey)
