@@ -3,22 +3,41 @@ package com.example.demo;
 import com.azure.data.cosmos.CosmosClient;
 import com.azure.data.cosmos.CosmosContainer;
 import com.azure.data.cosmos.FeedOptions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class CityController {
 
-    private CosmosContainer container = CosmosClient.builder()
-                .endpoint("https://XXXXXXXXXXXX.documents.azure.com:443/")
-                .key("XXXXXXXXXXXX")
+    @Value("${azure.cosmosdb.uri}")
+    private String cosmosDbUrl;
+
+    @Value("${azure.cosmosdb.key}")
+    private String cosmosDbKey;
+
+    @Value("${azure.cosmosdb.database}")
+    private String cosmosDbDatabase;
+
+    private CosmosContainer container;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("-->" + cosmosDbUrl);
+        System.out.println("-->" + cosmosDbKey);
+        System.out.println("-->" + cosmosDbDatabase);
+        container = CosmosClient.builder()
+                .endpoint(cosmosDbUrl)
+                .key(cosmosDbKey)
                 .build()
-                .getDatabase("azure-spring-cloud-training")
+                .getDatabase(cosmosDbDatabase)
                 .getContainer("City");
+    }
 
     @GetMapping("/cities")
     public Flux<List<City>> getCities() {
@@ -37,15 +56,4 @@ public class CityController {
     }
 }
 
-class City {
 
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-}

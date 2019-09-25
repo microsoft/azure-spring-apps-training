@@ -30,12 +30,12 @@ Build a classical Spring Boot application that uses JPA to acess a [MySQL databa
 
 # Create a Spring Boot microservice
 
-The microservice that we create in this guide is [available here](spring-boot-mysql/).
+The microservice that we create in this guide is [available here](weather-service/).
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=spring-boot-mysql | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service | tar -xzvf -
 ```
 
 > We use the `Spring Web`, `Spring Data JPA`, `MySQL Driver`, `Eureka Discovery Client` and the `Config Client` components.
@@ -70,19 +70,39 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
 	</profiles>
 ```
 
-## Create and deploy the application on Azure Spring Cloud
+## Add a domain object
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-boot-mysql` application in your Azure Spring Cloud cluster:
+
+## Add a repository
+
+
+## Add a REST controller
+
+## Create the application on Azure Spring Cloud
+
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `weather-service` application in your Azure Spring Cloud cluster:
 
 ```
-az spring-cloud app create -n spring-boot-mysql
+az spring-cloud app create -n weather-service
 ```
 
-You can now build your "spring-boot-mysql" project and send it to Azure Spring Cloud:
+## Bind the MySQL database to the application
+
+Azure Spring Cloud can automatically bind the Cosmos DB database we created to our microservice.
+
+- Go to "App Management" in your Azure Spring Cloud cluster
+- Select the `city-service` application
+- Go to `Service bindings`
+- Click on `Create service binding``
+  - Give your binding a name, for example `mysql-weather`
+
+## Deploy the application
+
+You can now build your "weather-service" project and send it to Azure Spring Cloud:
 
 ```
 ./mvnw package -DskipTests -Pcloud
-az spring-cloud app deploy -n spring-boot-mysql --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
 
