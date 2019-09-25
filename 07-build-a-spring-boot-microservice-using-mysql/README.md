@@ -11,7 +11,7 @@ Build a classical Spring Boot application that uses JPA to acess a [MySQL databa
 - Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois) and look for "Azure Database for MySQL servers" in the search box.
 - Create a new database
   - Write down the password in a safe place
-  - You can choose the low-budget "Basic" database
+  - You can choose a low-budget "Basic" database
 
 ![Create MySQL database](media/01-create-mysql.png)
 
@@ -70,13 +70,92 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
 	</profiles>
 ```
 
-## Add a domain object
+## Add Spring code to get the data from the database
 
+Next to the `DemoApplication` class, create a `Weather` JPA entity:
 
-## Add a repository
+```java
+package com.example.demo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-## Add a REST controller
+@Entity
+public class Weather {
+
+    @Id
+    private String city;
+
+    private String description;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+}
+```
+
+Then, create a Spring Data repository to manage this entity, called `WeatherRepository`:
+
+```java
+package com.example.demo;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface WeatherRepository extends CrudRepository<Weather, String> {
+}
+```
+
+And finish coding this application by adding a Spring MVC controller called `WeatherController`:
+
+```java
+package com.example.demo;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping(path="/weather")
+public class WeatherController {
+
+    private final WeatherRepository weatherRepository;
+
+    public WeatherController(WeatherRepository weatherRepository) {
+        this.weatherRepository = weatherRepository;
+    }
+
+    @GetMapping("/city")
+    public @ResponseBody String getWeatherForCity(@RequestParam("name") String cityName) {
+        return weatherRepository.findById(cityName).get().getDescription();
+    }
+}
+```
+
+## Add sample data in MySQL
+
+In order to have Hibernate automatically create your database, open up the `src/main/resources/application.properties` file and add:
+
+```
+spring.jpa.hibernate.ddl-auto=create
+```
+
+Then, in order to have Spring Boot add sample data at startup, create a `src/main/resources/import.sql` file and add:
+
+```sql
+INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`) VALUES ('Paris, France', 'Very cloudy!');
+INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`) VALUES ('London, UK', 'Quite cloudy');
+```
 
 ## Create the application on Azure Spring Cloud
 
@@ -88,13 +167,18 @@ az spring-cloud app create -n weather-service
 
 ## Bind the MySQL database to the application
 
-Azure Spring Cloud can automatically bind the Cosmos DB database we created to our microservice.
+Azure Spring Cloud can automatically bind the MySQL database we created to our microservice.
 
 - Go to "App Management" in your Azure Spring Cloud cluster
-- Select the `city-service` application
+- Select the `weather-service` application
 - Go to `Service bindings`
 - Click on `Create service binding``
   - Give your binding a name, for example `mysql-weather`
+  - For `Binding type`, select `Azure database for MySQL``
+  - Select your database, and input your admin login and password
+  - Click on `Create` to create the database binding
+
+![Bind MySQL database](media/03-bind-service-mysql.png)
 
 ## Deploy the application
 
@@ -105,6 +189,7 @@ You can now build your "weather-service" project and send it to Azure Spring Clo
 az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
+If you need to check your code, the final project is available in the ["weather-service" folder](weather-service/).
 
 ---
 
