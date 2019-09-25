@@ -12,6 +12,9 @@ Build a reactive Spring Boot microservice, that uses the [Spring reactive stack]
 - Create a new Cosmos DB account
   - Keep the default "Core (SQL)" API
   - Select the same location as your Azure Spring Cloud cluster
+
+![Create Cosmos DB account](media/01-create-cosmos-db.png)
+
 - Once this Cosmo DB account is created, select it and click on the "Keys" menu item, and copy the account's primary key for later usage.
 - Click on the "Data Explorer" menu item
   - Create a new database called `azure-spring-cloud-training`
