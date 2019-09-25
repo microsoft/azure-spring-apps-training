@@ -46,9 +46,9 @@ Build a reactive Spring Boot microservice, that uses the [Spring reactive stack]
 
 Build a classical Spring Boot application that uses JPA to acess a [MySQL database managed by Azure](https://docs.microsoft.com/en-us/azure/mysql/?WT.mc_id=azurespringcloud-github-judubois).
 
-## [08 - Build a Spring Boot gateway](08-build-a-spring-boot-gateway/README.md)
+## [08 - Build a Spring Cloud gateway](08-build-a-spring-cloud-gateway/README.md)
 
-TO BE DEFINED
+Build a 
 
 ## [09 - Putting it all together, a complete microservice stack](09-putting-it-all-together-a-complete-microservice-stack/README.md)
 
