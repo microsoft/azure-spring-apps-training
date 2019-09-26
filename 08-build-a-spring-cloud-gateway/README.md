@@ -50,11 +50,26 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
 
 ## Configure the application
 
-In `src/main/resources/application.properties`, add this configuration line so that Spring Cloud Gateway uses Eureka to discover the available microservices:
+Rename `src/main/resources/application.properties` to `src/main/resources/application.yml`, and add the following configuration:
 
 ```
-spring.cloud.gateway.discovery.locator.enabled=true
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+
 ```
+
+-  The `spring.cloud.gateway.discovery.locator.enabled=true` part is to configure Spring Cloud Gateway to use Eureka to discover the available microservices.
+-  The `spring.cloud.gateway.globalcors.corsConfiguration` part is to allow CORS requests to our gateway. This will be helpful in the next guide, when we will add a front-end that is not hosted on Azure Spring Cloud.
 
 ## Create the application on Azure Spring Cloud
 

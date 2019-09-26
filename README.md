@@ -52,4 +52,4 @@ Build a [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 
 
 ## [09 - Putting it all together, a complete microservice stack](09-putting-it-all-together-a-complete-microservice-stack/README.md)
 
-Run several microservices together and expose them with a gateway, in order to have a full microservices stack running. Will we use Azure Cloud Service's distributing tracing mechanism to better understand this system.
+Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Cloud's distributed tracing mechanism, and scale our services depending on our needs.
