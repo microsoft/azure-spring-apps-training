@@ -52,7 +52,7 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
 
 Rename `src/main/resources/application.properties` to `src/main/resources/application.yml`, and add the following configuration:
 
-```
+```yaml
 spring:
   cloud:
     gateway:
