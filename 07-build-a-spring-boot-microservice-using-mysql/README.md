@@ -88,6 +88,8 @@ public class Weather {
 
     private String description;
 
+    private String icon;
+
     public String getCity() {
         return city;
     }
@@ -102,6 +104,14 @@ public class Weather {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }
 ```
@@ -153,9 +163,11 @@ spring.jpa.hibernate.ddl-auto=create
 Then, in order to have Spring Boot add sample data at startup, create a `src/main/resources/import.sql` file and add:
 
 ```sql
-INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`) VALUES ('Paris, France', 'Very cloudy!');
-INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`) VALUES ('London, UK', 'Quite cloudy');
+INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `icon`) VALUES ('Paris, France', 'Very cloudy!', 'weather-fog');
+INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `icon`) VALUES ('London, UK', 'Quite cloudy', 'weather-pouring');
 ```
+
+> The icons we are using are the ones from https://materialdesignicons.com/ - you can pick there other weather icons if you wish.
 
 ## Create the application on Azure Spring Cloud
 
@@ -199,7 +211,7 @@ az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPS
 You can now use cURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.	
 
 ```
-"Very cloudy!"
+{"city":"Paris, France","description":"Very cloudy!","icon":"weather-fog"}
 ```
 
 If you need to check your code, the final project is available in the ["weather-service" folder](weather-service/).

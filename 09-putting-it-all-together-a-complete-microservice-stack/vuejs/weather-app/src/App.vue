@@ -5,7 +5,7 @@
       color="indigo"
       dark
     >
-      <v-icon>mdi-cloud</v-icon>&nbsp;
+      <v-icon>mdi-weather-partly-cloudy</v-icon>&nbsp;
       <v-toolbar-title>What is the weather today?</v-toolbar-title>
     </v-app-bar>
 

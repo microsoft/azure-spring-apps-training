@@ -14,7 +14,7 @@ public class WeatherController {
     }
 
     @GetMapping("/city")
-    public @ResponseBody String getWeatherForCity(@RequestParam("name") String cityName) {
-        return weatherRepository.findById(cityName).get().getDescription();
+    public @ResponseBody Weather getWeatherForCity(@RequestParam("name") String cityName) {
+        return weatherRepository.findById(cityName).get();
     }
 }
