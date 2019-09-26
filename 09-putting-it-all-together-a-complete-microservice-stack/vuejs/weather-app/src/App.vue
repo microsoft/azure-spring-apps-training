@@ -18,9 +18,7 @@
           justify="center"
         >
           <v-col class="text-center">
-            <ApiGateway/>
-            <hr/>
-            It is cloudy
+            <WeatherComponent/>
           </v-col>
         </v-row>
       </v-container>
@@ -35,17 +33,16 @@
 </template>
 
 <script>
-  import ApiGateway from './components/ApiGateway'
+  import WeatherComponent from './components/WeatherComponent'
 
   export default {
     components: {
-      ApiGateway
+      WeatherComponent
     },
     props: {
-      source: String,
+      source: String
     },
     data: () => ({
-      drawer: null,
     }),
   }
 </script>
