@@ -99,13 +99,13 @@ curl http://127.0.0.1:8080/hello
 
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-cloud-microservice` application in your Azure Spring Cloud cluster:
 
-```
+```bash
 az spring-cloud app create -n spring-cloud-microservice
 ```
 
 You can now build your "spring-cloud-microservice" project and send it to Azure Spring Cloud:
 
-```
+```bash
 ./mvnw package -DskipTests -Pcloud
 az spring-cloud app deploy -n spring-cloud-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
@@ -124,7 +124,7 @@ You can now use cURL again to test the `/hello` endpoint, this time it is served
 
 As a result, requesting the `/hello` endpoint should return the message that we configured in the `application.yml` file, coming from the Spring Cloud Config Server:
 
-```
+```bash
 Configured by Azure Spring Cloud
 ```
 

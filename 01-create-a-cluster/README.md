@@ -10,13 +10,13 @@ Basics on creating a cluster and configuring the CLI to work efficiently.
 
 Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois) and log in to your account:
 
-```
+```bash
 az login
 ```
 
 Configure the CLI to use Azure subscription you want to use for this training:
 
-```
+```bash
 # List all subscriptions
 az account list -o table
 
@@ -28,7 +28,7 @@ az account set --subscription <target subscription ID>
 
 __This is temporary, and will not be necessary when the service is released__
 
-```
+```bash
 az extension add -y --source https://github.com/VSChina/azure-cli-extensions/releases/download/0.4/spring_cloud-0.4.0-py2.py3-none-any.whl
 ```
 
@@ -53,7 +53,7 @@ Creating the cluster will take a few minutes.
 
 Using the cluster's resource group and name by default will save you a lot of typing later:
 
-```
+```bash
 az configure --defaults group=<resource group name>
 az configure --defaults spring-cloud=<service instance name>
 ```

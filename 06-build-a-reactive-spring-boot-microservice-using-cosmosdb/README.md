@@ -32,6 +32,7 @@ In that container, insert some sample items:
     "name": "Paris, France"
 }
 ```
+
 ```json
 {
     "name": "London, UK"
@@ -46,7 +47,7 @@ The microservice that we create in this guide is [available here](city-service/)
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
-```
+```bash
 curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service | tar -xzvf -
 ```
 
@@ -71,27 +72,27 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
 At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
 
 ```xml
-	<profiles>
-		<profile>
-			<id>cloud</id>
-			<repositories>
-				<repository>
-					<id>nexus-snapshots</id>
-					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-			<dependencies>
-				<dependency>
-					<groupId>com.microsoft.azure</groupId>
-					<artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-					<version>2.1.0-SNAPSHOT</version>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>cloud</id>
+            <repositories>
+                <repository>
+                    <id>nexus-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <dependencies>
+                <dependency>
+                    <groupId>com.microsoft.azure</groupId>
+                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
+                    <version>2.1.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 ```
 
 ## Add Spring reactive code to get the data from the database
@@ -181,7 +182,7 @@ public class CityController {
 
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `city-service` application in your Azure Spring Cloud cluster:
 
-```
+```bash
 az spring-cloud app create -n city-service
 ```
 
@@ -204,7 +205,7 @@ Azure Spring Cloud can automatically bind the Cosmos DB database we created to o
 
 You can now build your "city-service" project and send it to Azure Spring Cloud:
 
-```
+```bash
 ./mvnw package -DskipTests -Pcloud
 az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
@@ -218,7 +219,7 @@ az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT
 
 You can now use cURL to test the `/cities` endpoint, and it should give you the list of cities you created. For example, if you only created `Paris, France` and `London, UK` like it is shown in this guide, you should get:
 
-```
+```json
 [[{"name":"Paris, France"},{"name":"London, UK"}]]
 ```
 

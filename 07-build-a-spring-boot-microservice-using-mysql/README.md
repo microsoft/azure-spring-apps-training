@@ -19,7 +19,7 @@ Build a classical Spring Boot application that uses JPA to acess a [MySQL databa
   - Enable "Allow access to Azure services"
   - Add your current IP to the firewall rules, so you can access it from your machine
 
-> If you need to know your current external IP, you can use https://www.whatismyip.com/
+> If you need to know your current external IP, you can use [https://www.whatismyip.com/](https://www.whatismyip.com/)
 
 ![Configure firewall](media/02-firewall.png)
 
@@ -28,13 +28,13 @@ Build a classical Spring Boot application that uses JPA to acess a [MySQL databa
   - The admin login name is available in the "overview" section of your database, it is in the form of `username@database`
 - Create a new schema named `azure-spring-cloud-training`
 
-# Create a Spring Boot microservice
+## Create a Spring Boot microservice
 
 The microservice that we create in this guide is [available here](weather-service/).
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
-```
+```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service | tar -xzvf -
 ```
 
@@ -47,27 +47,27 @@ curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,clou
 At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
 
 ```xml
-	<profiles>
-		<profile>
-			<id>cloud</id>
-			<repositories>
-				<repository>
-					<id>nexus-snapshots</id>
-					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-			<dependencies>
-				<dependency>
-					<groupId>com.microsoft.azure</groupId>
-					<artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-					<version>2.1.0-SNAPSHOT</version>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>cloud</id>
+            <repositories>
+                <repository>
+                    <id>nexus-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <dependencies>
+                <dependency>
+                    <groupId>com.microsoft.azure</groupId>
+                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
+                    <version>2.1.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 ```
 
 ## Add Spring code to get the data from the database
@@ -156,7 +156,7 @@ public class WeatherController {
 
 In order to have Hibernate automatically create your database, open up the `src/main/resources/application.properties` file and add:
 
-```
+```properties
 spring.jpa.hibernate.ddl-auto=create
 ```
 
@@ -167,13 +167,13 @@ INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `ico
 INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `icon`) VALUES ('London, UK', 'Quite cloudy', 'weather-pouring');
 ```
 
-> The icons we are using are the ones from https://materialdesignicons.com/ - you can pick there other weather icons if you wish.
+> The icons we are using are the ones from [https://materialdesignicons.com/](https://materialdesignicons.com/) - you can pick there other weather icons if you wish.
 
 ## Create the application on Azure Spring Cloud
 
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `weather-service` application in your Azure Spring Cloud cluster:
 
-```
+```bash
 az spring-cloud app create -n weather-service
 ```
 
@@ -196,7 +196,7 @@ Azure Spring Cloud can automatically bind the MySQL database we created to our m
 
 You can now build your "weather-service" project and send it to Azure Spring Cloud:
 
-```
+```bash
 ./mvnw package -DskipTests -Pcloud
 az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
@@ -208,9 +208,9 @@ az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPS
   - Select `weather-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
-You can now use cURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.	
+You can now use cURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.
 
-```
+```json
 {"city":"Paris, France","description":"Very cloudy!","icon":"weather-fog"}
 ```
 

@@ -12,13 +12,13 @@ The microservice that we create in this guide is [available here](simple-microse
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
-```
+```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice | tar -xzvf -
 ```
 
 Go into the `simple-microservice` directory to view what has been generated:
 
-```
+```bash
 cd simple-microservice
 ```
 
@@ -48,13 +48,13 @@ The final project is available in the ["simple-microservice" folder](simple-micr
 
 Run the project:
 
-```
+```bash
 ./mvnw spring-boot:run
 ```
 
 Requesting the `/hello` endpoint should return the "Hello from Azure Spring Cloud" message.
 
-```
+```bash
 curl http://127.0.0.1:8080/hello
 ```
 
@@ -70,13 +70,13 @@ In order to create the application graphically, you can use [the Azure portal](h
 
 You can also use the command line, which is easier:
 
-```
+```bash
 az spring-cloud app create -n simple-microservice
 ```
 
 You can now build your "simple-microservice" project and send it to Azure Spring Cloud:
 
-```
+```bash
 ./mvnw package
 az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
