@@ -21,7 +21,7 @@ The microservice that we create in this guide is [available here](spring-cloud-m
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
-```
+```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice | tar -xzvf -
 ```
 
@@ -34,27 +34,27 @@ In order to securely connect to Azure Spring Cloud services (Eureka and Spring C
 At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
 
 ```xml
-	<profiles>
-		<profile>
-			<id>cloud</id>
-			<repositories>
-				<repository>
-					<id>nexus-snapshots</id>
-					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-			<dependencies>
-				<dependency>
-					<groupId>com.microsoft.azure</groupId>
-					<artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-					<version>2.1.0-SNAPSHOT</version>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>cloud</id>
+            <repositories>
+                <repository>
+                    <id>nexus-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <dependencies>
+                <dependency>
+                    <groupId>com.microsoft.azure</groupId>
+                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
+                    <version>2.1.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 ```
 
 ## Add a new Spring MVC Controller
@@ -85,13 +85,13 @@ public class HelloController {
 
 Run the project:
 
-```
+```bash
 ./mvnw spring-boot:run
 ```
 
 Requesting the `/hello` endpoint should return the "Not configured by a Spring Cloud Server" message.
 
-```
+```bash
 curl http://127.0.0.1:8080/hello
 ```
 
