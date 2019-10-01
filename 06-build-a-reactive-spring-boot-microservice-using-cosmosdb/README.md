@@ -213,7 +213,7 @@ az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT
 ## Test the project in the cloud
 
 - Go to "App Management" in your Azure Spring Cloud cluster.
-  - Verify that `city-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka.
+  - Verify that `city-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `city-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 

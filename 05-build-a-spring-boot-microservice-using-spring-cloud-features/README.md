@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Build a Spring Boot microservice that is cloud-enabled: it uses a discovery server ([Eureka](https://github.com/Netflix/eureka)) and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) which are both managed and supported by Azure Spring Cloud.
+Build a Spring Boot microservice that is cloud-enabled: it uses a Spring Cloud Service Registry and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) which are both managed and supported by Azure Spring Cloud.
 
 ---
 
@@ -10,7 +10,7 @@ Build a Spring Boot microservice that is cloud-enabled: it uses a discovery serv
 
 This guide builds upon the previous guides: we are going to build again a simple Spring Boot microservice like in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), but this time it will use two major Spring Cloud features:
 
-- It will be connected to a [Eureka server](https://github.com/Netflix/eureka) so it can discover other microservices, as well as being discovered itself!
+- It will be connected to a Spring Cloud Service Registry so it can discover other microservices, as well as being discovered itself!
 - It will get its configuration from the Spring Cloud Config server that we configured in the previous guide, [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md)
 
 For both features, it will just be a matter of adding an official Spring Boot starter, and Azure Spring Cloud will take care of everything else.
@@ -25,11 +25,11 @@ To create our microservice, we will use [https://start.spring.io/](https://start
 curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice | tar -xzvf -
 ```
 
-> This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Eureka and the Spring Cloud Config Server.
+> This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Spring Cloud Service Registry and the Spring Cloud Config Server.
 
 ## Add a "cloud" Maven profile
 
-In order to securely connect to Azure Spring Cloud services (Eureka and Spring Cloud Config), we need to add a specific Maven dependency. We will add in a specific Maven profile, so it doesn't pollute the rest of the application.
+In order to securely connect to Azure Spring Cloud services (Spring Cloud Service Registry and Spring Cloud Config), we need to add a specific Maven dependency. We will add in a specific Maven profile, so it doesn't pollute the rest of the application.
 
 At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
 
@@ -116,7 +116,7 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 
 - Look for your Azure Spring Cloud cluster in your resource group
 - Go to "App Management"
-  - Verify that `spring-cloud-microservice` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka.
+  - Verify that `spring-cloud-microservice` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `spring-cloud-microservice` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
@@ -130,7 +130,7 @@ Configured by Azure Spring Cloud
 
 ## Conclusion
 
-Congratulations, you have deployed a complete Spring Cloud microservice, using Eureka and Spring Cloud Config Server!
+Congratulations, you have deployed a complete Spring Cloud microservice, using Spring Cloud Service Registry and Spring Cloud Config Server!
 
 If you need to check your code, the final project is available in the ["spring-cloud-microservice" folder](spring-cloud-microservice/).
 

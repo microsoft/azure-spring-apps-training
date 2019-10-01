@@ -68,7 +68,7 @@ spring:
 
 ```
 
-- The `spring.cloud.gateway.discovery.locator.enabled=true` part is to configure Spring Cloud Gateway to use Eureka to discover the available microservices.
+- The `spring.cloud.gateway.discovery.locator.enabled=true` part is to configure Spring Cloud Gateway to use the Spring Cloud Service Registry to discover the available microservices.
 - The `spring.cloud.gateway.globalcors.corsConfiguration` part is to allow CORS requests to our gateway. This will be helpful in the next guide, when we will add a front-end that is not hosted on Azure Spring Cloud.
 
 ## Create the application on Azure Spring Cloud
@@ -91,11 +91,11 @@ az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ## Test the project in the cloud
 
 - Go to "App Management" in your Azure Spring Cloud cluster.
-  - Verify that `gateway` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka.
+  - Verify that `gateway` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in the Spring Cloud Service Registry.
   - Select `gateway` to have more information on the microservice.
 - Copy/paste the public URL that is provided (there is a "Test Endpoint" like for microservices, but the gateway is directly exposed on the Internet, so let's use this).
 
-As the gateway is connected to Eureka, it should have automatically opened routes to the available microservices, with URL paths in the form of `/MICROSERVICE-ID/**`:
+As the gateway is connected to the Spring Cloud Service Registry, it should have automatically opened routes to the available microservices, with URL paths in the form of `/MICROSERVICE-ID/**`:
 
 - Test the `city-service` microservice endpoint by doing: `curl https://XXXXXXXX.azureapps.io/CITY-SERVICE/cities` (replacing XXXXXXXX by the name of your gateway)
 - Test the `weather-service` microservice endpoint by doing: `curl 'https://XXXXXXXX.azureapps.io/WEATHER-SERVICE/weather/city?name=Paris%2C%20France'` (replacing XXXXXXXX by the name of your gateway)

@@ -204,7 +204,7 @@ az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPS
 ## Test the project in the cloud
 
 - Go to "App Management" in your Azure Spring Cloud cluster.
-  - Verify that `weather-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Eureka.
+  - Verify that `weather-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in the Spring Cloud Service Registry.
   - Select `weather-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
