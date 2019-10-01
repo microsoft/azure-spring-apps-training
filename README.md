@@ -14,7 +14,7 @@ After completing all the guides, you should have a fairly good understanding of 
 
 ## Prerequisites
 
-- Java 11 or above
+- Java 8 or above
 - The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois)
 - A [GitHub account](https://github.com)
 

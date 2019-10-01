@@ -64,7 +64,7 @@ In order to create the application graphically, you can use [the Azure portal](h
 
 - Look for your Azure Spring Cloud cluster in your resource group
 - Go to "App Management" and create an application
-- Create a new application named "simple-microservice" that uses Java 11
+- Create a new application named "simple-microservice"
 
 ![Create application](media/01-create-application.png)
 
