@@ -45,7 +45,7 @@ public class WeatherController {
 
 ## Deploy the new application to a new "green" deployment set
 
-Build a new version application and deploy it to a new `deployment set` called `green`:
+Build a new version of the application and deploy it to a new `deployment set` called `green`:
 
 ```bash
 ./mvnw package -DskipTests -Pcloud
