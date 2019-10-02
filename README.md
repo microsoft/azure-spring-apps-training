@@ -2,7 +2,7 @@
 
 You will find here a full workshop on Azure Spring Cloud, including guides and demos.
 
-This was created by [Julien Dubois](https://twitter.com/juliendubois) and available for free to everyone, under the [MIT license](LICENSE-CODE).
+This was created by [Julien Dubois](https://twitter.com/juliendubois) and available for free to everyone, under the [MIT license](LICENSE.txt).
 
 ## What you should expect
 
