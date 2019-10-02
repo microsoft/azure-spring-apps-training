@@ -52,7 +52,7 @@ Build a new version of the application and deploy it to a new `deployment set` c
 az spring-cloud app deployment create --name green --app weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
-Once the application is deployed, if you go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) you will still have the same data, as the new version of the microservice is now in a staging area.
+Once the application is deployed, if you go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) you will still have the same data, as the new version of the microservice is now in a staging area, and not in production yet.
 
 To put this `green` deployment into production, you can use the command line:
 
