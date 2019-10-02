@@ -54,6 +54,10 @@ Build a [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 
 
 Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Cloud's distributed tracing mechanism, and scale our services depending on our needs.
 
+## [10 - Blue/Green deployment](10-blue-green-deployment/README.md)
+
+Deploy new versions of applications in a staging environment, and switch between staging and production with Azure Spring Cloud.
+
 ---
 
 ## Legal Notices

@@ -97,3 +97,5 @@ Now that we have distributed tracing enabled, we can scale applications dependin
 ---
 
 ⬅️ Previous guide: [08 - Build a Spring Cloud Gateway](../08-build-a-spring-cloud-gateway/README.md)
+
+➡️ Next guide: [10 - Blue/Green deployment](../10-blue-green-deployment/README.md)
