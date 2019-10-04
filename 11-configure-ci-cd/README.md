@@ -26,7 +26,7 @@ Then, in your GitHub project, select `Settings > Secrets` and add a new secret c
 
 ## Create a GitHub action
 
-In your project, add create a new directory called `.github/workflows` and add a file called `azure-spring-cloud.yml` in it. This file is a GitHub workflow, and will use the secret we just configured above, in order to deploy the application to your Azure Spring Cloud cluster.
+In your project, create a new directory called `.github/workflows` and add a file called `azure-spring-cloud.yml` in it. This file is a GitHub workflow, and will use the secret we just configured above, in order to deploy the application to your Azure Spring Cloud cluster.
 
 In that file, copy/paste the following content:
 
