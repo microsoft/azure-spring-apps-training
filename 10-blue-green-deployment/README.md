@@ -79,3 +79,5 @@ Once you have swapped deployments, and that `green` is active, you need to wait 
 ---
 
 ⬅️ Previous guide: [09 - Putting it all together, a complete microservice stack](../09-putting-it-all-together-a-complete-microservice-stack/README.md)
+
+➡️ Next guide: [11 - Configure CI/CD](../11-configure-ci-cd/README.md)

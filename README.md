@@ -58,6 +58,10 @@ Use a front-end to access graphically our complete microservice stack. Monitor o
 
 Deploy new versions of applications in a staging environment, and switch between staging and production with Azure Spring Cloud.
 
+## [11 - Configure CI/CD](11-configure-ci-cd/README.md)
+
+Configure a Continuous Integration / Continuous Deployement platform using GitHub Actions, so our Spring Boot microservices are automatically deployed.
+
 ---
 
 ## Legal Notices
