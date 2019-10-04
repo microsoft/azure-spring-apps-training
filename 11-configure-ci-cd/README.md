@@ -46,11 +46,11 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn package -DskipTests -Pcloud
-    - name: login to Azure Spring Cloud
+    - name: Login to Azure Spring Cloud
       uses: azure/actions/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: install Azure Spring Cloud extension
+    - name: Install Azure Spring Cloud extension
       run: az extension add -y --source https://github.com/VSChina/azure-cli-extensions/releases/download/0.4/spring_cloud-0.4.0-py2.py3-none-any.whl
     - name: Deploy to Azure Spring Cloud
       run: az spring-cloud app deploy --resource-group azure-spring-cloud --service azure-spring-cloud-training --name weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
