@@ -8,7 +8,7 @@ This was created by [Julien Dubois](https://twitter.com/juliendubois) and availa
 
 This is not the official documentation, but an opinionated training.
 
-It is hands-on made, and will use the command line extensively. The idea is to get coding very quickly and play with the platform, from a simple demo to far more complex examples.
+It is a hands-on training, and it will use the command line extensively. The idea is to get coding very quickly and play with the platform, from a simple demo to far more complex examples.
 
 After completing all the guides, you should have a fairly good understanding of everything that Azure Spring Cloud offers.
 
