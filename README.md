@@ -8,7 +8,7 @@ This was created by [Julien Dubois](https://twitter.com/juliendubois) and availa
 
 This is not the official documentation, but an opinionated training.
 
-It is made to by hands-on, and will use the command line extensively. The idea is to get coding very quickly and play with the platform, from a simple demo to far more complex examples.
+It is hands-on made, and will use the command line extensively. The idea is to get coding very quickly and play with the platform, from a simple demo to far more complex examples.
 
 After completing all the guides, you should have a fairly good understanding of everything that Azure Spring Cloud offers.
 
@@ -40,7 +40,7 @@ Build a Spring Boot microservice that is cloud-enabled: it uses a Spring Cloud S
 
 ## [06 - Build a reactive Spring Boot microservice using Cosmos DB](06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md)
 
-Build a reactive Spring Boot microservice, that uses the [Spring reactive stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and is binded to a [Cosmos DB database](https://docs.microsoft.com/en-us/azure/cosmos-db/?WT.mc_id=azurespringcloud-github-judubois) in order to access a globally-distributed database without optimum performance.
+Build a reactive Spring Boot microservice, that uses the [Spring reactive stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and is bound to a [Cosmos DB database](https://docs.microsoft.com/en-us/azure/cosmos-db/?WT.mc_id=azurespringcloud-github-judubois) in order to access a globally-distributed database with optimum performance.
 
 ## [07 - Build a Spring Boot microservice using MySQL](07-build-a-spring-boot-microservice-using-mysql/README.md)
 
