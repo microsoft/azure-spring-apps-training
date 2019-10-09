@@ -64,9 +64,10 @@ This workflow does the following:
 - It adds the Azure Spring Cloud extensions to the Azure CLI (this step should disappear when the service is in final release)
 - It deploys the application to your Azure Spring Cloud cluster
 
-__Warning__ For deploying your application, you need to input your real Azure resource group and Azure Spring Cloud cluster name in that last command line.
+__Warning__ To deploy your application, you need to input your real Azure resource group and Azure Spring Cloud cluster name in that last command line.
 
-This workflow is configured to be triggered each time code is pushed to the repository: there are many other [events that trigger GitHub actions](https://help.github.com/en/articles/events-that-trigger-workflows), you could for example deploy each time a new tag is created on the project.
+This workflow is configured to be triggered whenever code is pushed to the repository.
+There are many other [events that trigger GitHub actions](https://help.github.com/en/articles/events-that-trigger-workflows): you could for example deploy each time a new tag is created on the project.
 
 ## Test the GitHub action
 
