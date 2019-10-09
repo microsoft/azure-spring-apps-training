@@ -11,16 +11,16 @@ Use a front-end to access graphically our complete microservice stack. Monitor o
 We now have a complete microservices stack:
 
 - A gateway based on Spring Cloud Gateway.
-- A reactive `city-servivce` microservice, that stores its data on Cosmos DB.
+- A reactive `city-service` microservice, that stores its data on Cosmos DB.
 - A `weather-service` microservice, that stores its data on MySQL
 
 In order to finish this architecture, we need to add a front-end to it:
 
-- We have already built a VueJS application, that is available in the ["weather-app" folder](weather-app/).
-- This front-end could be hosted in Azure Spring Cloud, using the same domain name (this won't be the case in this guide, and this is why we enabled CORS in our gateway earlier).
+- We've already built a VueJS application, that is available in the ["weather-app" folder](weather-app/).
+- This front-end could be hosted in Azure Spring Cloud, using the same domain name (this won't be the case in this guide, and that's why we enabled CORS in our gateway earlier).
 - If you are familiar with NodeJS and Vue CLI, you can run this application locally by typing `npm install && vue ui`.
 
-In order to simplify this part, which has little value for understanding Azure Spring Cloud, we have already this application running:
+In order to simplify this part, which has little value to understand Azure Spring Cloud, we already built a running front-end:
 
 __[https://spring-training.azureedge.net/](https://spring-training.azureedge.net/)__
 
@@ -85,7 +85,7 @@ In the "Distributed tracing" menu, you should now have access to a full applicat
 
 ## Scale applications
 
-Now that we have distributed tracing enabled, we can scale applications depending on our needs.
+Now that distributed tracing is enabled, we can scale applications depending on our needs.
 
 - Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the overview page of your Azure Spring Cloud server, and select "App management" in the menu.
