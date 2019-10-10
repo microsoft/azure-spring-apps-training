@@ -29,7 +29,7 @@ az account set --subscription <target subscription ID>
 __This is temporary, and will not be necessary when the service is released__
 
 ```bash
-az extension add -y --source https://github.com/VSChina/azure-cli-extensions/releases/download/0.4/spring_cloud-0.4.0-py2.py3-none-any.whl
+az extension add -y --source https://azureclitemp.blob.core.windows.net/spring-cloud/spring_cloud-0.1.0-py2.py3-none-any.whl
 ```
 
 ## Create an Azure Spring Cloud instance
