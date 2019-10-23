@@ -13,9 +13,10 @@ The application that we create in this guide is [available here](gateway/).
 To create our gateway, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=cloud-gateway,cloud-eureka,cloud-config-client -d baseDir=gateway | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=cloud-gateway,cloud-eureka,cloud-config-client -d baseDir=gateway -d bootVersion=2.1.9.RELEASE | tar -xzvf -
 ```
 
+> We use the Spring Boot 2.1.9 release, as Spring Cloud Gateway doesn't work correctly with Spring Boot 2.2.0
 > We use the `Cloud Gateway`, `Eureka Discovery Client` and the `Config Client` components.
 
 ## Add a "cloud" Maven profile
