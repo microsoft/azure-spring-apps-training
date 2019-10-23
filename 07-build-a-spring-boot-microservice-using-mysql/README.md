@@ -197,7 +197,7 @@ Azure Spring Cloud can automatically bind the MySQL database we created to our m
 You can now build your "weather-service" project and send it to Azure Spring Cloud:
 
 ```bash
-./mvnw package -DskipTests -Pcloud
+./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 

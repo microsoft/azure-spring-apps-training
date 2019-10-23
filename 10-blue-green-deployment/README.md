@@ -48,7 +48,7 @@ public class WeatherController {
 Build a new version of the application and deploy it to a new `deployment set` called `green`:
 
 ```bash
-./mvnw package -DskipTests -Pcloud
+./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deployment create --name green --app weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 

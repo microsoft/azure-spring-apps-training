@@ -48,21 +48,21 @@ Now you need to update those applications on Azure Spring Cloud.
 Re-deploy the `city-service` microservice:
 
 ```bash
-./mvnw package -DskipTests -Pcloud
+./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
 Re-deploy the `weather-service` microservice:
 
 ```bash
-./mvnw package -DskipTests -Pcloud
+./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
 Re-deploy the `gateway` gateway:
 
 ```bash
-./mvnw package -DskipTests -Pcloud
+./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 

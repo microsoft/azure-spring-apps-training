@@ -106,7 +106,7 @@ az spring-cloud app create -n spring-cloud-microservice
 You can now build your "spring-cloud-microservice" project and send it to Azure Spring Cloud:
 
 ```bash
-./mvnw package -DskipTests -Pcloud
+./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deploy -n spring-cloud-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 

@@ -206,7 +206,7 @@ Azure Spring Cloud can automatically bind the Cosmos DB database we created to o
 You can now build your "city-service" project and send it to Azure Spring Cloud:
 
 ```bash
-./mvnw package -DskipTests -Pcloud
+./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 

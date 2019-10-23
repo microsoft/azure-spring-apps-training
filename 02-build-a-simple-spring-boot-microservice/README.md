@@ -77,7 +77,7 @@ az spring-cloud app create -n simple-microservice
 You can now build your "simple-microservice" project and send it to Azure Spring Cloud:
 
 ```bash
-./mvnw package
+./mvnw clean package
 az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
@@ -119,7 +119,7 @@ public class HelloController {
 EOF
 mv HelloController.java src/main/java/com/example/demo/HelloController.java
 az spring-cloud app create -n simple-microservice
-./mvnw package
+./mvnw clean package
 az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
