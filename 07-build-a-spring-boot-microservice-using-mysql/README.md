@@ -15,7 +15,7 @@ Build a classical Spring Boot application that uses JPA to acess a [MySQL databa
 
 ![Create MySQL database](media/01-create-mysql.png)
 
-- Once the databas is created, select it and go to "Connection security"
+- Once the database is created, select it and go to "Connection security"
   - Enable "Allow access to Azure services"
   - Add your current IP to the firewall rules, so you can access it from your machine
 
