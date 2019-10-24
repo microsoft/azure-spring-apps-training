@@ -13,8 +13,10 @@ The microservice that we create in this guide is [available here](simple-microse
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.1.9.RELEASE | tar -xzvf -
 ```
+
+> We force the Spring Boot version to be 2.1.9
 
 Go into the `simple-microservice` directory to view what has been generated:
 
@@ -100,7 +102,7 @@ If you need to check your code, the final project is available in the ["simple-m
 Here is the final script to build and deploy everything that was done in this guide:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.1.9.RELEASE | tar -xzvf -
 cd simple-microservice
 cat > HelloController.java << EOF
 package com.example.demo;
