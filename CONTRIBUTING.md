@@ -12,4 +12,6 @@ You can choose any tool to do those border, here's how we do it:
 - Go to `Filters -> Decor -> Add border...` 
 - Configure the border to be black, and only 5 pixels width
 
-Gaurav Kumar [https://github.com/gkgaurav31]
+## Contributors
+
+Many thanks to our contributors! The full list is available at [https://github.com/microsoft/azure-spring-cloud-training/graphs/contributors](https://github.com/microsoft/azure-spring-cloud-training/graphs/contributors).
