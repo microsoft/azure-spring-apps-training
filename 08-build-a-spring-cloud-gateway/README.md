@@ -96,6 +96,7 @@ az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
 - Copy/paste the public URL that is provided (there is a "Test Endpoint" like for microservices, but the gateway is directly exposed on the Internet, so let's use this).
 
 As the gateway is connected to the Spring Cloud Service Registry, it should have automatically opened routes to the available microservices, with URL paths in the form of `/MICROSERVICE-ID/**`:
+[The MICROSERVICE-ID must be in capital]
 
 - Test the `city-service` microservice endpoint by doing: `curl https://XXXXXXXX.azureapps.io/CITY-SERVICE/cities` (replacing XXXXXXXX by the name of your gateway)
 - Test the `weather-service` microservice endpoint by doing: `curl 'https://XXXXXXXX.azureapps.io/WEATHER-SERVICE/weather/city?name=Paris%2C%20France'` (replacing XXXXXXXX by the name of your gateway)
