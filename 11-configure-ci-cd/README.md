@@ -17,7 +17,7 @@ If it is not already done, [create a GitHub] repository and commit the code from
 You now need to allow access from your GitHub workflow to your Azure Spring Cloud cluster. Open up a terminal and type the following command, replacing `<azure-subscription-id>` by you Azure subscription ID, and `<resource-group-name>` by the name of the resource group in which your Azure Spring Cloud cluster is located:
 
 ```bash
-az ad sp create-for-rbac --name bootiful-test --role contributor --scopes /subscriptions/<azure-subscription-id>/resourceGroups/<resource-group-name> --sdk-auth
+az ad sp create-for-rbac --name spring-cloud-training --role contributor --scopes /subscriptions/<azure-subscription-id>/resourceGroups/<resource-group-name> --sdk-auth
 ```
 
 This should output a JSON text, that you need to copy.
