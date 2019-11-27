@@ -47,7 +47,7 @@ jobs:
     - name: Build with Maven
       run: mvn package -DskipTests -Pcloud
     - name: Login to Azure Spring Cloud
-      uses: azure/actions/login@v1
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Install Azure Spring Cloud extension
