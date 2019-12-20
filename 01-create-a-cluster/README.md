@@ -29,21 +29,18 @@ az account set --subscription <target subscription ID>
 __This is temporary, and will not be necessary when the service is released__
 
 ```bash
-az extension add -y --source https://azureclitemp.blob.core.windows.net/spring-cloud/spring_cloud-0.1.0-py2.py3-none-any.whl
+az extension add --name spring-cloud
 ```
 
 ## Create an Azure Spring Cloud instance
 
-__This is temporary, and will not be necessary when the service is released__
-
-- Azure Spring Cloud is currently in private preview, [fill this form to request an access](https://aka.ms/AzureSpringCloudInterest).
-- Once you have access, [click here](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois&microsoft_azure_marketplace_ItemHideKey=AppPlatformExtension#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home/searchQuery/spring) to access the cluster creation page.
+- [Click here](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois&microsoft_azure_marketplace_ItemHideKey=AppPlatformExtension#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home/searchQuery/spring%20cloud) to access the cluster creation page.
 
 ![Cluster creation](media/01-create-azure-spring-cloud.png)
 
-- Click on "Create"
-- Select your subscription, resource group name, name of the service and location
-- Once everything is validated, the cluster can be created
+- Click on "Azure Spring Cloud" and then on "Create".
+- Select your subscription, resource group name, name of the service and location.
+- Once everything is validated, the cluster can be created.
 
 ![Cluster configuration](media/02-creation-details.png)
 
