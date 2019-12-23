@@ -16,7 +16,8 @@ There are actually three ways to access your application's logs: [Azure Storage]
 
 In [01 - Create a cluster](../01-create-a-cluster/README.md), when the Azure Spring Cloud cluster was created, you should have also created a new "Log Analytics workspace" and linked it to your Azure Spring Cloud cluster.
 
-__If you did not configure it during the cluster creation__, here's how to set up the "Log Analytics workspace" manually:
+<details>
+  <summary>__If you did not configure it during the cluster creation__, here's how to set up the "Log Analytics workspace" manually</summary>
 
 - Go to the [the Azure portal](https://portal.azure.com/).
 - Search for "Log Analytics workspaces" in the search box.
@@ -30,6 +31,8 @@ __If you did not configure it during the cluster creation__, here's how to set u
 - Fill in the values as shown here and click "Save".
 
 ![Send logs to the log analytics workspace](media/02-send-logs-to-log-analytics-workspace.png)
+
+</details>
 
 ## Query application logs
 
