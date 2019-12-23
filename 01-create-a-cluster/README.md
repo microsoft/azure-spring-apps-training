@@ -40,9 +40,17 @@ az extension add --name spring-cloud
 
 - Click on "Azure Spring Cloud" and then on "Create".
 - Select your subscription, resource group name, name of the service and location.
-- Once everything is validated, the cluster can be created.
 
 ![Cluster configuration](media/02-creation-details.png)
+
+- Click on "Next : Diagnostic Setting" to go to the next screen.
+- Here you can either select an existing "Log Analytics workspace". Create a new one, and we will configure it in [03 - Configure application logs](../03-configure-application-logs/README.md).
+
+![Configure Log Analytics](media/03-creation-log-analytics.png)
+
+![Create new Log Analytics](media/04-create-new-log-analytics.png)
+
+- Once everything is validated, the cluster can be created.
 
 Creating the cluster will take a few minutes.
 
