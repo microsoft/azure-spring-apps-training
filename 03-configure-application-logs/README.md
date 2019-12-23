@@ -8,9 +8,15 @@ Access Spring Boot applications logs to understand common issues.
 
 ## Configure log aggregation
 
-There are actually three ways to access your application's logs: [Azure Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction/?WT.mc_id=azurespringcloud-github-judubois), [Azure Events Hub](https://docs.microsoft.com/en-us/azure/event-hubs/?WT.mc_id=azurespringcloud-github-judubois), and [Log Analytics](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/get-started-portal/?WT.mc_id=azurespringcloud-github-judubois). We will focus here on Log Analytics as it's the most common one, and as it's integrated into Azure Spring Cloud.
+There are actually three ways to access your application's logs: [Azure Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction/?WT.mc_id=azurespringcloud-github-judubois), [Azure Events Hub](https://docs.microsoft.com/en-us/azure/event-hubs/?WT.mc_id=azurespringcloud-github-judubois), and [Log Analytics](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/get-started-portal/?WT.mc_id=azurespringcloud-github-judubois). We will focus here on Log Analytics as it's the default solution configured with Azure Spring Cloud.
+
+## Introduction to Log Analytics
 
 [Log Analytics](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/get-started-portal/?WT.mc_id=azurespringcloud-github-judubois) is part of [Azure Monitor](https://azure.microsoft.com/en-us/services/monitor/), which is well-integrated into Azure Spring Cloud, and which we will also use for metrics monitoring.
+
+In [01 - Create a cluster](../01-create-a-cluster/README.md), when the Azure Spring Cloud cluster was created, you should have also created a new "Log Analytics workspace" and linked it to your Azure Spring Cloud cluster.
+
+__If you did not configure it during the cluster creation__, here's how to set up the "Log Analytics workspace" manually:
 
 - Go to the [the Azure portal](https://portal.azure.com/).
 - Search for "Log Analytics workspaces" in the search box.
