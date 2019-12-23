@@ -6,7 +6,8 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 
 ---
 
-> If you want to skip this section, you can use the following public Git repository [https://github.com/jdubois/spring-cloud-config-public.git](https://github.com/jdubois/spring-cloud-config-public.git)
+> If you want to skip this section, you can use the following public Git repository by entering this URI in the URI textbox of the default repository, under the Config Server menu.
+[https://github.com/jdubois/spring-cloud-config-public.git](https://github.com/jdubois/spring-cloud-config-public.git)
 
 ## Create a Git repository for storing the application configuration
 
