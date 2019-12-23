@@ -36,7 +36,7 @@ In [01 - Create a cluster](../01-create-a-cluster/README.md), when the Azure Spr
 
 ## Query application logs
 
-Logs are now available in the "Logs" link in the "Monitoring" section in the navigation pane for your Azure Spring Cloud cluster.  Click on "Logs" and, optionally, go through any tutorial content provided.  Feel free to skip that content for now.
+Logs are available in the "Logs" link in the "Monitoring" section in the navigation pane for your Azure Spring Cloud cluster.  Click on "Logs" and, optionally, go through any tutorial content provided.  Feel free to skip that content for now.
 
 This is a shortcut to the Logs Analytics workspace that was created earlier, so you can access that workspace through both menus.
 
