@@ -44,7 +44,7 @@ az extension add --name spring-cloud
 ![Cluster configuration](media/02-creation-details.png)
 
 - Click on "Next : Diagnostic Setting" to go to the next screen.
-- Here you can either select an existing "Log Analytics workspace" or create a new one. Create a new one, and we will configure it in [03 - Configure application logs](../03-configure-application-logs/README.md).
+- Here you can either select an existing "Log Analytics workspace" or create a new one. Create a new one, and we will configure it later in [03 - Configure application logs](../03-configure-application-logs/README.md).
 
 ![Configure Log Analytics](media/03-creation-log-analytics.png)
 
