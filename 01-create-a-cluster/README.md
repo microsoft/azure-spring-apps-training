@@ -26,7 +26,7 @@ az account set --subscription <target subscription ID>
 
 ## Install the Azure Spring Cloud CLI extension
 
-__This is temporary, and will not be necessary when the service is released__
+To install the Azure Spring Cloud CLI extension, type the following command:
 
 ```bash
 az extension add --name spring-cloud
