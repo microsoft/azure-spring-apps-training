@@ -51,7 +51,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: Install Azure Spring Cloud extension
-      run: az extension add -y --source https://azureclitemp.blob.core.windows.net/spring-cloud/spring_cloud-0.1.0-py2.py3-none-any.whl
+      run: az extension add --name spring-cloud
     - name: Deploy to Azure Spring Cloud
       run: az spring-cloud app deploy --resource-group azure-spring-cloud --service azure-spring-cloud-training --name weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
