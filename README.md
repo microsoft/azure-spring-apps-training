@@ -18,8 +18,6 @@ After completing all the guides, you should have a fairly good understanding of 
 - The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois)
 - A [GitHub account](https://github.com)
 - An Azure account. [Get one for free](https://azure.microsoft.com/free/?WT.mc_id=azurespringcloud-github-judubois).
-- Azure Spring Cloud service activated in your account - [request access here](http://aka.ms/spring-cloud).
-  - Currently, the service is in Preview and requests will be reviewed and accepted on a case-by-case basis.
 
 ## [01 - Create a cluster](01-create-a-cluster/README.md)
 
