@@ -17,7 +17,7 @@ After completing all the guides, you should have a fairly good understanding of 
 - Java 8 or above
 - The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois)
 - A [GitHub account](https://github.com)
-- An Azure account. [Get one for free](https://azure.microsoft.com/free/).
+- An Azure account. [Get one for free](https://azure.microsoft.com/free/?WT.mc_id=azurespringcloud-github-judubois).
 - Azure Spring Cloud service activated in your account - [request access here](http://aka.ms/spring-cloud).
   - Currently, the service is in Preview and requests will be reviewed and accepted on a case-by-case basis.
 
@@ -79,7 +79,7 @@ may be either trademarks or registered trademarks of Microsoft in the United Sta
 The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks.
 Microsoft's general trademark guidelines can be found at http://go.microsoft.com/fwlink/?LinkID=254653.
 
-Privacy information can be found at https://privacy.microsoft.com/en-us/
+Privacy information can be found at [https://privacy.microsoft.com/en-us/](https://privacy.microsoft.com/en-us/?WT.mc_id=azurespringcloud-github-judubois)
 
 Microsoft and any contributors reserve all other rights, whether under their respective copyrights, patents,
 or trademarks, whether by implication, estoppel or otherwise.
