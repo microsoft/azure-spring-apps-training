@@ -135,7 +135,7 @@ package com.example.demo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping(path="/weather")
 public class WeatherController {
 
@@ -146,8 +146,8 @@ public class WeatherController {
     }
 
     @GetMapping("/city")
-    public @ResponseBody String getWeatherForCity(@RequestParam("name") String cityName) {
-        return weatherRepository.findById(cityName).get().getDescription();
+    public @ResponseBody Weather getWeatherForCity(@RequestParam("name") String cityName) {
+        return weatherRepository.findById(cityName).get();
     }
 }
 ```
