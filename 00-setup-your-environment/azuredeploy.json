@@ -1,0 +1,174 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location" : {
+            "type" : "string",
+            "defaultValue" : "[resourceGroup().location]"
+        },
+        "db_for_mysql_name": {
+            "defaultValue": "[concat('sclabm-', uniqueString(resourceGroup().id))]",
+            "type": "string"
+        },
+        "cosmosdb_account_name": {
+            "defaultValue": "[concat('sclabc-', uniqueString(resourceGroup().id))]",
+            "type": "string"
+        },
+        "app_insights_workspace_name": {
+            "defaultValue": "[concat('sclab-ai-', uniqueString(resourceGroup().id))]",
+            "type": "string"
+        }, 
+        "log_analytics_workspace_name": {
+            "defaultValue": "[concat('sclab-la-', uniqueString(resourceGroup().id))]",
+            "type": "string"
+        }, 
+        "mysql_admin_password": {
+            "type" :"securestring",
+            "metadata" :{
+                "description" : "The administrator password for the MySQL instance"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.DBforMySQL/servers",
+            "apiVersion": "2017-12-01",
+            "name": "[parameters('db_for_mysql_name')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "B_Gen5_1",
+                "tier": "Basic",
+                "family": "Gen5",
+                "capacity": 1
+            },
+            "properties": {
+                "administratorLogin" : "sqlAdmin",
+                "administratorLoginPassword" : "[parameters('mysql_admin_password')]",
+                "createMode" : "Default",
+                "storageProfile": {
+                    "storageMB": 5120,
+                    "backupRetentionDays": 7,
+                    "geoRedundantBackup": "Disabled",
+                    "storageAutoGrow": "Enabled"
+                },
+                "version": "5.7",
+                "sslEnforcement": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts",
+            "apiVersion": "2019-08-01",
+            "name": "[parameters('cosmosdb_account_name')]",
+            "location": "[parameters('location')]",
+            "tags": {
+                "defaultExperience": "Core (SQL)",
+                "hidden-cosmos-mmspecial": ""
+            },
+            "kind": "GlobalDocumentDB",
+            "properties": {
+                "enableAutomaticFailover": false,
+                "enableMultipleWriteLocations": false,
+                "isVirtualNetworkFilterEnabled": false,
+                "virtualNetworkRules": [
+                ],
+                "disableKeyBasedMetadataWriteAccess": false,
+                "databaseAccountOfferType": "Standard",
+                "consistencyPolicy": {
+                    "defaultConsistencyLevel": "Session",
+                    "maxIntervalInSeconds": 5,
+                    "maxStalenessPrefix": 100
+                },
+                "locations": [
+                    {
+                        "locationName": "[parameters('location')]",
+                        "provisioningState": "Succeeded",
+                        "failoverPriority": 0,
+                        "isZoneRedundant": false
+                    }
+                ],
+                "capabilities": [
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.OperationalInsights/workspaces",
+            "apiVersion": "2015-11-01-preview",
+            "name": "[parameters('log_analytics_workspace_name')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "sku": {
+                    "name": "PerGB2018"
+                },
+                "retentionInDays": 30
+            }
+        },
+        {
+            "type": "Microsoft.Insights/components",
+            "apiVersion": "2015-05-01",
+            "name": "[parameters('app_insights_workspace_name')]",
+            "location": "[parameters('location')]",
+            "kind": "web",
+            "properties": {
+                "Application_Type": "web",
+                "Flow_Type": "Bluefield",
+                "Request_Source": "rest"
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
+            "apiVersion": "2019-08-01",
+            "name": "[concat(parameters('cosmosdb_account_name'), '/azure-spring-cloud-cosmosdb')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosdb_account_name'))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "azure-spring-cloud-cosmosdb"
+                },
+                "options": {
+                    "throughput" : "400"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
+            "apiVersion": "2019-08-01",
+            "name": "[concat(parameters('cosmosdb_account_name'), '/azure-spring-cloud-cosmosdb/City')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('cosmosdb_account_name'), 'azure-spring-cloud-cosmosdb')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosdb_account_name'))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "City",
+                    "indexingPolicy": {
+                        "indexingMode": "Consistent",
+                        "automatic": true,
+                        "includedPaths": [
+                            {
+                                "path": "/*"
+                            }
+                        ],
+                        "excludedPaths": [
+                            {
+                                "path": "/\"_etag\"/?"
+                            }
+                        ]
+                    },
+                    "partitionKey": {
+                        "paths": [
+                            "/name"
+                        ],
+                        "kind": "Hash"
+                    },
+                    "conflictResolutionPolicy": {
+                        "mode": "LastWriterWins",
+                        "conflictResolutionPath": "/_ts"
+                    }
+                },
+                "options": {
+                }
+            }
+        }
+    ]
+}
