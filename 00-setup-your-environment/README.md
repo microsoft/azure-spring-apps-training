@@ -12,7 +12,7 @@ Setting up all the necessary prerequisites in order to expeditiously complete th
 
 > 💡 All commands in this lab are formatted for the Bash shell. While Azure CLI should behave identically on all environments, some semantics may need to be modified if you use other shells.
 
-> 💡 In sections 9 and 10, you will access the UI of the Microservice application in a web browser. This UI does not render correctly in Internet Explorer and the pre-Chromium version of Edge. Use the [new Edge](https://microsoft.com/edge), Google Chrome, or Firefox for these sections.
+> 💡 In sections 9 and 10, you will access the UI of the Microservice application in a web browser. This UI does not render correctly in Internet Explorer and the pre-Chromium version of Edge. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
 
 ### Using Docker (Recommended)
 
@@ -23,8 +23,8 @@ A docker image containing all of the pre-requisites is available. You'll need:
   > - [Click here](https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe) for Windows
   > - [Click here](https://download.docker.com/mac/stable/Docker.dmg) for Mac
 
-* Visual Studio Code ([Download here](https://code.visualstudio.com))
-* ["Remote - Containers" extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for Visual Studio Code
+* Visual Studio Code ([Download here](https://code.visualstudio.com/?WT.mc_id=azurespringcloud-github-judubois))
+* ["Remote - Containers" extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers&WT.mc_id=azurespringcloud-github-judubois) for Visual Studio Code
 
 With Docker installed, run (in bash or PowerShell with administrator privileges)
 
@@ -36,7 +36,7 @@ docker run -d azurejavalab.azurecr.io/azurejavalab:2020.01
 
 Visual Studio code makes it easy to edit files and run commands inside a container all in one single, fluid interface. If you don't have VS Code installed, [install it now](https://code.visualstudio.com).
 
-With Visual Studio Code installed, open the page for the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and click "Install". If prompted to allow the browser to open Visual Studio Code, allow it.
+With Visual Studio Code installed, open the page for the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers&WT.mc_id=azurespringcloud-github-judubois) extension and click "Install". If prompted to allow the browser to open Visual Studio Code, allow it.
 
 Visual Studio Code will open, showing the description of the Remote Containers extension. Click on the green install button on that page to install the extension:
 
@@ -77,8 +77,8 @@ You can use the integrated shell on the bottom right for any command you need to
 This training lab requires the following to be installed on your machine:
 
 * [JDK 1.8](https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk)
-* A text editor or an IDE. If you do not already have an IDE for Java development, we recommend using [Visual Studio Code](https://code.visualstudio.com/) with the [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack).
-* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) version 2.0.80 or later. You can check the version of your current Azure CLI installation by running:
+* A text editor or an IDE. If you do not already have an IDE for Java development, we recommend using [Visual Studio Code](https://code.visualstudio.com/?WT.mc_id=azurespringcloud-github-judubois) with the [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack&WT.mc_id=azurespringcloud-github-judubois).
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest&WT.mc_id=azurespringcloud-github-judubois) version 2.0.80 or later. You can check the version of your current Azure CLI installation by running:
 
   ```bash
   az --version
