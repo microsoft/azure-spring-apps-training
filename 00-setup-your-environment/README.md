@@ -6,6 +6,21 @@ Setting up all the necessary prerequisites in order to expeditiously complete th
 
 ---
 
+## Creating Azure Resources
+
+To save time, we provide an ARM template for creating all the Azure resources you will need for this lab other than the Azure Spring Cloud instance itself. Use the Deploy to Azure button below.
+
+> 💡 Use the following settings for deploying the Azure Template
+> * Create a new resource group
+> * Set West US2 as the location
+> * Save the MySQL password you specify in this step. You will need it in section 6.
+
+[![Deploy to Azure](media/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Fazure-spring-cloud-training%2Fmaster%2F00-setup-your-environment%2Fazuredeploy.json)
+
+
+>💡 The resource provisioning will take some time. Once you have run the Docker image or installed all the pre-requisites, proceed to the next section.
+
+
 ## Setting up your local environment
 
  The easiest way to get all the pre-requisites is to use the provided docker image (see ["Using Docker"](#using-docker) below). Alternatively, you can install all the pre-requisites on your own machine (see ["Local System Prerequisites"](#local-system-prerequisites) below).
@@ -29,7 +44,7 @@ A docker image containing all of the pre-requisites is available. You'll need:
 With Docker installed, run (in bash or PowerShell with administrator privileges)
 
 ```bash
-docker run -d azurejavalab.azurecr.io/azurejavalab:2020.01
+docker run -d azurejavalab.azurecr.io/azurejavalab:latest
 ```
 
 #### Preparing Visual Studio Code
@@ -90,22 +105,6 @@ This training lab requires the following to be installed on your machine:
 The environment variable `JAVA_HOME` should be set to the path of `javac` in the JDK installation.
 
 You can then use Visual Studio Code or an IDE of your choice.
-
-## Creating Azure Resources
-
-To save time, we provide an ARM template for creating all the Azure resources you will need for this lab other than the Azure Spring Cloud instance itself.
-
->🛑Be sure to substitute or assign a valid resource group name for `$RESOURCE_GROUP_NAME`.
-
-```bash
-az login # Log into your Azure account if necessary
-
-az group create -g $RESOURCE_GROUP_NAME --location westus2 # Create a new resource group for this lab
-
-az group deployment create -g $RESOURCE_GROUP_NAME --template-file azuredeploy.json --no-wait --parameters 'mysql_admin_password=super$ecr3t' # Substitute something else for the password parameter
-```
-
->💡 The resource provisioning will take some time. Once you have run the Docker image or installed all the pre-requisites, proceed to the next section.
 
 ---
 
