@@ -15,7 +15,7 @@ To save time, we provide an ARM template for creating all the Azure resources yo
 > * Set West US2 as the location
 > * Save the MySQL password you specify in this step. You will need it in section 6.
 
-[![Deploy to Azure](media/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Fazure-spring-cloud-training%2Fmaster%2F00-setup-your-environment%2Fazuredeploy.json)
+[![Deploy to Azure](media/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Fazure-spring-cloud-training%2Fmaster%2F00-setup-your-environment%2Fazuredeploy.json?WT.mc_id=azurespringcloud-github-judubois)
 
 >💡 The resource provisioning will take some time. Continue with the workshop.
 
