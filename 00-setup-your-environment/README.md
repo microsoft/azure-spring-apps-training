@@ -17,7 +17,6 @@ To save time, we provide an ARM template for creating all the Azure resources yo
 
 [![Deploy to Azure](media/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Fazure-spring-cloud-training%2Fmaster%2F00-setup-your-environment%2Fazuredeploy.json)
 
-
 >💡 The resource provisioning will take some time. Continue with the workshop.
 
 ## Setting up your local environment
