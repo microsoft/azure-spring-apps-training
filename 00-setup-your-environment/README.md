@@ -109,4 +109,4 @@ az group deployment create -g $RESOURCE_GROUP_NAME --template-file azuredeploy.j
 
 ---
 
-➡️ Next guide: [01 - Create an Azure Spring Cloud instance](../01-create-a-cluster/README.md)
+➡️ Next guide: [01 - Create an Azure Spring Cloud instance](../01-create-an-azure-spring-cloud-instance/README.md)
