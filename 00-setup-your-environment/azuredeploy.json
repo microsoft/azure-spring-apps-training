@@ -24,6 +24,7 @@
         }, 
         "mysql_admin_password": {
             "type" :"securestring",
+            "defaultValue": "super$ecr3t",
             "metadata" :{
                 "description" : "The administrator password for the MySQL instance"
             }
