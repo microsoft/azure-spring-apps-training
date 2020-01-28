@@ -12,7 +12,7 @@ There are actually three ways to access your application's logs: [Azure Storage]
 
 [Log Analytics](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/get-started-portal/) is part of [Azure Monitor](https://azure.microsoft.com/en-us/services/monitor/), which is well-integrated into Azure Spring Cloud, and which we will also use for metrics monitoring.
 
-Having completed the setup in Section 00, you should have a Log Analytics workspace named `sclab-la-<unique string>`. We must now configure our Azure Spring Cloud instance to send its data to this workspace.
+Having completed the setup in [Section 00](../00-setup-your-environment/README.md), you should have a Log Analytics workspace named `sclab-la-<unique string>` in your resource group for this workshop. We must now configure our Azure Spring Cloud instance to send its data to this workspace.
 
 - Go to the "Overview" page of your Azure Spring Cloud instance, and select "Diagnostic settings" in the "Monitoring" section of the navigation pane.
 - Delete any diagnostic settings you may see there.
@@ -28,7 +28,7 @@ Distributed tracing allows you to observe interaction among microservices and di
 - Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the Azure Spring Cloud instance and click on "Distributed Tracing" (under Monitoring).
   - Click on "Edit Settings" and select the App Insights workspace created in Section 00 (named `sclab-ai-<unique string>`).
-  - Once the Application Insights configuration is saved, click "Enable" at the top of the "Distributed Tracing" pane if it is enabled.
+  - Once the Application Insights configuration is saved, click "Enable" at the top of the "Distributed Tracing". If the button is not clickable, then Distributed Tracing is already enabled.
 
 ---
 

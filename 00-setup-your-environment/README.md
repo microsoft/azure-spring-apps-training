@@ -2,21 +2,21 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Setting up all the necessary prerequisites in order to complete the lab in time.
+Setting up all the necessary prerequisites in order to expeditiously complete the lab.
 
 ---
 
 ## Setting up your local environment
 
-To complete the lab in the time allotted, you should have all the pre-requisites ready. The easiest way to get all the pre-requisites is to use the provided docker image (see ["Using Docker"](#using-docker) below). Alternatively, you can install all the pre-requisites on your own machine (see ["Local System Prerequisites"](#local-system-prerequisites) below).
+ The easiest way to get all the pre-requisites is to use the provided docker image (see ["Using Docker"](#using-docker) below). Alternatively, you can install all the pre-requisites on your own machine (see ["Local System Prerequisites"](#local-system-prerequisites) below).
 
-> 💡 All commands in this lab are formatted for the Bash shell. While Azure CLI should behave identically on all environments, some semantics may need to be modifed if you use other shells.
+> 💡 All commands in this lab are formatted for the Bash shell. While Azure CLI should behave identically on all environments, some semantics may need to be modified if you use other shells.
 
 > 💡 In sections 9 and 10, you will access the UI of the Microservice application in a web browser. This UI does not render correctly in Internet Explorer and the pre-Chromium version of Edge. Use the [new Edge](https://microsoft.com/edge), Google Chrome, or Firefox for these sections.
 
 ### Using Docker (Recommended)
 
-A docker image conaining all of the pre-requisites is available. You'll need:
+A docker image containing all of the pre-requisites is available. You'll need:
 
 * Docker Desktop.
   > If you need to install Docker...
@@ -25,7 +25,6 @@ A docker image conaining all of the pre-requisites is available. You'll need:
 
 * Visual Studio Code ([Download here](https://code.visualstudio.com))
 * ["Remote - Containers" extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for Visual Studio Code
-* [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) for Visual Studio Code (optional)
 
 With Docker installed, run (in bash or PowerShell with administrator privileges)
 
@@ -45,8 +44,6 @@ Visual Studio Code will open, showing the description of the Remote Containers e
 
 If an "uninstall" button appears in place of the "Install" button, then the extension is already installed and you can continue.
 
-> Consider installing the [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) for Visual Studio Code, using similar steps as above. While it is not strictly necessary to complete this lab, it will provide syntax highlighting and flag potential mistakes.
-
 #### Connecting to the Container
 
 With the container running on your machine, click on the "Remote Explorer" button on the left toolbar in Visual Studio Code:
@@ -57,7 +54,7 @@ The Remote Explorer pane will appear, and you should see the lab container in it
 
 ![Remote explorer pane](media/03-remote-explorer-pane.png)
 
-A new window will open. Press CTRL+SHIFT+P (Mac: ⇧⌘P) to open the command bar and Enter "Open Folder". In the subsequent dialog, enter `/lab`:
+A new window will open. Press CTRL+SHIFT+P (Mac: ⇧⌘P) to open the command bar and Enter "Open Folder". Select the "File: Open Folder" command. In the subsequent dialog, enter `/lab`:
 
 ![Open Folder](media/04-open-folder.png)
 

@@ -86,13 +86,13 @@ public class HelloController {
 
 Run the project:
 
+>💡 Do not be alarmed when you see exception stack traces. Spring Cloud is attempting to contact a local configuration server, which we have not provided. The application will still start using any available local settings and defaults.
+
 ```bash
 cd spring-cloud-microservice
 ./mvnw spring-boot:run &
 cd ..
 ```
-
-Do not be alarmed when you see exception stack traces. Spring Cloud is attempting to contact a local configuration server, which we have not provided. The application will still start using any available local settings and defaults.
 
 Requesting the `/hello` endpoint should return the "Not configured by a Spring Cloud Server" message.
 

@@ -18,7 +18,6 @@ To create our microservice, we will use [https://start.spring.io/](https://start
 curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.1.9.RELEASE | tar -xzvf -
 ```
 
-
 > We force the Spring Boot version to be 2.1.9
 
 ## Add a new Spring MVC Controller
@@ -118,6 +117,8 @@ curl https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLa
 ```
 
 >💡Note that we have appended `hello/` to the URL.  Failure to do this will result in a "404 not found".
+
+If successful, you should see the message: `Hello from Azure Spring Cloud`.
 
 ## Conclusion
 
