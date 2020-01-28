@@ -26,7 +26,7 @@ __[https://spring-training.azureedge.net/](https://spring-training.azureedge.net
 
 For your information, this website is hosted on Azure Storage and served through Azure CDN for optimum performance.
 
-Go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/), input your Spring Cloud Gateway's public URL in the text field, and click on "Go". You should see the following screen:
+Go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/), input your Spring Cloud Gateway's public URL in the text field and click on "Go". You should see the following screen:
 
 ![VueJS front-end](media/01-vuejs-frontend.png)
 
@@ -92,10 +92,10 @@ In the "Distributed tracing" menu in Azure Portal, you should now have access to
 
 Now that distributed tracing is enabled, we can scale applications depending on our needs.
 
-- Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
-- Go to the overview page of your Azure Spring Cloud server, and select "Apps" in the menu.
-  - Select one service, and click on "Scale"
-  - Modify the number of instances, or change the CPU/RAM of the instance
+- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
+- Go to the overview page of your Azure Spring Cloud server and select "Apps" in the menu.
+  - Select one service and click on "Scale"
+  - Modify the number of instances or change the CPU/RAM of the instance
 
 ![Application scaling](media/04-application-scaling.png)
 

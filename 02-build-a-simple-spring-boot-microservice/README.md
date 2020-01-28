@@ -66,8 +66,7 @@ kill %1
 
 ## Create and deploy the application on Azure Spring Cloud
 
-This section shows how to create an app instance, and then deploy your
-code to it.
+This section shows how to create an app instance and then deploy your code to it.
 
 In order to create the app instance graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
@@ -112,7 +111,7 @@ Go to [the Azure portal](https://portal.azure.com/):
 
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
 
-```
+```bash
 curl https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/hello/
 ```
 

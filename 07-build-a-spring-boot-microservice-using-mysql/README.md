@@ -68,7 +68,7 @@ az spring-cloud app create -n weather-service
 
 In [Section 6](../06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md), we created a service binding to inject CosmosDB configuration into an Azure Spring Cloud microservice.
 
-Now, let's do the same thing to inject connectino information for our MySQL database into the new `weather-service` microservice. This time, we'll do it from the command line:
+Now, let's do the same thing to inject connection information for our MySQL database into the new `weather-service` microservice. This time, we'll do it from the command line:
 
 > 💡Make sure you use the same shell session that you've been using for the previous steps in this section.
 
@@ -84,13 +84,14 @@ az spring-cloud app binding mysql add \
     --key "$MYSQL_PASSWORD"
 ```
 
-You can, if you wish, view the newly-created service binding in [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+You can, if you wish, view the newly created service binding in [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+
 - Navigate to your Azure Spring Cloud Instance
 - Click on Apps
 - Click on `weather-service`.
 - Click on Service Bindings.
 
-You should see the newly-created weather binding listed: `mysql-weather`. If you click on it, you can see the MySQL connection information:
+You should see the newly created weather binding listed: `mysql-weather`. If you click on it, you can see the MySQL connection information:
 
 ![MySQL Service Binding](media/03-bind-service-mysql.png)
 
@@ -250,7 +251,7 @@ cd ..
 
 - Go to "Apps" in your Azure Spring Cloud instance.
   - Verify that `weather-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in the Spring Cloud Service Registry.
-  - Select `weather-service` to have more information on the microservice.
+  - Select `weather-service` to have `m`ore information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
 You can now use cURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.

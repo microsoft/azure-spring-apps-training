@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Build a reactive Spring Boot microservice, that uses the [Spring reactive stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and is binded to a [Cosmos DB database](https://docs.microsoft.com/en-us/azure/cosmos-db/) in order to access a globally-distributed database with optimum performance.
+Build a reactive Spring Boot microservice that uses the [Spring reactive stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and is bound to a [Cosmos DB database](https://docs.microsoft.com/en-us/azure/cosmos-db/) in order to access a globally-distributed database with optimum performance.
 
 ---
 
@@ -182,7 +182,7 @@ Azure Spring Cloud can automatically bind the Cosmos DB database we created to o
 - Go to `Service bindings`
 - Click on `Create service binding``
   - Give your binding a name, for example `cosmosdb-city`
-  - Select the Cosmos DB account and database we created, and keep the default `sql` API type
+  - Select the Cosmos DB account and database we created and keep the default `sql` API type
   - In the drop-down list, select the primary master key
   - Click on `Create` to create the database binding
 

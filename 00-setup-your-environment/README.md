@@ -36,7 +36,7 @@ docker run -d azurejavalab.azurecr.io/azurejavalab:2020.01
 
 Visual Studio code makes it easy to edit files and run commands inside a container all in one single, fluid interface. If you don't have VS Code installed, [install it now](https://code.visualstudio.com).
 
-With Visual Studio Code installed, open the page for the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension, and click "Install". If prompted to allow the browser to open Visual Studio Code, allow it.
+With Visual Studio Code installed, open the page for the [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension and click "Install". If prompted to allow the browser to open Visual Studio Code, allow it.
 
 Visual Studio Code will open, showing the description of the Remote Containers extension. Click on the green install button on that page to install the extension:
 

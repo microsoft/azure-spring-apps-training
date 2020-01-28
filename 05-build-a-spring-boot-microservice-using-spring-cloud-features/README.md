@@ -158,7 +158,7 @@ Insert this text in the text area that states "Type your queries here or click o
 ```sql
 AppPlatformLogsforSpring
 | where AppName == "spring-cloud-microservice"
-| project TimeGenerated, Log 
+| project TimeGenerated, Log
 | order by TimeGenerated desc
 | limit 50
 ```

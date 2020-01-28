@@ -12,7 +12,7 @@ This lab is based on a public workshop created by [Julien Dubois](https://twitte
 
 ## What you should expect
 
-This is not the official documentation, but an opinionated training.
+This is not the official documentation but an opinionated training.
 
 It is a hands-on training, and it will use the command line extensively. The idea is to get coding very quickly and play with the platform, from a simple demo to far more complex examples.
 
@@ -64,11 +64,11 @@ Build a [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 
 
 ## [09 - Putting it all together, a complete microservice stack](09-putting-it-all-together-a-complete-microservice-stack/README.md)
 
-Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Cloud's distributed tracing mechanism, and scale our services depending on our needs.
+Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Cloud's distributed tracing mechanism and scale our services depending on our needs.
 
 ## [10 - Blue/Green deployment](10-blue-green-deployment/README.md)
 
-Deploy new versions of applications in a staging environment, and switch between staging and production with Azure Spring Cloud.
+Deploy new versions of applications in a staging environment and switch between staging and production with Azure Spring Cloud.
 
 ## [11 - Configure CI/CD](11-configure-ci-cd/README.md)
 
