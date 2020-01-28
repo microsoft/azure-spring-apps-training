@@ -1,68 +1,60 @@
-# 01 - Create a cluster
+# 01 - Create an Azure Spring Cloud instance
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Basics on creating a cluster and configuring the CLI to work efficiently.
+Basics on creating an instance and configuring the CLI to work efficiently.
 
 ---
 
-## Install the CLI and authenticate
+## Verify Azure Subscription
 
-Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois) and log in to your account:
+Ensure your Azure CLI is logged into your Azure subscription.
 
-```bash
-az login
-```
-
-Configure the CLI to use Azure subscription you want to use for this training:
+>💡If you intend to use the Docker container as recommended, do this inside the container bash session.
 
 ```bash
-# List all subscriptions
-az account list -o table
-
-# Set active subscription
-az account set --subscription <target subscription ID>
+az login # Sign into an azure account
+az account show # See the currently signed-in account.
 ```
 
-## Install the Azure Spring Cloud CLI extension
-
-To install the Azure Spring Cloud CLI extension, type the following command:
-
-```bash
-az extension add --name spring-cloud
-```
+Ensure your default subscription is the one you intend to use for this lab, and if not - set the subscription via 
+```az account set --subscription <SUBSCRIPTION_ID>```
 
 ## Create an Azure Spring Cloud instance
 
-- [Click here](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois&microsoft_azure_marketplace_ItemHideKey=AppPlatformExtension#blade/Microsoft_Azure_Marketplace/MarketplaceOffersBlade/selectedMenuItemId/home/searchQuery/spring%20cloud) to access the cluster creation page.
+In this section, we will create our Azure Spring Cloud Instance using Azure CLI.
 
-![Cluster creation](media/01-create-azure-spring-cloud.png)
+First, you will need to come up with a name for your Azure Spring Cloud instance.
 
-- Click on "Azure Spring Cloud" and then on "Create".
-- Select your subscription, resource group name, name of the service and location.
+-__The name must be unique among all Azure Spring Cloud Instances across all of Azure__. Consider using your username as part of the name.
+- The name can contain only lowercase letters, numbers and hyphens. The first character must be a letter. The last character must be a letter or number. The value must be between 4 and 32 characters long.
 
-![Cluster configuration](media/02-creation-details.png)
+To save minimize, set the variable `RESOURCE_GROUP_NAME` to the name of the resource group created in the previous section. Set the variable `SPRING_CLOUD_NAME` to the name of the Azure Spring Cloud instance to be created:
 
-- Click on "Next : Diagnostic Setting" to go to the next screen.
-- Here you can either select an existing "Log Analytics workspace" or create a new one. Create a new one, and we will configure it later in [03 - Configure application logs](../03-configure-application-logs/README.md).
-
-![Configure Log Analytics](media/03-creation-log-analytics.png)
-
-![Create new Log Analytics](media/04-create-new-log-analytics.png)
-
-- Once everything is validated, the cluster can be created.
-
-Creating the cluster will take a few minutes.
-
-## Configure the CLI to use that cluster
-
-Using the cluster's resource group and name by default will save you a lot of typing later:
+>🛑Be sure to substitute your own values for `RESOURCE_GROUP_NAME` and `SPRING_CLOUD_NAME` as described above.
 
 ```bash
-az configure --defaults group=<resource group name>
-az configure --defaults spring-cloud=<service instance name>
+RESOURCE_GROUP_NAME=spring-cloud-lab
+SPRING_CLOUD_NAME=azure-spring-cloud-lab
+```
+
+With these variables set, we can now create the Azure Spring Cloud Instance:
+
+```bash
+az spring-cloud create \
+    -g "$RESOURCE_GROUP_NAME" \
+    -n "$SPRING_CLOUD_NAME"
+```
+
+For the remainder of this workshop, we will be running Azure CLI commands referencing the same resource group and Azure Spring Cloud instance. So let's set them as defaults, so we don't have to specify them again:
+
+```bash
+az configure --defaults group=${RESOURCE_GROUP_NAME}
+az configure --defaults spring-cloud=${SPRING_CLOUD_NAME}
 ```
 
 ---
+
+⬅️ Previous guide: [00 - Set Up Your Environment](../00-setup-your-environment/README.md)
 
 ➡️ Next guide: [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md)

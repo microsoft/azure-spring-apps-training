@@ -6,31 +6,98 @@ Build a classical Spring Boot application that uses JPA to acess a [MySQL databa
 
 ---
 
-## Create a MySQL Server instance
+## Configure the MySQL Server instance
 
-- Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois) and look for "Azure Database for MySQL servers" in the search box.
-- Create a new database
-  - Write down the password in a safe place
-  - You can choose a low-budget "Basic" database
+After following the steps in Section 00, you should have an Azure Database for MySQL instance named `sclabm-<unique string>` in your resource group.
 
-![Create MySQL database](media/01-create-mysql.png)
+Before we can use it however, we will need to perform several tasks:
 
-- Once the database is created, select it and go to "Connection security"
-  - Enable "Allow access to Azure services"
-  - Add your current IP to the firewall rules, so you can access it from your machine
+1. Create a MySQL firewall rule to allow connections from our local environment.
+1. Create a MySQL firewall rule to allow connections from Azure Services. This will enable connections from Azure Spring Cloud.
+1. Connect to the MySQL server via MySQL CLI and initialize the database
 
-> If you need to know your current external IP, you can use [https://www.whatismyip.com/](https://www.whatismyip.com/)
+- Connect to your database using [MySQL CLI](https://dev.mysql.com/downloads/):
 
-![Configure firewall](media/02-firewall.png)
+    > 💡When prompted for a password, enter the MySQL password you specified when deploying the ARM template in [Section 00](../00-setup-your-environment/README.md).
 
-- Connect to your database using your favorite database explorer tool
-  - For example [MySQL Workbench](https://www.mysql.com/fr/products/workbench/)
-  - The admin login name is available in the "overview" section of your database, it is in the form of `username@database`
-- Create a new schema named `azure-spring-cloud-training`
+    ```bash
+    # Obtain the info on the MYSQL server in our resource group:
+    MYSQL_INFO=$(az mysql server list --query '[0]')
+    MYSQL_SERVERNAME=$(echo $MYSQL_INFO | jq -r .name)
+    MYSQL_USERNAME="$(echo $MYSQL_INFO | jq -r .administratorLogin)@${MYSQL_SERVERNAME}"
+    MYSQL_HOST="$(echo $MYSQL_INFO | jq -r .fullyQualifiedDomainName)"
+    read -p "Enter your MySQL password: " -s MYSQL_PASSWORD
+
+    # Create a firewall rule to allow connections from your machine:
+    MY_IP=$(curl whatismyip.akamai.com 2>/dev/null)
+    az mysql server firewall-rule create \
+        --server-name $MYSQL_SERVERNAME \
+        --name "connect-from-lab" \
+        --start-ip-address "$MY_IP" \
+        --end-ip-address "$MY_IP"
+
+    # Create a firewall rule to allow connections from Azure services:
+    az mysql server firewall-rule create \
+        --server-name $MYSQL_SERVERNAME \
+        --name "connect-from-azure" \
+        --start-ip-address "0.0.0.0" \
+        --end-ip-address "0.0.0.0"
+
+    # Connect through MySQL CLI
+    mysql --ssl -h "$MYSQL_HOST" -u "$MYSQL_USERNAME" --password="$MYSQL_PASSWORD"
+    ```
+
+- Once you are connected to MySQL, create a new schema named `azure-spring-cloud-training`:
+
+    ```sql
+    mysql> CREATE DATABASE `azure-spring-cloud-training`;
+    Query OK, 1 row affected (0.22 sec)
+    ```
+
+- Press CTRL+D to exit the MySQL CLI.
+
+## Create the application on Azure Spring Cloud
+
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `weather-service` application in your Azure Spring Cloud instance:
+
+```bash
+az spring-cloud app create -n weather-service
+```
+
+## Bind the MySQL database to the application
+
+In [Section 6](../06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md), we created a service binding to inject CosmosDB configuration into an Azure Spring Cloud microservice.
+
+Now, let's do the same thing to inject connection information for our MySQL database into the new `weather-service` microservice. This time, we'll do it from the command line:
+
+> 💡Make sure you use the same shell session that you've been using for the previous steps in this section.
+
+```bash
+MYSQL_ARM_RESOURCE_ID=$(echo $MYSQL_INFO | jq -r .id)
+
+az spring-cloud app binding mysql add \
+    --app weather-service \
+    --name mysql-weather \
+    --resource-id "$MYSQL_ARM_RESOURCE_ID" \
+    --database-name 'azure-spring-cloud-training' \
+    --username "$MYSQL_USERNAME" \
+    --key "$MYSQL_PASSWORD"
+```
+
+You can, if you wish, view the newly created service binding in [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+
+- Navigate to your Azure Spring Cloud Instance
+- Click on Apps
+- Click on `weather-service`.
+- Click on Service Bindings.
+
+You should see the newly created weather binding listed: `mysql-weather`. If you click on it, you can see the MySQL connection information:
+
+![MySQL Service Binding](media/03-bind-service-mysql.png)
 
 ## Create a Spring Boot microservice
 
-The microservice that we create in this guide is [available here](weather-service/).
+Now that we've provisioned and Azure Spring Cloud app and prepared the service binding, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
@@ -50,11 +117,20 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
     <profiles>
         <profile>
             <id>cloud</id>
+            <repositories>
+                <repository>
+                    <id>nexus-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
             <dependencies>
                 <dependency>
                     <groupId>com.microsoft.azure</groupId>
                     <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-                    <version>2.2.0</version>
+                    <version>2.1.0-SNAPSHOT</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -158,45 +234,24 @@ INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `ico
 INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `icon`) VALUES ('London, UK', 'Quite cloudy', 'weather-pouring');
 ```
 
-> The icons we are using are the ones from [https://materialdesignicons.com/](https://materialdesignicons.com/) - you can pick there other weather icons if you wish.
-
-## Create the application on Azure Spring Cloud
-
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `weather-service` application in your Azure Spring Cloud cluster:
-
-```bash
-az spring-cloud app create -n weather-service
-```
-
-## Bind the MySQL database to the application
-
-Azure Spring Cloud can automatically bind the MySQL database we created to our microservice.
-
-- Go to "App Management" in your Azure Spring Cloud cluster.
-- Select the `weather-service` application
-- Go to `Service bindings`
-- Click on `Create service binding``
-  - Give your binding a name, for example `mysql-weather`
-  - For `Binding type`, select `Azure database for MySQL``
-  - Select your database, and input your admin login and password
-  - Click on `Create` to create the database binding
-
-![Bind MySQL database](media/03-bind-service-mysql.png)
+> The icons we are using are the ones from [https://materialdesignicons.com/](https://materialdesignicons.com/) - you can pick their other weather icons if you wish.
 
 ## Deploy the application
 
 You can now build your "weather-service" project and send it to Azure Spring Cloud:
 
 ```bash
+cd weather-service
 ./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
+cd ..
 ```
 
 ## Test the project in the cloud
 
-- Go to "App Management" in your Azure Spring Cloud cluster.
+- Go to "Apps" in your Azure Spring Cloud instance.
   - Verify that `weather-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in the Spring Cloud Service Registry.
-  - Select `weather-service` to have more information on the microservice.
+  - Select `weather-service` to have `m`ore information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
 You can now use cURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.

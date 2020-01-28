@@ -1,25 +1,36 @@
+---
+page_type: sample
+languages:
+- java
+---
+
 # Azure Spring Cloud training
 
 You will find here a full workshop on Azure Spring Cloud, including guides and demos.
 
-This was created by [Julien Dubois](https://twitter.com/juliendubois) and available for free to everyone, under the [MIT license](LICENSE.txt).
+This lab is based on a public workshop created by [Julien Dubois](https://twitter.com/juliendubois) and available for free to everyone, under the [MIT license](LICENSE.txt).
 
 ## What you should expect
 
-This is not the official documentation, but an opinionated training.
+This is not the official documentation but an opinionated training.
 
 It is a hands-on training, and it will use the command line extensively. The idea is to get coding very quickly and play with the platform, from a simple demo to far more complex examples.
 
 After completing all the guides, you should have a fairly good understanding of everything that Azure Spring Cloud offers.
 
-## Prerequisites
+## Symbols
 
-- Java 8 or above
-- The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli/?WT.mc_id=azurespringcloud-github-judubois)
-- A [GitHub account](https://github.com)
-- An Azure account. [Get one for free](https://azure.microsoft.com/free/?WT.mc_id=azurespringcloud-github-judubois).
+>🛑 -  __Manual Modification Required__. When this symbol appears in front of one or more commands, you will need to modify the commands as indicated prior to running them.
 
-## [01 - Create a cluster](01-create-a-cluster/README.md)
+>🚧 - __Preview-specific__. This symbol indicates steps that are only necessary while Azure Spring Cloud is in preview.
+
+>💡 - __Frustration Avoidance Tip__. These will help you avoid potential pitfalls.
+
+## [00 - Prerequisites and Setup](00-setup-your-environment/README.md)
+
+Prerequisites and environment setup.
+
+## [01 - Create an Azure Spring Cloud cluster](01-create-a-cluster/README.md)
 
 Basics on creating a cluster and configuring the CLI to work efficiently.
 
@@ -53,15 +64,21 @@ Build a [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 
 
 ## [09 - Putting it all together, a complete microservice stack](09-putting-it-all-together-a-complete-microservice-stack/README.md)
 
-Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Cloud's distributed tracing mechanism, and scale our services depending on our needs.
+Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Cloud's distributed tracing mechanism and scale our services depending on our needs.
 
 ## [10 - Blue/Green deployment](10-blue-green-deployment/README.md)
 
-Deploy new versions of applications in a staging environment, and switch between staging and production with Azure Spring Cloud.
+Deploy new versions of applications in a staging environment and switch between staging and production with Azure Spring Cloud.
 
 ## [11 - Configure CI/CD](11-configure-ci-cd/README.md)
 
 Configure a Continuous Integration / Continuous Deployement platform using GitHub Actions, so our Spring Boot microservices are automatically deployed.
+
+## [12 - Making Microservices Talk to Each Other](12-making-microservices-talk-to-each-other/README.md)
+
+Creating a microservice that talks to other microservices.
+
+## [Conclusion](99-conclusion/README.md)
 
 ---
 
@@ -77,7 +94,8 @@ may be either trademarks or registered trademarks of Microsoft in the United Sta
 The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks.
 Microsoft's general trademark guidelines can be found at http://go.microsoft.com/fwlink/?LinkID=254653.
 
-Privacy information can be found at [https://privacy.microsoft.com/en-us/](https://privacy.microsoft.com/en-us/?WT.mc_id=azurespringcloud-github-judubois)
+Privacy information can be found at https://privacy.microsoft.com/en-us/
 
 Microsoft and any contributors reserve all other rights, whether under their respective copyrights, patents,
 or trademarks, whether by implication, estoppel or otherwise.
+
