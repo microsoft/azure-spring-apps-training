@@ -10,7 +10,7 @@ Setting up all the necessary prerequisites in order to expeditiously complete th
 
 To save time, we provide an ARM template for creating all the Azure resources you will need for this lab other than the Azure Spring Cloud instance itself. Use the Deploy to Azure button below.
 
-> 💡 Use the following settings for deploying the Azure Template
+> 💡 Use the following settings for deploying the Azure Template:
 > * Create a new resource group
 > * Set West US2 as the location
 > * Save the MySQL password you specify in this step. You will need it in section 6.
@@ -18,8 +18,7 @@ To save time, we provide an ARM template for creating all the Azure resources yo
 [![Deploy to Azure](media/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Fazure-spring-cloud-training%2Fmaster%2F00-setup-your-environment%2Fazuredeploy.json)
 
 
->💡 The resource provisioning will take some time. Once you have run the Docker image or installed all the pre-requisites, proceed to the next section.
-
+>💡 The resource provisioning will take some time. Continue with the workshop.
 
 ## Setting up your local environment
 
