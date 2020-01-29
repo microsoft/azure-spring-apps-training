@@ -30,7 +30,7 @@ After completing all the guides, you should have a fairly good understanding of 
 
 Prerequisites and environment setup.
 
-## [01 - Create an Azure Spring Cloud cluster](01-create-a-cluster/README.md)
+## [01 - Create an Azure Spring Cloud cluster](01-create-an-azure-spring-cloud-instance/README.md)
 
 Basics on creating a cluster and configuring the CLI to work efficiently.
 

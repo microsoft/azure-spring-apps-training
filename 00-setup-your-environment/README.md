@@ -106,4 +106,4 @@ You can then use Visual Studio Code or an IDE of your choice.
 
 ---
 
-➡️ Next guide: [01 - Create an Azure Spring Cloud instance](../01-create-a-cluster/README.md)
+➡️ Next guide: [01 - Create an Azure Spring Cloud instance](../01-create-an-azure-spring-cloud-instance/README.md)
