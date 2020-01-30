@@ -42,7 +42,7 @@ A docker image containing all of the pre-requisites is available. You'll need:
 With Docker installed, run (in bash or PowerShell with administrator privileges)
 
 ```bash
-docker run -d azurejavalab.azurecr.io/azurejavalab:latest
+docker run -p 8080:8080 -d azurejavalab.azurecr.io/azurejavalab:latest
 ```
 
 #### Preparing Visual Studio Code
