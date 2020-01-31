@@ -84,9 +84,13 @@ public class HelloController {
 
 ## Test the project locally
 
-Run the project:
+Before deploying the microservice to Azure Spring Cloud, let's run it locally.
 
->💡 Do not be alarmed when you see exception stack traces. Spring Cloud is attempting to contact a local configuration server, which we have not provided. The application will still start using any available local settings and defaults.
+>💡 Do not be alarmed when you see exception stack traces:
+> ![Exception stack trace](media/01-exception-stack-trace.png)
+>Spring Cloud is attempting to contact a local configuration server, which we have not provided. The application will still start using any available local settings and defaults.
+
+To run `simple-cloud-microservice` locally:
 
 ```bash
 cd spring-cloud-microservice
