@@ -26,12 +26,12 @@ In this section, we will create our Azure Spring Cloud Instance using Azure CLI.
 
 First, you will need to come up with a name for your Azure Spring Cloud instance.
 
--__The name must be unique among all Azure Spring Cloud Instances across all of Azure__. Consider using your username as part of the name.
+- __The name must be unique among all Azure Spring Cloud Instances across all of Azure__. Consider using your username as part of the name.
 - The name can contain only lowercase letters, numbers and hyphens. The first character must be a letter. The last character must be a letter or number. The value must be between 4 and 32 characters long.
 
 To save minimize, set the variable `RESOURCE_GROUP_NAME` to the name of the resource group created in the previous section. Set the variable `SPRING_CLOUD_NAME` to the name of the Azure Spring Cloud instance to be created:
 
->🛑Be sure to substitute your own values for `RESOURCE_GROUP_NAME` and `SPRING_CLOUD_NAME` as described above.
+>🛑Be sure to substitute your own values for `RESOURCE_GROUP_NAME` and `SPRING_CLOUD_NAME` as described above. __`SPRING_CLOUD_NAME` must be globally unique.__
 
 ```bash
 RESOURCE_GROUP_NAME=spring-cloud-lab

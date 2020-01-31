@@ -84,9 +84,13 @@ public class HelloController {
 
 ## Test the project locally
 
-Run the project:
+Before deploying the microservice to Azure Spring Cloud, let's run it locally.
 
->💡 Do not be alarmed when you see exception stack traces. Spring Cloud is attempting to contact a local configuration server, which we have not provided. The application will still start using any available local settings and defaults.
+>💡 Do not be alarmed when you see exception stack traces:
+> ![Exception stack trace](media/01-exception-stack-trace.png)
+>Spring Cloud is attempting to contact a local configuration server, which we have not provided. The application will still start using any available local settings and defaults.
+
+To run `simple-cloud-microservice` locally:
 
 ```bash
 cd spring-cloud-microservice
@@ -141,9 +145,23 @@ As a result, requesting the `/hello` endpoint should return the message that we 
 Configured by Azure Spring Cloud
 ```
 
+## Stream application logs
+
+When you run an application on your machine, you can see its output in the console. When you run a microservice on Azure Spring Cloud, you can also see its console output through Azure CLI:
+
+```bash
+az spring-cloud app log tail --name spring-cloud-microservice -f
+```
+
+You should see the console output of `spring-cloud-microservice` scroll by on your terminal:
+
+![Console output](media/02-console-output.png)
+
+Press CTRL+C to stop following the output and return to the shell.
+
 ## Query application logs
 
-In section 3, we enabled log aggergation in Azure Log Analytics. Such settings changes can take 1-2 minutes to apply, so by now, you should be able to query Azure Log Analytics.
+Streaming the console output as we just did may be helpful in understanding the immediate state of a microservice. However, sometimes it's necessary to look further into the past or to look for something specific. This is easily done with Log Analytics. In section 3, we enabled log aggregation in Azure Log Analytics. Such settings changes can take 1-2 minutes to apply, so by now, you should be able to query Azure Log Analytics.
 
 [Open Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois) and navigate to your Azure Spring Cloud Instance. Click on "Logs". This is a shortcut to the Log Analytics workspace that was created earlier. If a tutorial appears, feel free to skip it for now.
 
