@@ -10,7 +10,7 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 
 On your [GitHub account](https://github.com), create a new **private** repository where the Spring Boot configurations will be stored.
 
-> If you want to skip the step of creating a private repository, you can use this public repository instead: [https://github.com/jdubois/spring-cloud-config-public.git](https://github.com/jdubois/spring-cloud-config-public.git). __Storing configuration in a public repository is not recommended in real-world deployments.__ We offer this public repository only as a shortcut for this workshop. If you choose to use this shortcut, skip to [Configure Azure Spring Cloud to access the Git repository](#configure-azure-spring-cloud-to-access-the-git-repository).
+> ⏱ If you want to skip the step of creating a private repository, you can use this public repository instead: [https://github.com/jdubois/spring-cloud-config-public.git](https://github.com/jdubois/spring-cloud-config-public.git). __Storing configuration in a public repository is not recommended in real-world deployments.__ We offer this public repository only as a shortcut for this workshop. If you choose to use this shortcut, skip to [Configure Azure Spring Cloud to access the Git repository](#configure-azure-spring-cloud-to-access-the-git-repository).
 
 In the new private GitHub repository, add a new `application.yml` file which will store configuration data for all our microservices.
 
