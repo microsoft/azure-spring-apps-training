@@ -12,7 +12,7 @@ The microservice that we create in this guide is [available here](simple-microse
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) via the command line.
 
->💡__Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands. If you are using the provided Docker container, this directory should be `/lab`.
+>💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands. If you are using the provided Docker container, this directory should be `/lab`.
 
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.1.9.RELEASE | tar -xzvf -
