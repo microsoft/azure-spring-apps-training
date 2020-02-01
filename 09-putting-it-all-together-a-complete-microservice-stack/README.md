@@ -32,7 +32,7 @@ Go to [https://spring-training.azureedge.net/](https://spring-training.azureedge
 
 ## Enable distributed tracing to better understand the architecture
 
-In each application (`city-service`, `weather-service`, `gateway`), open up the `pom.xml` file and add the following Maven dependencies:
+In each application (`city-service`, `weather-service`, `gateway`), open up the `pom.xml` file and add the following Maven dependency as a child element of the __first__ `<dependencies>` element.
 
 ```java
         <dependency>
@@ -41,7 +41,7 @@ In each application (`city-service`, `weather-service`, `gateway`), open up the 
         </dependency>
 ```
 
-Those dependencies will add distributed tracing capablities to our microservices and gateway.
+This dependency will add distributed tracing capabilities to our microservices and gateway.
 
 Now you need to update those applications on Azure Spring Cloud.
 

@@ -38,7 +38,7 @@ Basics on creating a cluster and configuring the CLI to work efficiently.
 
 Build the simplest possible Spring Boot microservice, made with [https://start.spring.io/](https://start.spring.io/).
 
-## [03 - Configure application logs](03-configure-application-logs/README.md)
+## [03 - Configure application logs](03-configure-monitoring/README.md)
 
 Access Spring Boot applications logs to understand common issues.
 

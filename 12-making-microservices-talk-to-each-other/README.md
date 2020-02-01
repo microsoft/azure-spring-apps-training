@@ -52,7 +52,7 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
 
 ## Add distributed tracing
 
-As with previous services in Section 9, open up the `pom.xml` file and add the following Maven dependencies to enable distributed tracing:
+As with previous services in Section 9, open up the `pom.xml` file and add the following Maven dependency as a child element of the __first__ `<dependencies>` element.
 
 ```java
         <dependency>

@@ -59,6 +59,6 @@ In the next section, we will create an application that consumes this configurat
 
 ---
 
-⬅️ Previous guide: [03 - Configure application logs](../03-configure-application-logs/README.md)
+⬅️ Previous guide: [03 - Configure application logs](../03-configure-monitoring/README.md)
 
 ➡️ Next guide: [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)
