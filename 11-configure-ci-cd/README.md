@@ -12,9 +12,19 @@ We are going to automate the deployment of the `weather-service` microservice th
 
 ## Configure GitHub
 
-[Create a new GitHub repository](https://github.com/new) and commit the code from the `weather-service` microservice into that repository.
+[Create a new GitHub repository](https://github.com/new) and commit the code from the `weather-service` microservice into that repository:
 
->💡 Note: this should be a different repository than the one you used to store configuration in section 4.
+> 🛑 Make sure you substitute the Git URL from your own github repository (make sure you use the HTTPS URL, not the SSH URL). This should be a different repository than the one you used to store configuration in section 4. If a login dialog appears, log in with your regular GitHub credentials.
+
+```bash
+cd weather-service
+git init
+git add .
+git commit -m 'Initial commit'
+git remote add origin <GIT HTTPS URL HERE>
+git push origin master
+cd ..
+```
 
 You now need to allow access from your GitHub workflow to your Azure Spring Cloud instance. Open up a terminal and type the following command, replacing `$RESOURCE_GROUP_NAME` with the name of your resource group.
 
