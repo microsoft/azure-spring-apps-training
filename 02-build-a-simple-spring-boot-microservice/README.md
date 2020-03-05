@@ -101,7 +101,7 @@ This creates a jar file on your local disk and uploads it to the app instance yo
 
 ## Test the project in the cloud
 
-Go to [the Azure portal](https://portal.azure.com/):
+Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
 - Look for your Azure Spring Cloud instance in your resource group
 - Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
