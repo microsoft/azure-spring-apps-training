@@ -25,7 +25,7 @@ To save time, we provide an ARM template for creating all the Azure resources yo
 
 > 💡 All commands in this lab are formatted for the Bash shell. While Azure CLI should behave identically on all environments, some semantics may need to be modified if you use other shells.
 
-> 💡 In sections 9 and 10, you will access the UI of the Microservice application in a web browser. This UI does not render correctly in Internet Explorer and the pre-Chromium version of Edge. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
+> 💡 In sections 9 and 10, you will access the UI of the Microservice application in a Web browser. This UI does not render correctly in Internet Explorer and the pre-Chromium version of Edge. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
 
 ### Using Docker (Recommended)
 
