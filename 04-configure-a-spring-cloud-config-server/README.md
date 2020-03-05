@@ -47,7 +47,7 @@ Once the token is generated, leave that tab open until the end of this section.
   - Click on `Authentication` and select `HTTP Basic`
   - The __username__ is your GitHub login name
   - The __password__ is the personal token we created in the previous section
-- Click on "Apply" and wait for the operation to succeeed
+- Click on "Apply" and wait for the operation to succeed
 
 ![Spring Cloud config server](media/02-config-server.png)
 
