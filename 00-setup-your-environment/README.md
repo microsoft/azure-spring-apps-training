@@ -39,7 +39,7 @@ A docker image containing all of the pre-requisites is available. You'll need:
 * Visual Studio Code ([Download here](https://code.visualstudio.com/?WT.mc_id=azurespringcloud-github-judubois))
 * ["Remote - Containers" extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers&WT.mc_id=azurespringcloud-github-judubois) for Visual Studio Code
 
-With Docker installed, run (in bash or PowerShell with administrator privileges)
+With Docker installed, run (in Bash or PowerShell with administrator privileges)
 
 ```bash
 docker run -p 8080:8080 -d azurejavalab.azurecr.io/azurejavalab:latest
