@@ -33,7 +33,7 @@ Follow the [GitHub guide to create a personal token](https://help.github.com/en/
 
 ![GitHub personal access token](media/01-github-personal-access-token.png)
 
-When a token is generated, leave that tab open until the end of this section.
+Once the token is generated, leave that tab open until the end of this section.
 
 ## Configure Azure Spring Cloud to access the Git repository
 
