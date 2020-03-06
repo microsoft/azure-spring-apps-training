@@ -30,20 +30,11 @@ At the end of the application's `pom.xml` file (just before the closing `</proje
     <profiles>
         <profile>
             <id>cloud</id>
-            <repositories>
-                <repository>
-                    <id>nexus-snapshots</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
             <dependencies>
                 <dependency>
                     <groupId>com.microsoft.azure</groupId>
                     <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-                    <version>2.1.0-SNAPSHOT</version>
+                    <version>2.2.0</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -179,9 +170,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 public class DemoApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
 }
 ```
 
