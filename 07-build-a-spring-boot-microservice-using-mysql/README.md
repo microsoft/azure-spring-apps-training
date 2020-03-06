@@ -86,7 +86,7 @@ az spring-cloud app binding mysql add \
 
 You can, if you wish, view the newly created service binding in [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Navigate to your Azure Spring Cloud Instance
+- Navigate to your Azure Spring Cloud instance
 - Click on Apps
 - Click on `weather-service`.
 - Click on Service Bindings.
