@@ -251,7 +251,7 @@ cd ..
 
 - Go to "Apps" in your Azure Spring Cloud instance.
   - Verify that `weather-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in the Spring Cloud Service Registry.
-  - Select `weather-service` to have `m`ore information on the microservice.
+  - Select `weather-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
 You can now use cURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.
