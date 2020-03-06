@@ -97,7 +97,7 @@ You should see the newly created weather binding listed: `mysql-weather`. If you
 
 ## Create a Spring Boot microservice
 
-Now that we've provisioned and Azure Spring Cloud app and prepared the service binding, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
+Now that we've provisioned the Azure Spring Cloud instance and configured the service binding, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
