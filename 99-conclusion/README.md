@@ -18,7 +18,7 @@ az group delete -g "$RESOURCE_GROUP_NAME" --yes --no-wait
 
 ## Additional Resources
 
-As an addendum to this workshop, consider taking the [tutorial on using alerts and action groups with Azure Spring Cloud](https://docs.microsoft.com/azure/spring-cloud/spring-cloud-tutorial-alerts-action-groups/?WT.mc_id=azurespringcloud-github-judubois) to detect and respond to abberant conditions.
+As an addendum to this workshop, consider taking the [tutorial on using alerts and action groups with Azure Spring Cloud](https://docs.microsoft.com/azure/spring-cloud/spring-cloud-tutorial-alerts-action-groups/?WT.mc_id=azurespringcloud-github-judubois) to detect and respond to abnormal conditions.
 
 Have a look through the [Azure Spring Cloud documentation](https://docs.microsoft.com/azure/spring-cloud/?WT.mc_id=azurespringcloud-github-judubois) for more quickstarts, tutorials, and reference materials.
 
