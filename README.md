@@ -72,7 +72,7 @@ Deploy new versions of applications in a staging environment and switch between 
 
 ## [11 - Configure CI/CD](11-configure-ci-cd/README.md)
 
-Configure a Continuous Integration / Continuous Deployement platform using GitHub Actions, so our Spring Boot microservices are automatically deployed.
+Configure a Continuous Integration / Continuous Deployment platform using GitHub Actions, so our Spring Boot microservices are automatically deployed.
 
 ## [12 - Making Microservices Talk to Each Other](12-making-microservices-talk-to-each-other/README.md)
 
