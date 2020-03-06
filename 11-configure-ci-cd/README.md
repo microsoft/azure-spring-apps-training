@@ -43,7 +43,7 @@ This should output a JSON text, that you need to copy.
 
 Then, in your GitHub project, select `Settings > Secrets` and add a new secret called `AZURE_CREDENTIALS`. Paste the JSON text you just copied into that secret.
 
-## Create a GitHub action
+## Create a GitHub Action
 
 Inside the `weather-service` directory, create a new directory called `.github/workflows` and add a file called `azure-spring-cloud.yml` in it. This file is a GitHub workflow and will use the secret we just configured above to deploy the application to your Azure Spring Cloud instance.
 
