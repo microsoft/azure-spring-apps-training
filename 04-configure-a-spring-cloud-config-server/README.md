@@ -14,7 +14,7 @@ On your [GitHub account](https://github.com), create a new **private** repositor
 
 In the new private GitHub repository, add a new `application.yml` file which will store configuration data for all our microservices.
 
-Typically, each Spring Boot application includes such a file with the application binaries to contain application settings. A Spring Cloud configuration server allow such settings to be stored at a single location and served from a single source.
+Typically, each Spring Boot application includes such a file within the application binaries to contain application settings. A Spring Cloud configuration server allow such settings to be stored at a single location and served from a single source.
 
 For the moment, our `application.yml` will just store a message to check if the configuration is successful:
 
