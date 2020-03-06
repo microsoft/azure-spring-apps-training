@@ -88,7 +88,7 @@ This workflow does the following:
 This workflow is configured to be triggered whenever code is pushed to the repository.
 There are many other [events that trigger GitHub actions](https://help.github.com/en/articles/events-that-trigger-workflows). You could, for example, deploy each time a new tag is created on the project.
 
-## Test the GitHub action
+## Test the GitHub Action
 
 You can now commit and push the `azure-spring-cloud.yml` file we just created.
 
