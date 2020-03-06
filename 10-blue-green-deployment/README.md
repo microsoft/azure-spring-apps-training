@@ -6,9 +6,9 @@ Deploy new versions of applications in a staging environment and switch between 
 
 ---
 
-We are going to deploy a new release of the "weather-service" microservice that was developped in [07 - Build a Spring Boot microservice using MySQL](../07-build-a-spring-boot-microservice-using-mysql/README.md).
+We are going to deploy a new release of the "weather-service" microservice that was developed in [07 - Build a Spring Boot microservice using MySQL](../07-build-a-spring-boot-microservice-using-mysql/README.md).
 
-The microservice that we develop in this guide is [available here](weather-service/), which is a slightly modified version of the service that was developped earlier.
+The microservice that we develop in this guide is [available here](weather-service/), which is a slightly modified version of the service that was developed earlier.
 
 ## Modify the current application
 
