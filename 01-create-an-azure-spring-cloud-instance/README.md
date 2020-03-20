@@ -49,8 +49,8 @@ az spring-cloud create \
 For the remainder of this workshop, we will be running Azure CLI commands referencing the same resource group and Azure Spring Cloud instance. So let's set them as defaults, so we don't have to specify them again:
 
 ```bash
-az configure --defaults group=${RESOURCE_GROUP_NAME}
-az configure --defaults spring-cloud=${SPRING_CLOUD_NAME}
+az configure --defaults group=$RESOURCE_GROUP_NAME
+az configure --defaults spring-cloud=$SPRING_CLOUD_NAME
 ```
 
 ---
