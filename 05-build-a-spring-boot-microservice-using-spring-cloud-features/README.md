@@ -141,7 +141,7 @@ Configured by Azure Spring Cloud
 When you run an application on your machine, you can see its output in the console. When you run a microservice on Azure Spring Cloud, you can also see its console output through Azure CLI:
 
 ```bash
-az spring-cloud app log tail --name spring-cloud-microservice -f
+az spring-cloud app logs --name spring-cloud-microservice -f
 ```
 
 You should see the console output of `spring-cloud-microservice` scroll by on your terminal:
