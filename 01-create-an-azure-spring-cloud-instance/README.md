@@ -29,28 +29,28 @@ First, you will need to come up with a name for your Azure Spring Cloud instance
 - __The name must be unique among all Azure Spring Cloud instances across all of Azure__. Consider using your username as part of the name.
 - The name can contain only lowercase letters, numbers and hyphens. The first character must be a letter. The last character must be a letter or number. The value must be between 4 and 32 characters long.
 
-To limit typing, set the variable `RESOURCE_GROUP_NAME` to the name of the resource group created in the previous section. Set the variable `SPRING_CLOUD_NAME` to the name of the Azure Spring Cloud instance to be created:
+To limit typing, set the variable `AZ_RESOURCE_GROUP` to the name of the resource group created in the previous section. Set the variable `AZ_SPRING_CLOUD_NAME` to the name of the Azure Spring Cloud instance to be created:
 
->🛑 Be sure to substitute your own values for `RESOURCE_GROUP_NAME` and `SPRING_CLOUD_NAME` as described above. __`SPRING_CLOUD_NAME` must be globally unique.__
+>🛑 Be sure to substitute your own values for `AZ_RESOURCE_GROUP` and `AZ_SPRING_CLOUD_NAME` as described above. __`AZ_SPRING_CLOUD_NAME` must be globally unique, use lowercase letters and should not have special characters.__
 
 ```bash
-RESOURCE_GROUP_NAME=spring-cloud-lab
-SPRING_CLOUD_NAME=azure-spring-cloud-lab
+AZ_RESOURCE_GROUP=spring-cloud-lab
+AZ_SPRING_CLOUD_NAME=azure-spring-cloud-lab
 ```
 
 With these variables set, we can now create the Azure Spring Cloud instance:
 
 ```bash
 az spring-cloud create \
-    -g "$RESOURCE_GROUP_NAME" \
-    -n "$SPRING_CLOUD_NAME"
+    -g "$AZ_RESOURCE_GROUP" \
+    -n "$AZ_SPRING_CLOUD_NAME"
 ```
 
 For the remainder of this workshop, we will be running Azure CLI commands referencing the same resource group and Azure Spring Cloud instance. So let's set them as defaults, so we don't have to specify them again:
 
 ```bash
-az configure --defaults group=$RESOURCE_GROUP_NAME
-az configure --defaults spring-cloud=$SPRING_CLOUD_NAME
+az configure --defaults group=$AZ_RESOURCE_GROUP
+az configure --defaults spring-cloud=$AZ_SPRING_CLOUD_NAME
 ```
 
 ---
