@@ -99,7 +99,6 @@ This training lab requires the following to be installed on your machine:
   ```
 
 * 🚧 The `spring-cloud` extension for Azure CLI. You can install this extension after installing Azure CLI by running `az extension add -n spring-cloud -y`.
-* [MySQL CLI](https://dev.mysql.com/downloads/)
 
 The environment variable `JAVA_HOME` should be set to the path of `javac` in the JDK installation.
 
