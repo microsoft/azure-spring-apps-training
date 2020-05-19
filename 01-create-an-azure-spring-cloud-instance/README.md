@@ -31,7 +31,7 @@ First, you will need to come up with a name for your Azure Spring Cloud instance
 
 To limit typing, set the variable `RESOURCE_GROUP_NAME` to the name of the resource group created in the previous section. Set the variable `SPRING_CLOUD_NAME` to the name of the Azure Spring Cloud instance to be created:
 
->🛑Be sure to substitute your own values for `RESOURCE_GROUP_NAME` and `SPRING_CLOUD_NAME` as described above. __`SPRING_CLOUD_NAME` must be globally unique.__
+>🛑 Be sure to substitute your own values for `RESOURCE_GROUP_NAME` and `SPRING_CLOUD_NAME` as described above. __`SPRING_CLOUD_NAME` must be globally unique.__
 
 ```bash
 RESOURCE_GROUP_NAME=spring-cloud-lab
