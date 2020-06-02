@@ -18,7 +18,7 @@ To create our microservice, we will use [https://start.spring.io/](https://start
 curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.0.RELEASE | tar -xzvf -
 ```
 
-> We force the Spring Boot version to be 2.1.9
+> We force the Spring Boot version to be 2.3.0.RELEASE
 
 ## Add a new Spring MVC Controller
 
