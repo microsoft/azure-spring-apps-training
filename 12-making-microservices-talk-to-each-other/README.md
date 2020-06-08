@@ -17,7 +17,7 @@ To resolve this inefficiency, we will create a single microservice that implemen
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.3.0.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.1.9.RELEASE | tar -xzvf -
 ```
 
 ## Add a "cloud" Maven profile
