@@ -23,7 +23,7 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
     
     Commit and push the new file.
 
-## Create a GitHub personal token
+## Obtain Repository URL and Credentials
 
 Azure Spring Cloud can access Git repositories that are public, secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with Azure Repos.
 
