@@ -14,47 +14,40 @@ Before we can use it however, we will need to perform several tasks:
 
 1. Create a MySQL firewall rule to allow connections from our local environment.
 1. Create a MySQL firewall rule to allow connections from Azure Services. This will enable connections from Azure Spring Cloud.
-1. Connect to the MySQL server via MySQL CLI and initialize the database
+1. Create a MySQL database.
 
-- Connect to your database using [MySQL CLI](https://dev.mysql.com/downloads/):
+> 💡When prompted for a password, enter the MySQL password you specified when deploying the ARM template in [Section 00](../00-setup-your-environment/README.md).
 
-    > 💡When prompted for a password, enter the MySQL password you specified when deploying the ARM template in [Section 00](../00-setup-your-environment/README.md).
+```bash
+# Obtain the info on the MYSQL server in our resource group:
+MYSQL_INFO=$(az mysql server list --query '[0]')
+MYSQL_SERVERNAME=$(echo $MYSQL_INFO | jq -r .name)
+MYSQL_USERNAME="$(echo $MYSQL_INFO | jq -r .administratorLogin)@${MYSQL_SERVERNAME}"
+MYSQL_HOST="$(echo $MYSQL_INFO | jq -r .fullyQualifiedDomainName)"
+read -p "Enter your MySQL password: " -s MYSQL_PASSWORD
 
-    ```bash
-    # Obtain the info on the MYSQL server in our resource group:
-    MYSQL_INFO=$(az mysql server list --query '[0]')
-    MYSQL_SERVERNAME=$(echo $MYSQL_INFO | jq -r .name)
-    MYSQL_USERNAME="$(echo $MYSQL_INFO | jq -r .administratorLogin)@${MYSQL_SERVERNAME}"
-    MYSQL_HOST="$(echo $MYSQL_INFO | jq -r .fullyQualifiedDomainName)"
-    read -p "Enter your MySQL password: " -s MYSQL_PASSWORD
+# Create a firewall rule to allow connections from your machine:
+MY_IP=$(curl whatismyip.akamai.com 2>/dev/null)
+az mysql server firewall-rule create \
+    --server-name $MYSQL_SERVERNAME \
+    --name "connect-from-lab" \
+    --start-ip-address "$MY_IP" \
+    --end-ip-address "$MY_IP"
 
-    # Create a firewall rule to allow connections from your machine:
-    MY_IP=$(curl whatismyip.akamai.com 2>/dev/null)
-    az mysql server firewall-rule create \
-        --server-name $MYSQL_SERVERNAME \
-        --name "connect-from-lab" \
-        --start-ip-address "$MY_IP" \
-        --end-ip-address "$MY_IP"
+# Create a firewall rule to allow connections from Azure services:
+az mysql server firewall-rule create \
+    --server-name $MYSQL_SERVERNAME \
+    --name "connect-from-azure" \
+    --start-ip-address "0.0.0.0" \
+    --end-ip-address "0.0.0.0"
 
-    # Create a firewall rule to allow connections from Azure services:
-    az mysql server firewall-rule create \
-        --server-name $MYSQL_SERVERNAME \
-        --name "connect-from-azure" \
-        --start-ip-address "0.0.0.0" \
-        --end-ip-address "0.0.0.0"
+# Create a MySQL database
+az mysql db create \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --name "azure-spring-cloud-training" \
+    --server-name $MYSQL_SERVERNAME
 
-    # Connect through MySQL CLI
-    mysql --ssl -h "$MYSQL_HOST" -u "$MYSQL_USERNAME" --password="$MYSQL_PASSWORD"
-    ```
-
-- Once you are connected to MySQL, create a new schema named `azure-spring-cloud-training`:
-
-    ```sql
-    mysql> CREATE DATABASE `azure-spring-cloud-training`;
-    Query OK, 1 row affected (0.22 sec)
-    ```
-
-- Press CTRL+D to exit the MySQL CLI.
+```
 
 ## Create the application on Azure Spring Cloud
 

@@ -10,10 +10,10 @@ Unless you plan to perform additional tasks with the Azure resources from the wo
 
 The easiest way to do this is to delete the entire resource group.
 
->🛑Substitute the name of your resource group for `$RESOURCE_GROUP_NAME` below:
+>🛑 Substitute the name of your resource group for `$AZ_RESOURCE_GROUP` below:
 
 ```bash
-az group delete -g "$RESOURCE_GROUP_NAME" --yes --no-wait
+az group delete -g "$AZ_RESOURCE_GROUP" --yes --no-wait
 ```
 
 ## Additional Resources
