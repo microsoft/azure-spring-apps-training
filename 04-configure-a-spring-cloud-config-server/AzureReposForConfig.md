@@ -1,4 +1,4 @@
-# 04-a - Using Azure Repos for Azure Spring Cloud Configuration
+# 04a - Using Azure Repos for Azure Spring Cloud Configuration
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
@@ -56,8 +56,8 @@ Azure Spring Cloud can access Git repositories that are public, secured by SSH, 
   - Add the repository URL that you have saved from the previous section.
 
   - Click on `Authentication` and select `HTTP Basic`
-  - The __username__ is your GitHub login name
-  - The __password__ is the personal token we created in the previous section
+  - The __username__ is the username saved from the previous section
+  - The __password__ is the password saved from the previous section
 - Click on "Apply" and wait for the operation to succeed
 
 ![Spring Cloud config server](media/02-config-server-azdo.png)
