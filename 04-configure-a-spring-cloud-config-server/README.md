@@ -6,6 +6,8 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 
 ---
 
+> 💡 If your organization uses Azure Repos as your source code repository, see [Using Azure Repos for Azure Spring Cloud configuration](AzureReposForConfig.md)
+
 > ⏱ If you want to skip the step of creating a private repository, you can use this public repository instead: [https://github.com/jdubois/spring-cloud-config-public.git](https://github.com/jdubois/spring-cloud-config-public.git). __Storing configuration in a public repository is not recommended in real-world deployments.__ We offer this public repository only as a shortcut for this workshop, for example if you don't have a GitHub account. If you choose to use this shortcut, skip to [Configure Azure Spring Cloud to access the Git repository](#configure-azure-spring-cloud-to-access-the-git-repository).
 
 ## Create a Git repository for storing the application configuration
