@@ -37,8 +37,6 @@ This training lab requires the following to be installed on your machine:
 
 > 💡 In sections 9 and 10, you will access the UI of the Microservice application in a Web browser. This UI does not render correctly in Internet Explorer and the pre-Chromium version of Edge. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
 
-> 💡 In sections 9 and 10, you will access the UI of the Microservice application in a Web browser. This UI does not render correctly in Internet Explorer and the pre-Chromium version of Edge. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
-
 The environment variable `JAVA_HOME` should be set to the path of `javac` in the JDK installation.
 
 You can then use Visual Studio Code or an IDE of your choice.
