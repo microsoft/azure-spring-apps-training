@@ -26,13 +26,13 @@ git push origin master
 cd ..
 ```
 
-You now need to allow access from your GitHub workflow to your Azure Spring Cloud instance. Open up a terminal and type the following command, replacing `$RESOURCE_GROUP_NAME` with the name of your resource group.
+You now need to allow access from your GitHub workflow to your Azure Spring Cloud instance. Open up a terminal and type the following command, replacing `$AZ_RESOURCE_GROUP` with the name of your resource group.
 
-🛑Make sure you assign the name of your resource group to the variable `RESOURCE_GROUP_NAME` or substitute the value for it in the commands below.
+🛑 Make sure you assign the name of your resource group to the variable `AZ_RESOURCE_GROUP` or substitute the value for it in the commands below.
 
 ```bash
 # Get the ARM resource ID of the resource group
-RESOURCE_ID=$(az group show --name "$RESOURCE_GROUP_NAME" --query id -o tsv)
+RESOURCE_ID=$(az group show --name "$AZ_RESOURCE_GROUP" --query id -o tsv)
 
 # Create a service principal with a Contributor role to the resource group.
 SPNAME="sp-$(az spring-cloud list --query '[].name' -o tsv)"
@@ -49,7 +49,7 @@ Inside the `weather-service` directory, create a new directory called `.github/w
 
 In that file, copy/paste the following content, performing the indicated substitutions:
 
->🛑 You must substitute the name of your Azure Spring Cloud instance for `<SPRING_CLOUD_INSTANCE_NAME>` and the name of the resource group for `<RESOURCE_GROUP>` in the YAML below.
+>🛑 You must substitute the name of your Azure Spring Cloud instance for `<AZ_SPRING_CLOUD_NAME>` and the name of the resource group for `<AZ_RESOURCE_GROUP>` in the YAML below.
 
 ```yaml
 name: Build and deploy to Azure Spring Cloud
@@ -74,7 +74,7 @@ jobs:
     - name: Install Azure Spring Cloud extension
       run: az extension add -y --name spring-cloud
     - name: Deploy to Azure Spring Cloud
-      run: az spring-cloud app deploy --resource-group <RESOURCE_GROUP> --service <SPRING_CLOUD_INSTANCE_NAME> --name weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
+      run: az spring-cloud app deploy --resource-group <AZ_RESOURCE_GROUP> --service <AZ_SPRING_CLOUD_NAME> --name weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
 This workflow does the following:
