@@ -10,7 +10,7 @@ Basics on creating an instance and configuring the CLI to work efficiently.
 
 Ensure your Azure CLI is logged into your Azure subscription.
 
->💡If you intend to use the Docker container as recommended, do this inside the container bash session.
+>💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash.
 
 ```bash
 az login # Sign into an azure account
