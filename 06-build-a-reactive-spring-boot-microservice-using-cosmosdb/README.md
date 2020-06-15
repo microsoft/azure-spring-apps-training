@@ -47,10 +47,10 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
 
 ```xml
         <dependency>
-			<groupId>com.azure</groupId>
-			<artifactId>azure-cosmos</artifactId>
-			<version>4.0.1</version>
-		</dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-cosmos</artifactId>
+            <version>4.0.1</version>
+        </dependency>
 ```
 
 ## Add a "cloud" Maven profile
