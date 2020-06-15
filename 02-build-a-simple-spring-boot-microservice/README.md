@@ -15,10 +15,10 @@ To create our microservice, we will use [https://start.spring.io/](https://start
 >💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands. If you are using the provided Docker container, this directory should be `/lab`.
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.1.9.RELEASE | tar -xzvf -
 ```
 
-> We force the Spring Boot version to be 2.3.1.RELEASE
+> We force the Spring Boot version to be 2.1.9.RELEASE
 
 ## Add a new Spring MVC Controller
 
@@ -128,7 +128,7 @@ If you need to check your code, the final project is available in the ["simple-m
 Here is the final script to build and deploy everything that was done in this guide:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.1.9.RELEASE | tar -xzvf -
 cd simple-microservice
 cat > HelloController.java << EOF
 package com.example.demo;

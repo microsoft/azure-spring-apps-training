@@ -36,7 +36,7 @@ The microservice that we create in this guide is [available here](city-service/)
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.1.9.RELEASE | tar -xzvf -
 ```
 
 > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
@@ -47,9 +47,9 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
 
 ```xml
         <dependency>
-            <groupId>com.azure</groupId>
+            <groupId>com.microsoft.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.0.1</version>
+            <version>3.2.0</version>
         </dependency>
 ```
 
@@ -102,17 +102,16 @@ Then, in the same location, create a new `CityController` class that will be use
 ```java
 package com.example.demo;
 
-import com.azure.cosmos.CosmosAsyncContainer;
-import com.azure.cosmos.CosmosClientBuilder;
-import com.azure.cosmos.models.CosmosQueryRequestOptions;
-import com.azure.cosmos.models.FeedResponse;
-
+import com.azure.data.cosmos.CosmosClient;
+import com.azure.data.cosmos.CosmosContainer;
+import com.azure.data.cosmos.FeedOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -127,24 +126,32 @@ public class CityController {
     @Value("${azure.cosmosdb.database}")
     private String cosmosDbDatabase;
 
-    private CosmosAsyncContainer container;
+    private CosmosContainer container;
 
     @PostConstruct
     public void init() {
-        container = new CosmosClientBuilder()
+        container = CosmosClient.builder()
                 .endpoint(cosmosDbUrl)
                 .key(cosmosDbKey)
-                .buildAsyncClient()
+                .build()
                 .getDatabase(cosmosDbDatabase)
                 .getContainer("City");
     }
 
     @GetMapping("/cities")
     public Flux<List<City>> getCities() {
-        CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
-        return container.queryItems("SELECT TOP 20 * FROM City c", options, City.class)
-                .byPage()
-                .map(FeedResponse::getResults);
+        FeedOptions options = new FeedOptions();
+        options.enableCrossPartitionQuery(true);
+        return container.queryItems("SELECT TOP 20 * FROM City c", options)
+                .map(i -> {
+                    List<City> results = new ArrayList<>();
+                    i.results().forEach(props -> {
+                        City city = new City();
+                        city.setName(props.getString("name"));
+                        results.add(city);
+                    });
+                    return results;
+                });
     }
 }
 ```
