@@ -45,6 +45,8 @@ Rename `src/main/resources/application.properties` to `src/main/resources/applic
 
 ```yaml
 spring:
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     gateway:
       discovery:
@@ -59,6 +61,7 @@ spring:
 
 ```
 
+- The `spring.main.allow-bean-definition-overriding=true` part is to configure Spring Cloud Gateway to use the Spring Cloud Discovery Server bean configured in the Azure Spring Cloud Client library.
 - The `spring.cloud.gateway.discovery.locator.enabled=true` part is to configure Spring Cloud Gateway to use the Spring Cloud Service Registry to discover the available microservices.
 - The `spring.cloud.gateway.globalcors.corsConfiguration` part is to allow CORS requests to our gateway. This will be helpful in the next guide, when we will add a front-end that is not hosted on Azure Spring Cloud.
 
