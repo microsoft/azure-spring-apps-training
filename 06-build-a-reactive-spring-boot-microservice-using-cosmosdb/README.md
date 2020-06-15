@@ -47,10 +47,10 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
 
 ```xml
         <dependency>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>azure-cosmos</artifactId>
-            <version>3.2.0</version>
-        </dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-cosmos</artifactId>
+			<version>4.0.1</version>
+		</dependency>
 ```
 
 ## Add a "cloud" Maven profile
@@ -102,9 +102,10 @@ Then, in the same location, create a new `CityController` class that will be use
 ```java
 package com.example.demo;
 
-import com.azure.data.cosmos.CosmosClient;
-import com.azure.data.cosmos.CosmosContainer;
-import com.azure.data.cosmos.FeedOptions;
+import com.azure.cosmos.CosmosAsyncContainer;
+import com.azure.cosmos.CosmosClientBuilder;
+import com.azure.cosmos.models.CosmosQueryRequestOptions;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -126,30 +127,24 @@ public class CityController {
     @Value("${azure.cosmosdb.database}")
     private String cosmosDbDatabase;
 
-    private CosmosContainer container;
+    private CosmosAsyncContainer container;
 
     @PostConstruct
     public void init() {
-        container = CosmosClient.builder()
+        container = new CosmosClientBuilder()
                 .endpoint(cosmosDbUrl)
                 .key(cosmosDbKey)
-                .build()
+                .buildAsyncClient()
                 .getDatabase(cosmosDbDatabase)
                 .getContainer("City");
     }
 
     @GetMapping("/cities")
     public Flux<List<City>> getCities() {
-        FeedOptions options = new FeedOptions();
-        options.enableCrossPartitionQuery(true);
-        return container.queryItems("SELECT TOP 20 * FROM City c", options)
-                .map(i -> {
+        return container.queryItems("SELECT TOP 20 * FROM City c", City.class)
+                .map(city -> {
                     List<City> results = new ArrayList<>();
-                    i.results().forEach(props -> {
-                        City city = new City();
-                        city.setName(props.getString("name"));
-                        results.add(city);
-                    });
+                    results.add(city);
                     return results;
                 });
     }
