@@ -14,7 +14,7 @@ To save time, we provide an ARM template for creating all the Azure resources yo
 >
 > * Create a new resource group.
 > * Set West US 2 as the location. If you want to change that region, check that Azure Spring Cloud is available in the region that you want to use.
-> * Save the MySQL password you specify in this step. You will need it in section 6.
+> * Save the MySQL password you specify in this step. You will need it in section 6. If you don't set one, it will be `super$ecr3t`.
 
 [![Deploy to Azure](media/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Fazure-spring-cloud-training%2Fmaster%2F00-setup-your-environment%2Fazuredeploy.json?WT.mc_id=azurespringcloud-github-judubois)
 
