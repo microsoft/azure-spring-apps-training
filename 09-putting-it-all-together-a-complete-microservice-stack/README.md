@@ -101,7 +101,7 @@ Now that distributed tracing is enabled, we can scale applications depending on 
 
 ## Conclusion
 
-Here is the final script to adjust and deploy the three services in one command:
+Here is the final script to adjust and deploy the three services:
 
 ```bash
 cd city-service
