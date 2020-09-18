@@ -9,8 +9,8 @@ Images have a black 5px border around them, as Azure's default theme is white an
 You can choose any tool to do those border, here's how we do it:
 
 - Use the GIMP
-- Go to `Filters -> Decor -> Add border...` 
-- Configure the border to be black, and only 5 pixels width
+- Go to `Filters -> Decor -> Add border...`
+- Configure the border to be black and only 5 pixels width
 
 ## Contributors
 

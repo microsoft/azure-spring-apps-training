@@ -2,13 +2,13 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Deploy new versions of applications in a staging environment, and switch between staging and production with Azure Spring Cloud.
+Deploy new versions of applications in a staging environment and switch between staging and production with Azure Spring Cloud.
 
 ---
 
-We are going to deploy a new release of the "weather-service" microservice that was developped in [07 - Build a Spring Boot microservice using MySQL](../07-build-a-spring-boot-microservice-using-mysql/README.md).
+We are going to deploy a new release of the "weather-service" microservice that was developed in [07 - Build a Spring Boot microservice using MySQL](../07-build-a-spring-boot-microservice-using-mysql/README.md).
 
-The microservice that we develop in this guide is [available here](weather-service/), which is a slightly modified version of the service that was developped earlier.
+The microservice that we develop in this guide is [available here](weather-service/), which is a slightly modified version of the service that was developed earlier.
 
 ## Modify the current application
 
@@ -43,16 +43,36 @@ public class WeatherController {
 }
 ```
 
-## Deploy the new application to a new "green" deployment set
+## Deploy the new application to a new "green" deployment
 
-Build a new version of the application and deploy it to a new `deployment set` called `green`:
+Build a new version of the application and deploy it to a new `deployment` called `green`:
 
 ```bash
+cd weather-service
 ./mvnw clean package -DskipTests -Pcloud
 az spring-cloud app deployment create --name green --app weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
+cd ..
 ```
 
-Once the application is deployed, if you go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) you will still have the same data, as the new version of the microservice is now in a staging area, and not in production yet.
+Once the application is deployed, if you go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) you will still have the same data, as the new version of the microservice is now in a staging area and not in production yet.
+
+Navigate to the Azure Spring Cloud instance in [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois) and click on "Deployments" (under Settings). You should now see the "green" deployment in the "Staging Deployment" column:
+
+![Deployment Pane](media/02-deployment-pane.png)
+
+You can test the `green` deployment by invoking the same URL as in section 7, but replacing the deployment name `default` with `green`:
+
+```bash
+curl https://***.test.azuremicroservices.io/weather-service/green/weather/city?name=Paris%2C%20France
+```
+
+And you should see the result of the recent modification:
+
+```json
+{"city":"Paris, France","description":"It's always sunny on Azure Spring Cloud","icon":"weather-sunny"}
+```
+
+Note: we're not testing the green deployment through through the `gateway` application. The purpose of a green deployment is to test changes to a microservice before routing production traffic to it. Therefore, if you access `weather-service` through the public Gateway URL, as you did in section 8, you will be routed to the original version of the service.
 
 To put this `green` deployment into production, you can use the command line:
 
@@ -62,17 +82,17 @@ az spring-cloud app set-deployment -n weather-service --deployment green
 
 Another solution is to use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Find your Azure Spring Cloud cluster
-- Click on the "deployement" menu
+- Find your Azure Spring Cloud instance
+- Click on the "deployment" menu
 - Select the `weather-service` application and click on "Set deployment"
 
-> If you want to reuse a deployment set, you need first to delete it, for instance:
+> If you want to reuse a deployment name, you need first to delete the previous deployment under that name:
 >
 > ```bash
 > az spring-cloud app deployment delete --name green --app weather-service
 > ```
 
-Once you have swapped deployments, and that `green` is active, you need to wait a few seconds for the Spring Cloud Service Registry to synchronize and use this new version from the `gateway` application. You will then be able to see the new modified data:
+Once you have swapped deployments and see that `green` is active, you need to wait a few seconds for the Spring Cloud Service Registry to synchronize and use this new version from the `gateway` application. You will then be able to see the new modified data:
 
 ![Green deployment](media/01-green-deployment.png)
 

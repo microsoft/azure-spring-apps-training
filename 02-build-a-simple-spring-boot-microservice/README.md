@@ -10,23 +10,19 @@ Build the simplest possible Spring Boot microservice, made with [https://start.s
 
 The microservice that we create in this guide is [available here](simple-microservice/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) via the command line.
+
+>💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands. If you are using the provided Docker container, this directory should be `/lab`.
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.1.9.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.1.RELEASE | tar -xzvf -
 ```
 
-> We force the Spring Boot version to be 2.1.9
-
-Go into the `simple-microservice` directory to view what has been generated:
-
-```bash
-cd simple-microservice
-```
+> We force the Spring Boot version to be 2.3.1.RELEASE
 
 ## Add a new Spring MVC Controller
 
-Open the project with your favorite IDE, and next to the `DemoApplication` class, create a new class called `HelloController` with the following content:
+Create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
 
 ```java
 package com.example.demo;
@@ -39,7 +35,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello from Azure Spring Cloud";
+        return "Hello from Azure Spring Cloud\n";
     }
 }
 ```
@@ -51,7 +47,9 @@ The final project is available in the ["simple-microservice" folder](simple-micr
 Run the project:
 
 ```bash
-./mvnw spring-boot:run
+cd simple-microservice
+./mvnw spring-boot:run &
+cd ..
 ```
 
 Requesting the `/hello` endpoint should return the "Hello from Azure Spring Cloud" message.
@@ -60,14 +58,19 @@ Requesting the `/hello` endpoint should return the "Hello from Azure Spring Clou
 curl http://127.0.0.1:8080/hello
 ```
 
+Finally, kill running app:
+
+```bash
+kill %1
+```
+
 ## Create and deploy the application on Azure Spring Cloud
 
-This section shows how to create an app instance, and then deploy your
-code to it.
+This section shows how to create an app instance and then deploy your code to it.
 
 In order to create the app instance graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Look for your Azure Spring Cloud cluster in your resource group
+- Look for your Azure Spring Cloud instance in your resource group
 - Click on the "Overview" link at the top of the navigation sidebar. 
 - Click on the link "Create App".  You may have to scroll to reveal the "Create App" blade.
 
@@ -77,7 +80,7 @@ In order to create the app instance graphically, you can use [the Azure portal](
 
 ![Create application](media/01-create-application.png)
 
-- Click on "Review and Create", then "Create"
+- Click on "Create".
 
 You can also use the command line to create the app instance, which is easier:
 
@@ -88,17 +91,19 @@ az spring-cloud app create -n simple-microservice
 You can now build your "simple-microservice" project and send it to Azure Spring Cloud:
 
 ```bash
+cd simple-microservice
 ./mvnw clean package
 az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
+cd ..
 ```
 
 This creates a jar file on your local disk and uploads it to the app instance you created in the preceding step.  The `az` command will output a result in JSON.  You don't need to pay attention to this output right now, but in the future, you will find it useful for diagnostic and testing purposes.
 
 ## Test the project in the cloud
 
-Go to [the Azure portal](https://portal.azure.com/):
+Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Look for your Azure Spring Cloud cluster in your resource group
+- Look for your Azure Spring Cloud instance in your resource group
 - Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
 - Mouse over the URL labeled as "Test Endpoint" and click the clipboard icon that appears.  This will give you something like:
    `https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/`
@@ -106,12 +111,13 @@ Go to [the Azure portal](https://portal.azure.com/):
 
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
 
-```
+```bash
 curl https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/hello/
 ```
 
-Note that we have appended `hello/` to the URL.  Failure to do this will result in a "404 not found".
+>💡Note that we have appended `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
+If successful, you should see the message: `Hello from Azure Spring Cloud`.
 
 ## Conclusion
 
@@ -122,7 +128,7 @@ If you need to check your code, the final project is available in the ["simple-m
 Here is the final script to build and deploy everything that was done in this guide:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.1.9.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.1.RELEASE | tar -xzvf -
 cd simple-microservice
 cat > HelloController.java << EOF
 package com.example.demo;
@@ -147,6 +153,6 @@ az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-S
 
 ---
 
-⬅️ Previous guide: [01 - Create a cluster](../01-create-a-cluster/README.md)
+⬅️ Previous guide: [01 - Create an Azure Spring Cloud instance](../01-create-an-azure-spring-cloud-instance/README.md)
 
-➡️ Next guide: [03 - Configure application logs](../03-configure-application-logs/README.md)
+➡️ Next guide: [03 - Configure monitoring](../03-configure-monitoring/README.md)
