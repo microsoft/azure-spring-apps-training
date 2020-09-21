@@ -66,7 +66,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn package -DskipTests -Pcloud
+      run: mvn package -DskipTests
     - name: Login to Azure Spring Cloud
       uses: azure/login@v1
       with:
