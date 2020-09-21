@@ -17,7 +17,7 @@ To resolve this inefficiency, we will create a single microservice that implemen
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.2.5.RELEASE -d javaVersion=1.8 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.3.2.RELEASE -d javaVersion=1.8 | tar -xzvf -
 ```
 
 ## Add distributed tracing
@@ -194,6 +194,14 @@ public class AllCitiesWeatherController {
         return allCitiesWeather;
     }
 }
+```
+## Add time-out settings
+
+In order to stop the Feign services timing out automatically, open up the `src/main/resources/application.properties` file and add:
+
+```properties
+feign.client.config.default.connectTimeout=160000000
+feign.client.config.default.readTimeout=160000000
 ```
 
 ## Create the application on Azure Spring Cloud
