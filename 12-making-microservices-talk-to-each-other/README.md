@@ -17,28 +17,7 @@ To resolve this inefficiency, we will create a single microservice that implemen
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.3.1.RELEASE | tar -xzvf -
-```
-
-## Add a "cloud" Maven profile
-
-*To deploy to Azure Spring Cloud, we add a "cloud" Maven profile like in the guide [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)*
-
-At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
-
-```xml
-    <profiles>
-        <profile>
-            <id>cloud</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.microsoft.azure</groupId>
-                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-                    <version>2.2.0</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.3.2.RELEASE -d javaVersion=1.8 | tar -xzvf -
 ```
 
 ## Add distributed tracing
@@ -156,7 +135,7 @@ public interface WeatherServiceClient{
 
 ```
 
-To enable Spring Cloud to discovery the underlying servies and to automatically generate OpenFeign clients, add the annotations @EnableDiscoveryClient and @EnableFeignClients to the `DemoApplication` class (as well as the corresponding `import` statements):
+To enable Spring Cloud to discovery the underlying services and to automatically generate OpenFeign clients, add the annotations @EnableDiscoveryClient and @EnableFeignClients to the `DemoApplication` class (as well as the corresponding `import` statements):
 
 ```java
 package com.example.demo;
@@ -216,6 +195,14 @@ public class AllCitiesWeatherController {
     }
 }
 ```
+## Add time-out settings
+
+In order to stop the Feign services timing out automatically, open up the `src/main/resources/application.properties` file and add:
+
+```properties
+feign.client.config.default.connectTimeout=160000000
+feign.client.config.default.readTimeout=160000000
+```
 
 ## Create the application on Azure Spring Cloud
 
@@ -231,7 +218,7 @@ You can now build your "all-cities-weather-service" project and send it to Azure
 
 ```bash
 cd all-cities-weather-service
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n all-cities-weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```

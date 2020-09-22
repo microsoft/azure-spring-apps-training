@@ -49,7 +49,7 @@ Build a new version of the application and deploy it to a new `deployment` calle
 
 ```bash
 cd weather-service
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deployment create --name green --app weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
@@ -72,7 +72,7 @@ And you should see the result of the recent modification:
 {"city":"Paris, France","description":"It's always sunny on Azure Spring Cloud","icon":"weather-sunny"}
 ```
 
-Note: we're not testing the green deployment through through the `gateway` application. The purpose of a green deployment is to test changes to a microservice before routing production traffic to it. Therefore, if you access `weather-service` through the public Gateway URL, as you did in section 8, you will be routed to the original version of the service.
+Note: we're not testing the green deployment through the `gateway` application. The purpose of a green deployment is to test changes to a microservice before routing production traffic to it. Therefore, if you access `weather-service` through the public Gateway URL, as you did in section 8, you will be routed to the original version of the service.
 
 To put this `green` deployment into production, you can use the command line:
 

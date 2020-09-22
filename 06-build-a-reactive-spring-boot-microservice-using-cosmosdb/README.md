@@ -36,12 +36,12 @@ The microservice that we create in this guide is [available here](city-service/)
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.3.2.RELEASE -d javaVersion=1.8 | tar -xzvf -
 ```
 
 > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
 
-## Add the Cosmos DB v3 API
+## Add the Cosmos DB API
 
 In the application's `pom.xml` file, add the Cosmos DB dependency just after the `spring-cloud-starter-netflix-eureka-client` dependency:
 
@@ -49,29 +49,8 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.0.1</version>
+            <version>4.5.0</version>
         </dependency>
-```
-
-## Add a "cloud" Maven profile
-
-*To deploy to Azure Spring Cloud, we add a "cloud" Maven profile like in the previous guide [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)*
-
-At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
-
-```xml
-    <profiles>
-        <profile>
-            <id>cloud</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.microsoft.azure</groupId>
-                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-                    <version>2.2.0</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 ```
 
 ## Add Spring reactive code to get the data from the database
@@ -178,7 +157,7 @@ You can now build your "city-service" project and send it to Azure Spring Cloud:
 
 ```bash
 cd city-service
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```

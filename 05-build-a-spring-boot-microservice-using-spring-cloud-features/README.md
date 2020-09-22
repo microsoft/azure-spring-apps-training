@@ -23,31 +23,10 @@ The microservice that we create in this guide is [available here](spring-cloud-m
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.3.2.RELEASE -d javaVersion=1.8 | tar -xzvf -
 ```
 
 > This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Spring Cloud Service Registry and the Spring Cloud Config Server.
-
-## Add a "cloud" Maven profile
-
-In order to securely connect to Azure Spring Cloud services (Spring Cloud Service Registry and Spring Cloud Config), we need to add a specific Maven dependency. We will add in a specific Maven profile, so it doesn't pollute the rest of the application.
-
-At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
-
-```xml
-    <profiles>
-        <profile>
-            <id>cloud</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.microsoft.azure</groupId>
-                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-                    <version>2.2.0</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-```
 
 ## Add a new Spring MVC Controller
 
@@ -68,7 +47,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return message;
+        return message + '\n';
     }
 }
 ```
@@ -113,7 +92,7 @@ You can now build your "spring-cloud-microservice" project and send it to Azure 
 
 ```bash
 cd spring-cloud-microservice
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n spring-cloud-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```

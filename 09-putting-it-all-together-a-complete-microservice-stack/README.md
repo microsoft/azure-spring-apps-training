@@ -49,7 +49,7 @@ Re-deploy the `city-service` microservice:
 
 ```bash
 cd city-service
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
@@ -58,7 +58,7 @@ Re-deploy the `weather-service` microservice:
 
 ```bash
 cd weather-service
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
@@ -67,7 +67,7 @@ Re-deploy the `gateway` gateway:
 
 ```bash
 cd gateway
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
@@ -78,7 +78,7 @@ We have already enabled distributed tracing on our Azure Spring Cloud instance i
 
 >💡 Tracing data can take a couple of minutes to be ingested by the system, so use this time to generate some load.
 
-In the "Distributed tracing" menu in Azure Portal, you should now have access to a full application map, as well as a search engine that allows to find performance bottlenecks.
+In the "Distributed tracing" menu in Azure Portal, you should now have access to a full application map, as well as a search engine that allows you to find performance bottlenecks.
 
 ![Distributed tracing](media/02-distributed-tracing.png)
 

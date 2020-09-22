@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Build a classical Spring Boot application that uses JPA to acess a [MySQL database managed by Azure](https://docs.microsoft.com/en-us/azure/mysql/?WT.mc_id=azurespringcloud-github-judubois).
+Build a classical Spring Boot application that uses JPA to access a [MySQL database managed by Azure](https://docs.microsoft.com/en-us/azure/mysql/?WT.mc_id=azurespringcloud-github-judubois).
 
 ---
 
@@ -18,6 +18,7 @@ Before we can use it however, we will need to perform several tasks:
 
 > 💡When prompted for a password, enter the MySQL password you specified when deploying the ARM template in [Section 00](../00-setup-your-environment/README.md).
 
+> 💡The following scripts require jq (https://stedolan.github.io/jq/) to be installed if run locally, jq is already installed if running Cloud Shell 
 ```bash
 # Obtain the info on the MYSQL server in our resource group:
 MYSQL_INFO=$(az mysql server list --query '[0]')
@@ -95,31 +96,10 @@ Now that we've provisioned the Azure Spring Cloud instance and configured the se
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=2.3.2.RELEASE -d javaVersion=1.8 | tar -xzvf -
 ```
 
 > We use the `Spring Web`, `Spring Data JPA`, `MySQL Driver`, `Eureka Discovery Client` and the `Config Client` components.
-
-## Add a "cloud" Maven profile
-
-*To deploy to Azure Spring Cloud, we add a "cloud" Maven profile like in the guide [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)*
-
-At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
-
-```xml
-    <profiles>
-        <profile>
-            <id>cloud</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.microsoft.azure</groupId>
-                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-                    <version>2.2.0</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-```
 
 ## Add Spring code to get the data from the database
 
@@ -226,7 +206,7 @@ You can now build your "weather-service" project and send it to Azure Spring Clo
 
 ```bash
 cd weather-service
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
