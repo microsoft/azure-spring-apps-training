@@ -44,7 +44,7 @@ With these variables set, we can now create the Azure Spring Cloud instance. To 
 az spring-cloud create \
     -g "$AZ_RESOURCE_GROUP" \
     -n "$AZ_SPRING_CLOUD_NAME" \
-    --enable-java-agent
+    --enable-java-agent \
     --sku standard
 ```
 
