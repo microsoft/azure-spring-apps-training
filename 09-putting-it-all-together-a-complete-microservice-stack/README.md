@@ -52,11 +52,11 @@ In the "Distributed tracing" menu in Azure Portal, you should now have access to
 
 Open a more holistic view at the `Performance` blade where you can see response times and request counts for operations exposed by your applications.
 
-![Performance metrics](media/09-performance.png)
+![Performance metrics](media/06-performance.png)
 
 Navigate to the `Dependencies` tab in the `Performance` blade where you can see all your dependencies and their response times and request counts.
 
-![Performance of application dependencies](media/09-all-performance-dependencies.png)
+![Performance of application dependencies](media/07-all-performance-dependencies.png)
 
 ## Scale applications
 
