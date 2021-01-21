@@ -20,17 +20,6 @@ To create our microservice, we will use [https://start.spring.io/](https://start
 curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.3.2.RELEASE -d javaVersion=1.8 | tar -xzvf -
 ```
 
-## Add distributed tracing
-
-As with previous services in Section 9, open up the `pom.xml` file and add the following Maven dependency as a child element of the __first__ `<dependencies>` element.
-
-```java
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-```
-
 ## Add Spring code to call other microservices
 
 Next to the `DemoApplication` class, create a `Weather` class:
