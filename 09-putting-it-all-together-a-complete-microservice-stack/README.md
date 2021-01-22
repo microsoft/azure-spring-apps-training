@@ -54,9 +54,7 @@ Open a more holistic view at the `Performance` blade where you can see response 
 
 ![Performance metrics](media/06-performance.png)
 
-Navigate to the `Dependencies` tab in the `Performance` blade where you can see all your dependencies and their response times and request counts.
-
-![Performance of application dependencies](media/07-all-performance-dependencies.png)
+For even more detailed data, navigate to the `Dependencies` tab in the `Performance` blade where you can see all your dependencies and their response times and request counts.
 
 ## Scale applications
 
