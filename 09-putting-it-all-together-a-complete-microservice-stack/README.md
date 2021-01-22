@@ -30,51 +30,11 @@ Go to [https://spring-training.azureedge.net/](https://spring-training.azureedge
 
 ![VueJS front-end](media/01-vuejs-frontend.png)
 
-## Enable distributed tracing to better understand the architecture
+## Review the distributed tracing to better understand the architecture
 
-In each application (`city-service`, `weather-service`, `gateway`), open up the `pom.xml` file and add the following Maven dependency as a child element of the __first__ `<dependencies>` element.
+We have already enabled distributed tracing on our Azure Spring Cloud instance in Section 1 by adding the `--enable-java-agent` flag to the create command.
 
-```java
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-```
-
-This dependency will add distributed tracing capabilities to our microservices and gateway.
-
-Now you need to update those applications on Azure Spring Cloud.
-
-Re-deploy the `city-service` microservice:
-
-```bash
-cd city-service
-./mvnw clean package -DskipTests
-az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
-cd ..
-```
-
-Re-deploy the `weather-service` microservice:
-
-```bash
-cd weather-service
-./mvnw clean package -DskipTests
-az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
-cd ..
-```
-
-Re-deploy the `gateway` gateway:
-
-```bash
-cd gateway
-./mvnw clean package -DskipTests
-az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
-cd ..
-```
-
-### Once everything is deployed
-
-We have already enabled distributed tracing on our Azure Spring Cloud instance in Section 3. Now, you can use the VueJS application on [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) to generate some traffic on the microservices stack.
+Now, you can use the VueJS application on [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) to generate some traffic on the microservices stack.
 
 >💡 Tracing data can take a couple of minutes to be ingested by the system, so use this time to generate some load.
 
@@ -87,6 +47,14 @@ In the "Distributed tracing" menu in Azure Portal, you should now have access to
 > ![layout switch](media/05-layout-switch.png)
 
 ![Trace detail](media/03-trace-detail.png)
+
+## Review the performance metrics
+
+Open a more holistic view at the `Performance` blade where you can see response times and request counts for operations exposed by your applications.
+
+![Performance metrics](media/06-performance.png)
+
+For even more detailed data, navigate to the `Dependencies` tab in the `Performance` blade where you can see all your dependencies and their response times and request counts.
 
 ## Scale applications
 

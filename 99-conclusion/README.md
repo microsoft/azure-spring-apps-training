@@ -22,6 +22,8 @@ As an addendum to this workshop, consider taking the [tutorial on using alerts a
 
 Have a look through the [Azure Spring Cloud documentation](https://docs.microsoft.com/azure/spring-cloud/?WT.mc_id=azurespringcloud-github-judubois) for more quickstarts, tutorials, and reference materials.
 
+Find more about the monitoring power for [Spring Cloud with Application Insights](https://docs.microsoft.com/en-us/azure/spring-cloud/spring-cloud-howto-application-insights?WT.mc_id=java-13165-sakriema).
+
 ---
 
 ⬅️ Previous guide:  [12 - Making Microservices Talk To Each Other](../12-making-microservices-talk-to-each-other/README.md)
