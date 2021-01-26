@@ -38,7 +38,7 @@ Now, you can use the VueJS application on [https://spring-training.azureedge.net
 
 >💡 Tracing data can take a couple of minutes to be ingested by the system, so use this time to generate some load.
 
-In the "Distributed tracing" menu in Azure Portal, you should now have access to a full application map, as well as a search engine that allows you to find performance bottlenecks.
+In the "Application Insights" menu in Azure Portal, you should now have access to a full application map, as well as a search engine that allows you to find performance bottlenecks.
 
 ![Distributed tracing](media/02-distributed-tracing.png)
 
