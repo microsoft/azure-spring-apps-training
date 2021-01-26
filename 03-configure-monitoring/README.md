@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Access Spring Boot applications logs and distributed tracing to understand common issues.
+Configure aggregation of Spring Boot applications logs to understand common issues.
 
 ---
 
@@ -19,15 +19,6 @@ Having completed the setup in [Section 00](../00-setup-your-environment/README.m
 - Fill in the values as shown here and click "Save".
 
 ![Send logs to the log analytics workspace](media/02-send-logs-to-log-analytics-workspace.png)
-
-## Configure Distributed Tracing
-
-Distributed tracing allows you to observe interaction among microservices and diagnose issues. We will see this feature in action in Section 9, but because its configuration requires some time to be applied, let's enable it now:
-
-- Go to the [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
-- Go to the Azure Spring Cloud instance and click on "Distributed Tracing" (under Monitoring).
-  - Click on "Edit Settings" and select the App Insights workspace created in Section 00 (named `sclab-ai-<unique string>`).
-  - Once the Application Insights configuration is saved, click "Enable" at the top of the "Distributed Tracing". If the button is not clickable, then Distributed Tracing is already enabled.
 
 ---
 
