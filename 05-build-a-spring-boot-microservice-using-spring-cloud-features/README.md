@@ -103,7 +103,7 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 
 - Look for your Azure Spring Cloud instance in your resource group
 - Go to "Apps"
-  - Verify that `spring-cloud-microservice` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Spring Cloud Service Registry.
+  - Verify that `spring-cloud-microservice` has a `Registration status` of `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `spring-cloud-microservice` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
