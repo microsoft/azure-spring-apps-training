@@ -34,7 +34,7 @@ This training lab requires the following to be installed on your machine:
 
 * The Bash shell. While Azure CLI should behave identically on all environments, some semantics may need to be modified if you use other shells. To complete this training on Windows, you can use [Git Bash that accompanies the Windows distribution of Git](https://git-scm.com/download/win).
 
-* The `jq` utility. On Windows, download [this Windows port of JQ](https://github.com/stedolan/jq/releases) and add the following to the `~/.bashrc` file:
+* The `jq` utility. On Windows, download [this Windows port of JQ](https://github.com/stedolan/jq/releases) and add the following to the `~/.bashrc` file, creating it if needed. (NOTE : From Git bash, use the command “echo ~” for the directory to create it. It is most likely the folder c:\users\<username>):
 
    ```bash
    alias jq=<JQ Download location>/jq-win64.exe
@@ -48,9 +48,6 @@ The environment variable `JAVA_HOME` should be set to the path of `javac` in the
 
 You can then use Visual Studio Code or an IDE of your choice.
 
-## Alternate Setup
-
-If you do not have a prior development environment for Java on your computer and do not wish to set one up, you can [complete this training using Docker and Visual Studio Code](AlternateSetup.md).
 
 ---
 
