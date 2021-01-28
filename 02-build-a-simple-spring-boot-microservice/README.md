@@ -10,9 +10,9 @@ Build the simplest possible Spring Boot microservice, made with [https://start.s
 
 The microservice that we create in this guide is [available here](simple-microservice/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) via the command line.
+To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) via the command line and use the default settings that use com.example.demo package.
 
->💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands. If you are using the provided Docker container, this directory should be `/lab`.
+>💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands. 
 
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.4.2 -d javaVersion=1.8 | tar -xzvf -
@@ -22,7 +22,7 @@ curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-m
 
 ## Add a new Spring MVC Controller
 
-Create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
+Expanding the created "simple-microservice" directory, create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
 
 ```java
 package com.example.demo;
@@ -71,10 +71,10 @@ This section shows how to create an app instance and then deploy your code to it
 In order to create the app instance graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
 - Look for your Azure Spring Cloud instance in your resource group
-- Click on the "Overview" link at the top of the navigation sidebar. 
-- Click on the link "Create App".  You may have to scroll to reveal the "Create App" blade.
+- Click on the "Apps" link under "Settings" on the navigation sidebar. 
+- Click on the link "Create App" seen on the top of the blade.  
 
-![Create app](media/00-create-app-button.png)
+![Create app](media/00-create-app-link.png)
 
 - Create a new application named "simple-microservice"
 
@@ -82,13 +82,13 @@ In order to create the app instance graphically, you can use [the Azure portal](
 
 - Click on "Create".
 
-You can also use the command line to create the app instance, which is easier:
+You can also use the command line to create the app instance as alternative, which is easier:
 
 ```bash
 az spring-cloud app create -n simple-microservice
 ```
 
-You can now build your "simple-microservice" project and send it to Azure Spring Cloud:
+You can now build your "simple-microservice" project and deploy it to Azure Spring Cloud:
 
 ```bash
 cd simple-microservice
