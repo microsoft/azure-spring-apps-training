@@ -12,7 +12,7 @@ The microservice that we create in this guide is [available here](simple-microse
 
 To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) via the command line.
 
->💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands. If you are using the provided Docker container, this directory should be `/lab`.
+>💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands.
 
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
@@ -88,7 +88,7 @@ You can also use the command line to create the app instance, which is easier:
 az spring-cloud app create -n simple-microservice
 ```
 
-You can now build your "simple-microservice" project and send it to Azure Spring Cloud:
+You can now build your "simple-microservice" project and deploy it to Azure Spring Cloud:
 
 ```bash
 cd simple-microservice
