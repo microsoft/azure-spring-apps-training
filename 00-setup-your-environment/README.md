@@ -32,7 +32,7 @@ This training lab requires the following to be installed on your machine:
   az --version
   ```
 
-* The Bash shell. While Azure CLI should behave identically on all environments, some semantics may need to be modified if you use other shells. To complete this training on Windows, you can use [Git Bash that accompanies the Windows distribution of Git](https://git-scm.com/download/win).
+* The Bash shell. While Azure CLI should behave identically on all environments, some shell semantics may need to be modified for use with other shells. To complete this training on Windows, use [Git Bash that accompanies the Windows distribution of Git](https://git-scm.com/download/win).
 
 * The `jq` utility. On Windows, download [this Windows port of JQ](https://github.com/stedolan/jq/releases) and add the following to the `~/.bashrc` file:
 
