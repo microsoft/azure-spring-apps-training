@@ -71,11 +71,8 @@ This section shows how to create an app instance and then deploy your code to it
 In order to create the app instance graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
 - Look for your Azure Spring Cloud instance in your resource group
-- Click on the "Overview" link at the top of the navigation sidebar. 
-- Click on the link "Create App".  You may have to scroll to reveal the "Create App" blade.
-
-![Create app](media/00-create-app-button.png)
-
+- Click on the "Apps" link under "Settings" on the navigation sidebar.
+- Click on "Create App" link at the top of the Apps page.
 - Create a new application named "simple-microservice"
 
 ![Create application](media/01-create-application.png)
