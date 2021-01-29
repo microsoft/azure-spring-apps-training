@@ -22,7 +22,7 @@ curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-m
 
 ## Add a new Spring MVC Controller
 
-Create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
+Expanding the newly created "simple-microservice" directory, create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
 
 ```java
 package com.example.demo;
