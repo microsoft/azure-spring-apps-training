@@ -71,11 +71,18 @@ cd ..
   - Select `gateway` to have more information on the microservice.
 - Copy/paste the public URL that is provided (there is a "Test Endpoint" like for microservices, but the gateway is directly exposed on the Internet, so let's use the public URL). Keep this URL handy for subsequent sections.
 
-As the gateway is connected to the Spring Cloud Service Registry, it should have automatically opened routes to the available microservices, with URL paths in the form of `/MICROSERVICE-ID/**`:
-[The MICROSERVICE-ID must be in capital letters]
+As the gateway is connected to the Spring Cloud Service Registry, it should have automatically opened routes to the available microservices, with URL paths in the form of `/MICROSERVICE-ID/**`.
 
-- Test the `city-service` microservice endpoint by doing: `curl https://XXXXXXXX-gateway.azuremicroservices.io/CITY-SERVICE/cities` (replacing XXXXXXXX with the name of your Azure Spring Cloud instance)
-- Test the `weather-service` microservice endpoint by doing: `curl 'https://XXXXXXXX-gateway.azuremicroservices.io/WEATHER-SERVICE/weather/city?name=Paris%2C%20France'` (replacing XXXXXXXX by the name of your gateway)
+  > IMPORTANT: **The MICROSERVICE-ID must be uppercase, all CAPS**. Replace XXXXXXXX with the name of your Azure Spring Cloud instance.
+
+- Test the `city-service` microservice endpoint: 
+  ```
+  curl https://XXXXXXXX-gateway.azuremicroservices.io/CITY-SERVICE/cities
+  ```
+- Test the `weather-service` microservice endpoint by doing: 
+  ```
+  curl 'https://XXXXXXXX-gateway.azuremicroservices.io/WEATHER-SERVICE/weather/city?name=Paris%2C%20France'
+  ```
 
 If you need to check your code, the final project is available in the ["gateway" folder](gateway/).
 
