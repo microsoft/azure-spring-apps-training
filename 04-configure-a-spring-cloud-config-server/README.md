@@ -14,7 +14,7 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 >  - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 >  - Go to the overview page of your Azure Spring Cloud server and select "Config server" in the menu
 >  - Set the repository URL: `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`.
->  - Click on "Apply" and wait for the operation to succeed
+>  - Click on "Apply" and wait for the operation to succeed ( HINT : Click 'Validate' if 'Apply' is disabled )
 >  
 >  We have enabled Azure Spring Cloud to create a configuration server with the configuration files from this repository. You can now proceed to the next guide: 
 >  ➡ [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)
