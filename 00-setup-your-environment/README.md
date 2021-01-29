@@ -32,7 +32,7 @@ This training lab requires the following to be installed on your machine:
   az --version
   ```
 
-* The Bash shell. While Azure CLI should behave identically on all environments, some semantics may need to be modified if you use other shells. To complete this training on Windows, you can use [Git Bash that accompanies the Windows distribution of Git](https://git-scm.com/download/win).
+* The Bash shell. While Azure CLI should behave identically on all environments, some shell semantics may need to be modified for use with other shells. To complete this training on Windows, use [Git Bash that accompanies the Windows distribution of Git](https://git-scm.com/download/win).
 
 * The `jq` utility. On Windows, download [this Windows port of JQ](https://github.com/stedolan/jq/releases) and add the following to the `~/.bashrc` file:
 
@@ -44,13 +44,9 @@ This training lab requires the following to be installed on your machine:
 
 > 💡 In sections 9 and 10, you will access the UI of the Microservice applications in a web browser. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
 
-The environment variable `JAVA_HOME` should be set to the path of `javac` in the JDK installation.
+The environment variable `JAVA_HOME` should be set to the path of the JDK installation. The directory specified by this path should have `bin`, `jre`, and `lib` among its subdirectories. Further, ensure your `PATH` variable contains the directory `${JAVA_HOME}/bin`. To test, type `which javac` into bash shell ensure the resulting path points to a file inside `${JAVA_HOME}/bin`.
 
 You can then use Visual Studio Code or an IDE of your choice.
-
-## Alternate Setup
-
-If you do not have a prior development environment for Java on your computer and do not wish to set one up, you can [complete this training using Docker and Visual Studio Code](AlternateSetup.md).
 
 ---
 
