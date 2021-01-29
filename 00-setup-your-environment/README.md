@@ -44,13 +44,9 @@ This training lab requires the following to be installed on your machine:
 
 > 💡 In sections 9 and 10, you will access the UI of the Microservice applications in a web browser. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
 
-The environment variable `JAVA_HOME` should be set to the path of `javac` in the JDK installation.
+The environment variable `JAVA_HOME` should be set to the path of the JDK installation. The directory specified by this path should have `bin`, `jre`, and `lib` among its subdirectories.
 
 You can then use Visual Studio Code or an IDE of your choice.
-
-## Alternate Setup
-
-If you do not have a prior development environment for Java on your computer and do not wish to set one up, you can [complete this training using Docker and Visual Studio Code](AlternateSetup.md).
 
 ---
 
