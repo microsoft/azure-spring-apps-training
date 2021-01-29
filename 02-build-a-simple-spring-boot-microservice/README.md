@@ -22,7 +22,7 @@ curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-m
 
 ## Add a new Spring MVC Controller
 
-Create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
+Expanding the newly created "simple-microservice" directory, create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
 
 ```java
 package com.example.demo;
@@ -79,7 +79,7 @@ In order to create the app instance graphically, you can use [the Azure portal](
 
 - Click on "Create".
 
-You can also use the command line to create the app instance, which is easier:
+Alternatively, you can use the command line to create the app instance, which is easier:
 
 ```bash
 az spring-cloud app create -n simple-microservice
