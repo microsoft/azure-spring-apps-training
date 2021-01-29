@@ -27,13 +27,12 @@ Before we can use it however, we will need to perform several tasks:
 
 > 💡When prompted for a password, enter the MySQL password you specified when deploying the ARM template in [Section 00](../00-setup-your-environment/README.md).
 
-> 💡The following scripts require jq (https://stedolan.github.io/jq/) to be installed if run locally, jq is already installed if running Cloud Shell 
 ```bash
 # Obtain the info on the MYSQL server in our resource group:
 MYSQL_INFO=$(az mysql server list --query '[0]')
-MYSQL_SERVERNAME=$(echo $MYSQL_INFO | jq -r .name)
-MYSQL_USERNAME="$(echo $MYSQL_INFO | jq -r .administratorLogin)@${MYSQL_SERVERNAME}"
-MYSQL_HOST="$(echo $MYSQL_INFO | jq -r .fullyQualifiedDomainName)"
+MYSQL_SERVERNAME=$(az mysql server list --query '[0].name' -o tsv)
+MYSQL_USERNAME="$(az mysql server list --query '[0].administratorLogin' -o tsv)@${MYSQL_SERVERNAME}"
+MYSQL_HOST="$(az mysql server list --query '[0].fullyQualifiedDomainName' -o tsv)"
 
 # Create a firewall rule to allow connections from your machine:
 MY_IP=$(curl whatismyip.akamai.com 2>/dev/null)

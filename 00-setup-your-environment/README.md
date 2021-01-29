@@ -34,12 +34,6 @@ This training lab requires the following to be installed on your machine:
 
 * The Bash shell. While Azure CLI should behave identically on all environments, some shell semantics may need to be modified for use with other shells. To complete this training on Windows, use [Git Bash that accompanies the Windows distribution of Git](https://git-scm.com/download/win).
 
-* The `jq` utility. On Windows, download [this Windows port of JQ](https://github.com/stedolan/jq/releases) and add the following to the `~/.bashrc` file (create the file from scratch if it does not exist):
-
-   ```bash
-   alias jq=<JQ Download location>/jq-win64.exe
-   ```
-
 * 🚧 The `spring-cloud` extension for Azure CLI. You can install this extension after installing Azure CLI by running `az extension add -n spring-cloud -y`.
 
 > 💡 In sections 9 and 10, you will access the UI of the Microservice applications in a web browser. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
