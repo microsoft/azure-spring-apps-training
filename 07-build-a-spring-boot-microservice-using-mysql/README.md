@@ -52,7 +52,6 @@ az mysql server firewall-rule create \
 
 # Create a MySQL database
 az mysql db create \
-    --resource-group $AZ_RESOURCE_GROUP \
     --name "azure-spring-cloud-training" \
     --server-name $MYSQL_SERVERNAME
 
