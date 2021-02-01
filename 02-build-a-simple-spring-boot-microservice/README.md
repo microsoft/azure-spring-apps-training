@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Build the simplest possible Spring Boot microservice, made with [https://start.spring.io/](https://start.spring.io/).
+In this section, we'll build a basic Spring boot microservice and deploy it to Azure Spring Cloud. This will demonstrate that even a Spring Boot application not specifically developed for Spring Cloud can be deployed to Azure Spring Cloud. It will also give us a starting point for adding Spring Cloud technologies in later sections.
 
 ---
 
