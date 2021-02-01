@@ -201,7 +201,7 @@ cd ..
 ## Test the project in the cloud
 
 - Go to "Apps" in your Azure Spring Cloud instance.
-  - Verify that `weather-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in the Spring Cloud Service Registry.
+  - Verify that `weather-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in the Spring Cloud Service Registry.
   - Select `weather-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided. You might have to click on `See more` to find it.
 
