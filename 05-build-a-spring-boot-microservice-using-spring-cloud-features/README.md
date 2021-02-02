@@ -20,7 +20,7 @@ For both features, it will just be a matter of adding an official Spring Boot st
 
 The microservice that we create in this guide is [available here](spring-cloud-microservice/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -

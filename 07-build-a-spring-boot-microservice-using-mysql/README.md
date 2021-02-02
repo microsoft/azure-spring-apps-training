@@ -79,7 +79,7 @@ In the [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github
 
 Now that we've provisioned the Azure Spring Cloud instance and configured the service binding, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -

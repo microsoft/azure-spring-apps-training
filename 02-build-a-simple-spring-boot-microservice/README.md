@@ -10,7 +10,7 @@ Build the simplest possible Spring Boot microservice, made with [https://start.s
 
 The microservice that we create in this guide is [available here](simple-microservice/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) via the command line.
+A typical way to create Spring Boot applications is to use the Spring Initializer at  [https://start.spring.io/](https://start.spring.io/). Feel free to explore it outside this training. **For the purposes of this training, we will only invoke the Spring Initializer site via the `curl` command**.
 
 >💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands.
 

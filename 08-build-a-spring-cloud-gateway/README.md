@@ -10,7 +10,7 @@ Build a [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 
 
 The application that we create in this guide is [available here](gateway/).
 
-To create our gateway, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our gateway, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=cloud-gateway,cloud-eureka,cloud-config-client -d baseDir=gateway -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
