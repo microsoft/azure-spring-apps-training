@@ -31,6 +31,9 @@ You now need to allow access from your GitHub workflow to your Azure Spring Clou
 🛑 Make sure you assign the name of your resource group to the variable `AZ_RESOURCE_GROUP` or substitute the value for it in the commands below.
 
 ```bash
+# Prevents a Git bash issue. Not necessary outside of Windows:
+export MSYS_NO_PATHCONV=1
+
 # Get the ARM resource ID of the resource group
 RESOURCE_ID=$(az group show --name "$AZ_RESOURCE_GROUP" --query id -o tsv)
 
