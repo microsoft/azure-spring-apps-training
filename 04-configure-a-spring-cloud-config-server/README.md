@@ -13,7 +13,8 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 > To use this shortcut:
 >  - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 >  - Go to the overview page of your Azure Spring Cloud server and select "Config server" in the menu
->  - Set the repository URL: `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`.
+>  - Set the repository URL: `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`
+>  - Click on "Validate" and wait for the operation to succeed
 >  - Click on "Apply" and wait for the operation to succeed
 >  
 >  We have enabled Azure Spring Cloud to create a configuration server with the configuration files from this repository. You can now proceed to the next guide: 
@@ -51,13 +52,14 @@ Once the token is generated, leave that tab open until the end of this section.
 - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the overview page of your Azure Spring Cloud server and select "Config server" in the menu
 - Configure the repository we previously created:
-  - Add the repository URL, for example `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`.
+  - Add the repository URL, for example `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`
 
      >💡 Make sure you include the `.git` ending in the URL.
 
   - Click on `Authentication` and select `HTTP Basic`
   - The __username__ is your GitHub login name
   - The __password__ is the personal token we created in the previous section
+- Click on "Validate" and wait for the operation to succeed  
 - Click on "Apply" and wait for the operation to succeed
 
 ![Spring Cloud config server](media/02-config-server.png)

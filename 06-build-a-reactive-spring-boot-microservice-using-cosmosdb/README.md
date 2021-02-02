@@ -165,7 +165,7 @@ cd ..
 ## Test the project in the cloud
 
 - Go to "Apps" in your Azure Spring Cloud instance.
-  - Verify that `city-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Spring Cloud Service Registry.
+  - Verify that `city-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `city-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
