@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-In this section, we'll set up everything you need to expeditiously complete the tutorial.
+In this section, we'll set up everything you need to expeditiously complete the training.
 
 ---
 
