@@ -123,6 +123,8 @@ When you run an application on your machine, you can see its output in the conso
 az spring-cloud app logs --name spring-cloud-microservice -f
 ```
 
+_Please be aware it might take a couple of minutes for the logs to show up._
+
 You should see the console output of `spring-cloud-microservice` scroll by on your terminal:
 
 ![Console output](media/02-console-output.png)
