@@ -74,9 +74,10 @@ class City {
 }
 ```
 
-Then, in the same location, create a new `CityController` class that will be used to query the database.
+Then, in the same location, create a new `CityController.java` file that
+contains the code that will be used to query the database.
 
-> This class will get its Cosmos DB configuration from the Azure Spring Cloud service binding that we will configure later.
+> The CityController class will get its Cosmos DB configuration from the Azure Spring Cloud service binding that we will configure later.
 
 ```java
 package com.example.demo;

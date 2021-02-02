@@ -14,6 +14,8 @@ To create our microservice, we will use [https://start.spring.io/](https://start
 
 >💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands.
 
+In an __empty__ directory execute the curl command line below:
+
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 ```
@@ -22,7 +24,9 @@ curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-m
 
 ## Add a new Spring MVC Controller
 
-Expanding the newly created "simple-microservice" directory, create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
+In the `simple-microservice/src/main/java/com/example/demo` directory, create a
+new file  called `HelloController.java` next to `DemoApplication.java` file with
+the following content:
 
 ```java
 package com.example.demo;
