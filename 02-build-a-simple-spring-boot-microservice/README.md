@@ -111,8 +111,7 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
 
 ```bash
-curl https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpT
-     B@rwo1106f.test.azuremicroservices.io/simple-microservice/default/hello/
+curl https://primary:...simple-microservice/default/hello/
 ```
 
 If successful, you should see the message: `Hello from Azure Spring Cloud`.
