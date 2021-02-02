@@ -46,13 +46,11 @@ In the "Application Insights" menu in Azure Portal, you should now have access t
 >
 > ![layout switch](media/05-layout-switch.png)
 
-![Trace detail](media/03-trace-detail.png)
-
 ## Review the performance metrics
 
 Open a more holistic view at the `Performance` blade where you can see response times and request counts for operations exposed by your applications.
 
-![Performance metrics](media/06-performance.png)
+![Trace detail](media/03-trace-detail.png)
 
 For even more detailed data, navigate to the `Dependencies` tab in the `Performance` blade where you can see all your dependencies and their response times and request counts.
 
