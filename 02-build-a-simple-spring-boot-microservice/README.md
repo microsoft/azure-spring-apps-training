@@ -108,7 +108,7 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
    >💡 Note the text between `https://` and `@`.  These are the basic authentication credentials, without which you will not be authorized to access the service.
 - Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
-You can now also use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
+You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
 
 ```bash
 curl https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpT
