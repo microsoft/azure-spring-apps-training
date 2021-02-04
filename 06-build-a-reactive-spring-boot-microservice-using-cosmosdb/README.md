@@ -33,10 +33,10 @@ From Section 00, you should already have a CosmosDB account named `sclabc-<uniqu
 
 The microservice that we create in this guide is [available here](city-service/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.4.2 -d javaVersion=1.8 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 ```
 
 > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
@@ -74,9 +74,10 @@ class City {
 }
 ```
 
-Then, in the same location, create a new `CityController` class that will be used to query the database.
+Then, in the same location, create a new `CityController.java` file that
+contains the code that will be used to query the database.
 
-> This class will get its Cosmos DB configuration from the Azure Spring Cloud service binding that we will configure later.
+> The CityController class will get its Cosmos DB configuration from the Azure Spring Cloud service binding that we will configure later.
 
 ```java
 package com.example.demo;
@@ -165,7 +166,7 @@ cd ..
 ## Test the project in the cloud
 
 - Go to "Apps" in your Azure Spring Cloud instance.
-  - Verify that `city-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Spring Cloud Service Registry.
+  - Verify that `city-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `city-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 

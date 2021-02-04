@@ -14,7 +14,10 @@ There are actually three ways to access your application's logs: [Azure Storage]
 
 Having completed the setup in [Section 00](../00-setup-your-environment/README.md), you should have a Log Analytics workspace named `sclab-la-<unique string>` in your resource group for this workshop. We must now configure our Azure Spring Cloud instance to send its data to this workspace.
 
-- Go to the "Overview" page of your Azure Spring Cloud instance and select "Diagnostic settings" in the "Monitoring" section of the navigation pane.
+- Navigate to the Azure Spring Cloud instance  in Azure Portal and select "Diagnostic settings" in the "Monitoring" section of the navigation pane:
+
+[![Diagnostic Settings](media/01-diagnostic-settings.png)]
+
 - Click on "Add diagnostic setting" and configure your instance to send all its logs to the Log analytics workspace that we just created.
 - Fill in the values as shown here and click "Save".
 

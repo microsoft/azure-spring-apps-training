@@ -10,7 +10,7 @@ Basics on creating an instance and configuring the CLI to work efficiently.
 
 Ensure your Azure CLI is logged into your Azure subscription.
 
->💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash.
+>💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash. **Do not use WSL, CloudShell, or any other shell.**
 
 ```bash
 az login # Sign into an azure account

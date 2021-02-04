@@ -20,10 +20,10 @@ For both features, it will just be a matter of adding an official Spring Boot st
 
 The microservice that we create in this guide is [available here](spring-cloud-microservice/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.4.2 -d javaVersion=1.8 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 ```
 
 > This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Spring Cloud Service Registry and the Spring Cloud Config Server.
@@ -122,6 +122,8 @@ When you run an application on your machine, you can see its output in the conso
 ```bash
 az spring-cloud app logs --name spring-cloud-microservice -f
 ```
+
+_Please be aware it might take a couple of minutes for the logs to show up._
 
 You should see the console output of `spring-cloud-microservice` scroll by on your terminal:
 
