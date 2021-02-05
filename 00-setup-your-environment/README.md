@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Setting up all the necessary prerequisites in order to expeditiously complete the lab.
+In this section, we'll set up everything you need to expeditiously complete the training.
 
 ---
 

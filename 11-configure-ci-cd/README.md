@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Configure a Continuous Integration / Continuous Deployment platform using GitHub Actions, so our Spring Boot microservices are automatically deployed.
+In this section, we will use GitHub Actions to implement continuous deployment to Azure Spring Cloud. For simplicity, we will not implement blue-green deployments in this section, but don't hesitate to come back and add blue-green deployments after completing the remainder of the tutorial.
 
 ---
 
