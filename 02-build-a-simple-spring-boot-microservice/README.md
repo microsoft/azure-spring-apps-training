@@ -106,6 +106,8 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 
 - Look for your Azure Spring Cloud instance in your resource group
 - Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
+- Click on 'See more' to see "Test Endpoint"
+![See More](media/02-seemore.png)
 - Mouse over the URL labeled as "Test Endpoint" and click the clipboard icon that appears.  
     This will give you something like:
    `https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/`
