@@ -16,6 +16,7 @@ RUN if [ "${INSTALL_NODE}" = "true" ]; then su vscode -c "umask 0002 && . /usr/l
 
 # Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+RUN az extension add -n spring-cloud -y
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
