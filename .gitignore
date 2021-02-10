@@ -28,5 +28,4 @@ hs_err_pid*
 **/.settings
 
 # VS Code
-**/.vscode/
 **/.idea/
