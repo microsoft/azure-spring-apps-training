@@ -73,7 +73,7 @@ cd ..
 
 As the gateway is connected to the Spring Cloud Service Registry, it should have automatically opened routes to the available microservices, with URL paths in the form of `/MICROSERVICE-ID/**`.
 
-  > IMPORTANT: **The MICROSERVICE-ID must be uppercase, all CAPS**. Replace XXXXXXXX with the name of your Azure Spring Cloud instance.
+  > 🛑 **The MICROSERVICE-ID must be uppercase, all CAPS**. Replace XXXXXXXX with the name of your Azure Spring Cloud instance.
 
 - Test the `city-service` microservice endpoint: 
   ```
