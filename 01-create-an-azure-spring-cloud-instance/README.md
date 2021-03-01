@@ -9,6 +9,9 @@ In this section, we'll create an Azure Spring Cloud instance using Azure CLI. Wh
 
 >💡 Make sure you enter these commands and all others that follow in **Git Bash**. **Do not use WSL, CloudShell, or any other shell.**
 
+
+   ![Git bash](media/git-bash.png)
+
 ```bash
 az login # Sign into an azure account
 az account show # See the currently signed-in account.
