@@ -14,7 +14,7 @@ Now that we have an application deployed, we'll configure Log Analytics, so that
 
 4. Navigate to the Azure Spring Cloud instance in Azure Portal and select "Diagnostic settings" in the "Monitoring" section of the navigation pane:
 
-[![Diagnostic Settings](media/01-diagnostic-settings.png)]
+![Diagnostic Settings](media/01-diagnostic-settings.png)
 
 - Click on "Add diagnostic setting" and configure your instance to send all its logs to the Log analytics workspace that we just created.
 - Name : write-to-log-analytics
