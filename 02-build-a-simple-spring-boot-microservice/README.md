@@ -49,7 +49,7 @@ public class HelloController {
 1. Now we run the project:
 
 ```bash
-cd /c/users/demouser/simple-microservice
+cd simple-microservice
 ./mvnw spring-boot:run &
 cd ..
 ```
@@ -66,7 +66,7 @@ curl http://127.0.0.1:8080/hello
 kill %1
 ```
 
-## Task 3 : Create and deploy the application on Azure Spring Cloud
+## Task 4 : Create and deploy the application on Azure Spring Cloud
 
 1. This section shows how to create an app instance and then deploy your code to it.
 
@@ -99,7 +99,7 @@ az spring-cloud app create -n simple-microservice
 4. You can now build your "simple-microservice" project and deploy it to Azure Spring Cloud:
 
 ```bash
-cd /c/users/demouser/simple-microservice
+cd simple-microservice
 ./mvnw clean package
 az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
@@ -107,7 +107,7 @@ cd ..
 
 5. This creates a jar file on your local disk and uploads it to the app instance you created in the preceding step.  The `az` command will output a result in JSON.  You don't need to pay attention to this output right now, but in the future, you will find it useful for diagnostic and testing purposes.
 
-## Task 4 : Test the project in the cloud
+## Task 5 : Test the project in the cloud
 
 1. Go to [the Azure portal](https://portal.azure.com):
 
@@ -117,8 +117,12 @@ cd ..
 
 - Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
 
+- Click on assign endpoint and wait untill the endpoint has been assigned. 
+
+![assign endpoint](media/simple-microservice-endpoint-assign.png)
+
 - Click on 'See more' to see "Test Endpoint"
-- 
+
 ![See More](media/02-seemore.png)
 
 - Mouse over the URL labeled as "Test Endpoint" and click the clipboard icon that appears.  
@@ -130,13 +134,17 @@ cd ..
    >💡 Note the text between `https://` and `@`.  These are the basic authentication credentials, without which you will not be authorized to access the service.
 - Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
-2. You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
+![Endpoint](media/hello-from-spring-cloud.png)
+
+2. You can now use CURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
 
 ```bash
 curl https://primary:...simple-microservice/default/hello/
 ```
 
 3. If successful, you should see the message: `Hello from Azure Spring Cloud`.
+
+![Endpoint](media/curl-hello-from-spring-cloud.png)
 
 ## Conclusion
 
