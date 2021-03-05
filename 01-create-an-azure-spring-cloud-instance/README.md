@@ -35,6 +35,7 @@ az account show # See the currently signed-in account.
 ```bash
 AZ_RESOURCE_GROUP=spring-cloud-workshop-DID
 AZ_SPRING_CLOUD_NAME=azure-spring-cloud-lab-DID
+az config set extension.use_dynamic_install=yes_without_prompt
 ```
 
 5. With these variables set, we can now create the Azure Spring Cloud instance. To enable the Java in-process monitoring agent, we add the `enable-java-agent` flag.
