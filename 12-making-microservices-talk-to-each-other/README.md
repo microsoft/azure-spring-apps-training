@@ -1,12 +1,10 @@
-# 12 - Making Microservices Talk to Each Other
-
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+# Exercise 12 - Making Microservices Talk to Each Other
 
 Creating a microservice that talks to other microservices.
 
 ---
 
-In [Section 6](../06-build-a-reactive-spring-boot-microservice-using-cosmos/README.md) we deployed a microservice that returns a list of cities. In [Section 7](../07-build-a-spring-boot-microservice-using-mysql/README.md), we deployed a microservice that, given a city, returns the weather for that city. And in [Section 9](../09-putting-it-all-together-a-complete-microservice-stack/README.md), we created a front-end application that queries these two microservices.
+In Exercise 6 we deployed a microservice that returns a list of cities. In Exercise 7, we deployed a microservice that, given a city, returns the weather for that city. And in Exercise 9, we created a front-end application that queries these two microservices.
 
 There is a glaring inefficiency in this design: the browser first calls `city-service`, waits for it to respond, and upon getting that response, calls `weather-service` for each of the cities returned. All these remote calls are made over public internet, whose speed is never guaranteed.
 
@@ -14,17 +12,20 @@ To resolve this inefficiency, we will create a single microservice that implemen
 
 Note how the code we create in this section is endpoint-agnostic. All we specify is the name of the services we want to invoke in the `@FeignClient` annotation. OpenFeign and Spring Cloud Registry then work together behind the scenes to connect our new microservice to the services we've created previously.
 
-## Create a Spring Boot Microservice
+## Task 1 : Create a Spring Boot Microservice
 
-To create our microservice, we will invoke the Spring Initalizer service from the command line:
+1. To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 ```
+2. Navigate to the path `C:\Users\demouser\all-cities-weather-service` to find the all-cities-weather-service
 
-## Add Spring code to call other microservices
+![all-cities-weather-service](media/all-cities-weather-service.png)
 
-Next to the `DemoApplication` class, create a `Weather` class:
+## Task 2 : Add Spring code to call other microservices
+
+1. Navigate to the path `C:\Users\demouser\all-cities-weather-service\src\main\java\com\example\demo` next to the `DemoApplication` class, create a `Weather.java` class:
 
 ```java
 package com.example.demo;
@@ -63,9 +64,9 @@ public class Weather {
 }
 ```
 
-Note: this is the same `Weather` class that we created in Section 7 when we defined the original `weather-service` with one important difference: we no longer annotate the class as a JPA entity for data retrieval.
+Note: this is the same `Weather` class that we created in Exercise 7 when we defined the original `weather-service` with one important difference: we no longer annotate the class as a JPA entity for data retrieval.
 
-Next, in the same location create the `City` class. This is the same `City` class that we created in Section 6.
+2. Next, in the same location create the `City.java` class. This is the same `City` class that we created in exercise 6.
 
 ```java
 package com.example.demo;
@@ -84,7 +85,7 @@ public class City {
 }
 ```
 
-Then, in the same location, create an interface called `CityServiceClient` with the following contents. When we run our new service, OpenFeign will automatically provide an implementation for this interface.
+3. Then, in the same location, create an interface called `CityServiceClient.java` with the following contents. When we run our new service, OpenFeign will automatically provide an implementation for this interface.
 
 ```java
 package com.example.demo;
@@ -103,7 +104,7 @@ public interface CityServiceClient{
 
 ```
 
-Create a similar OpenFeign client interface for the weather service, named `WeatherServiceClient`.
+4. Create a similar OpenFeign client interface for the weather service, named `WeatherServiceClient.java`.
 
 ```java
 package com.example.demo;
@@ -126,7 +127,7 @@ public interface WeatherServiceClient{
 
 ```
 
-To enable Spring Cloud to discovery the underlying services and to automatically generate OpenFeign clients, add the annotations @EnableDiscoveryClient and @EnableFeignClients to the `DemoApplication` class (as well as the corresponding `import` statements):
+5. To enable Spring Cloud to discovery the underlying services and to automatically generate OpenFeign clients, add the annotations @EnableDiscoveryClient and @EnableFeignClients to the `DemoApplication` class (as well as the corresponding `import` statements):
 
 ```java
 package com.example.demo;
@@ -146,7 +147,7 @@ public class DemoApplication {
 }
 ```
 
-Everything is now in place to implement the `all-cities-weather-service`. Create the class `AllCitiesWeatherController` as follows:
+6. Everything is now in place to implement the `all-cities-weather-service`. Create the class `AllCitiesWeatherController.java` as follows:
 
 ```java
 package com.example.demo;
@@ -186,26 +187,31 @@ public class AllCitiesWeatherController {
     }
 }
 ```
-## Add time-out settings
 
-In order to stop the Feign services timing out automatically, open up the `src/main/resources/application.properties` file and add:
+7. You should have the following files in the demo folder 
+    
+![all files](media/all-cities-weather-service-all-java-files.png)
+
+## Task 3 : Add time-out settings
+
+1. In order to stop the Feign services timing out automatically, open the `C:\Users\demouser\all-cities-weather-service\src\main\resources\` folder and open `application.properties` file and add:
 
 ```properties
 feign.client.config.default.connectTimeout=160000000
 feign.client.config.default.readTimeout=160000000
 ```
 
-## Create the application on Azure Spring Cloud
+## Task 4 : Create the application on Azure Spring Cloud
 
-As before, create a specific `all-cities-weather-service` application in your Azure Spring Cloud instance:
+1. As before, create a specific `all-cities-weather-service` application in your Azure Spring Cloud instance:
 
 ```bash
 az spring-cloud app create -n all-cities-weather-service
 ```
 
-## Deploy the application
+## Task 5 : Deploy the application
 
-You can now build your "all-cities-weather-service" project and send it to Azure Spring Cloud:
+1.You can now build your "all-cities-weather-service" project and send it to Azure Spring Cloud:
 
 ```bash
 cd all-cities-weather-service
@@ -214,9 +220,9 @@ az spring-cloud app deploy -n all-cities-weather-service --jar-path target/demo-
 cd ..
 ```
 
-## Test the project in the cloud
+## Task 6 : Test the project in the cloud
 
-You can use the gateway created in Section 8 to access the all-cities-weather-service directly.
+1. You can use the gateway created in exercise 8 to access the all-cities-weather-service directly.
 
 >💡__Note:__ the trailing slash (`/`) is not optional.
 
@@ -224,15 +230,12 @@ You can use the gateway created in Section 8 to access the all-cities-weather-se
 https://<Your gateway URL>/ALL-CITIES-WEATHER-SERVICE/
 ```
 
-You should get the JSON output with the weather for all the cities:
+2. You should get the JSON output with the weather for all the cities:
 
 ```json
 [{"city":"Paris, France","description":"It's always sunny on Azure Spring Cloud","icon":"weather-sunny"},
 {"city":"London, UK","description":"It's always sunny on Azure Spring Cloud","icon":"weather-sunny"}]
 ```
+![output](media/all-cities-weather-service-output.png)
 
 ---
-
-⬅️ Previous guide: [11 - Configure CI/CD](../11-configure-ci-cd/README.md)
-
-➡️ Next guide: [Conclusion](../99-conclusion/README.md)
