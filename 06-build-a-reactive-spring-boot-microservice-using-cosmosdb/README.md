@@ -45,7 +45,7 @@ curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cl
 ```
 2. Navigate to the path `C:\Users\demouser\city-service` to find the city service folder 
 
-![city service](media/02-data-explorer.png)
+![city service](media/city-service.png)
 
 > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
 
@@ -151,13 +151,13 @@ az spring-cloud app create -n city-service
 
 1. Azure Spring Cloud can automatically bind the Cosmos DB database we created to our microservice.
 
-2.Go to "Apps" in your Azure Spring Cloud instance.
+2. Go to "Apps" in your Azure Spring Cloud instance.
 
 3. Select the `city-service` application
 
 4. Go to `Service bindings`
 
-5.Click on `Create service binding`
+5. Click on `Create service binding`
 
   - Give your binding a name, for example `cosmosdb-city`
   - Select the Cosmos DB account and database we created and keep the default `sql` API type
