@@ -24,7 +24,7 @@ Now that we have made two microservices publicly available, we will incorporate 
 
 3. In order to simplify this part, which is not relevant to understanding Spring Cloud, we have already built a running front-end:
 
-  __[https://spring-training.azureedge.net/](https://spring-training.azureedge.net/)__
+      __[https://spring-training.azureedge.net/](https://spring-training.azureedge.net/)__
 
 4. Go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/), input your Spring Cloud Gateway's public URL (It should look like this `https://azure-spring-cloud-lab-DID-gateway.azuremicroservices.io`), in the text field and click on "Go". You should see the following screen:
 
