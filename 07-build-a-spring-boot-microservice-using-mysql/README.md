@@ -1,4 +1,4 @@
-# Exercise 6 - Build a Spring Boot microservice using MySQL
+# Exercise 7 - Build a Spring Boot microservice using MySQL
 
 In this section, we'll build another data-driven microservice. This time, we will use a relational database, a [MySQL database managed by Azure](https://docs.microsoft.com/en-us/azure/mysql/?WT.mc_id=azurespringcloud-github-judubois). And we'll use Java Persistence API (JPA) to access the data in a way that is more frequently used in the Java ecosystem.
 
