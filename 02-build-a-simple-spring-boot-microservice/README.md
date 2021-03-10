@@ -117,22 +117,26 @@ cd ..
 
 3. Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
 
-4. Click on assign endpoint and wait until the endpoint has been assigned and unassign the endpoint soon after. 
-
-![assign endpoint](media/simple-microservice-endpoint-assign.png)
-
-5. Click on 'See more' to see "Test Endpoint"
+4. Click on 'See more' to see "Test Endpoint"
 
 ![See More](media/02-seemore.png)
 
-6. Mouse over the URL labeled as "Test Endpoint" and click the clipboard icon that appears.  
+5. Mouse over the URL labeled as "Test Endpoint" and click the clipboard icon that appears.  
 
 ![Endpoint](media/microservice-endpoint.png)
     
-7. This will give you something like:
+6. This will give you something like:
 
    `https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/`
    >💡 Note the text between `https://` and `@`.  These are the basic authentication credentials, without which you will not be authorized to access the service.
+
+7. If you get an "503 Service Temporarily Unavailable" error as shown below,
+
+![Error](media/endpoint-error.png)
+
+   Click on assign endpoint and wait until the endpoint has been assigned and unassign the endpoint soon after. 
+
+![assign endpoint](media/simple-microservice-endpoint-assign.png)
 
 8. Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
