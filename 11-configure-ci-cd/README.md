@@ -1,6 +1,4 @@
-# 11 - Configure CI/CD
-
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+# Exercise 11 - Configure CI/CD
 
 In this section, we will use GitHub Actions to implement continuous deployment to Azure Spring Cloud. For simplicity, we will not implement blue-green deployments in this section, but don't hesitate to come back and add blue-green deployments after completing the remainder of the tutorial.
 
@@ -8,13 +6,26 @@ In this section, we will use GitHub Actions to implement continuous deployment t
 
 Our microservices and gateway are easy to deploy manually, but it is of course better to automate all those tasks! We are going to use [GitHub actions](https://github.com/features/actions) as a Continuous Integration / Continuous Deployment platform (or CI/CD for short). This configuration is rather simple, so it should be trivial to port it to another CI/CD platform.
 
-We are going to automate the deployment of the `weather-service` microservice that was developed in [07 - Build a Spring Boot microservice using MySQL](../07-build-a-spring-boot-microservice-using-mysql/README.md). It is exactly the same configuration that would need to be done for the `city-service` microservice and the gateway, so if you want to automate them too, you can just copy/paste what is being done in the current guide.
+We are going to automate the deployment of the `weather-service` microservice that was developed in exercise 7. It is exactly the same configuration that would need to be done for the `city-service` microservice and the gateway, so if you want to automate them too, you can just copy/paste what is being done in the current guide.
 
-## Configure GitHub
+## Task 1 : Configure GitHub
 
-[Create a new GitHub repository](https://github.com/new) and commit the code from the `weather-service` microservice into that repository:
+1. [Create a new GitHub repository](https://github.com/new) with the name `weather-service` and commit the code from the `weather-service` microservice into that repository:
 
-> 🛑 Make sure you substitute the Git URL from your own github repository (make sure you use the HTTPS URL, not the SSH URL). This should be a different repository than the one you used to store configuration in section 4. If a login dialog appears, log in with your regular GitHub credentials.
+![New Repo](media/new-repo.png)
+
+2. Open a fresh instance of Git Bash and login to your azure account using `az login` command.
+
+3. Enter the following commands and substitute the username/email of your Github account.
+
+```
+git config --global user.email "user@mail.com"
+git config --global user.name "username"
+
+```
+
+
+> 🛑 Make sure you substitute the Git URL from your own github repository (make sure you use the HTTPS URL, not the SSH URL). This should be a different repository than the one you used to store configuration in exercise 4. If a login dialog appears, log in with your regular GitHub credentials.
 
 ```bash
 cd weather-service
@@ -26,9 +37,11 @@ git push origin master
 cd ..
 ```
 
-You now need to allow access from your GitHub workflow to your Azure Spring Cloud instance. Open up a terminal and type the following command, replacing `$AZ_RESOURCE_GROUP` with the name of your resource group.
+4. You now need to allow access from your GitHub workflow to your Azure Spring Cloud instance. Open up a terminal and type the following command.
 
-🛑 Make sure you assign the name of your resource group to the variable `AZ_RESOURCE_GROUP` or substitute the value for it in the commands below.
+`AZ_RESOURCE_GROUP=spring-cloud-workshop-DID`
+
+> Where DID is your DeploymentID (Unique Id) which can be found from the Environment Details page.
 
 ```bash
 # Prevents a Git bash issue. Not necessary outside of Windows:
@@ -42,15 +55,15 @@ SPNAME="sp-$(az spring-cloud list --query '[].name' -o tsv)"
 az ad sp create-for-rbac --name "${SPNAME}" --role contributor --scopes "$RESOURCE_ID" --sdk-auth
 ```
 
-This should output a JSON text, that you need to copy.
+5. This should output a JSON text, that you need to copy.
 
-Then, in your GitHub project, select `Settings > Secrets` and add a new secret called `AZURE_CREDENTIALS`. Paste the JSON text you just copied into that secret.
+6. Then, in your GitHub project, select `Settings > Secrets` and add a new secret called `AZURE_CREDENTIALS`. Paste the JSON text you just copied into that secret.
 
-## Create a GitHub Action
+## Task 2 : Create a GitHub Action
 
-Inside the `weather-service` directory, create a new directory called `.github/workflows` and add a file called `azure-spring-cloud.yml` in it. This file is a GitHub workflow and will use the secret we just configured above to deploy the application to your Azure Spring Cloud instance.
+1. Inside the `weather-service` directory, create a new directory called `.github/workflows` and add a file called `azure-spring-cloud.yml` in it. This file is a GitHub workflow and will use the secret we just configured above to deploy the application to your Azure Spring Cloud instance.
 
-In that file, copy/paste the following content, performing the indicated substitutions:
+2. In that file, copy/paste the following content, performing the indicated substitutions:
 
 >🛑 You must substitute the name of your Azure Spring Cloud instance for `<AZ_SPRING_CLOUD_NAME>` and the name of the resource group for `<AZ_RESOURCE_GROUP>` in the YAML below.
 
@@ -80,29 +93,29 @@ jobs:
       run: az spring-cloud app deploy --resource-group <AZ_RESOURCE_GROUP> --service <AZ_SPRING_CLOUD_NAME> --name weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
-This workflow does the following:
+3. This workflow does the following:
 
 - It sets up the JDK
+
 - It compiles and packages the application using Maven
+
 - It authenticates to Azure Spring Cloud using the credentials we just configured
+
 - It adds the Azure Spring Cloud extensions to the Azure CLI (this step should disappear when the service is in final release)
+
 - It deploys the application to your Azure Spring Cloud instance
 
 This workflow is configured to be triggered whenever code is pushed to the repository.
 There are many other [events that trigger GitHub actions](https://help.github.com/en/articles/events-that-trigger-workflows). You could, for example, deploy each time a new tag is created on the project.
 
-## Test the GitHub Action
+## Task 3 : Test the GitHub Action
 
-You can now commit and push the `azure-spring-cloud.yml` file we just created.
+1. You can now commit and push the `azure-spring-cloud.yml` file we just created.
 
-Going to the `Actions` tab of your  GitHub project, you should see that your project is automatically built and deployed to your Azure Spring Cloud instance:
+2. Going to the `Actions` tab of your  GitHub project, you should see that your project is automatically built and deployed to your Azure Spring Cloud instance:
 
 ![GitHub workflow](media/01-github-workflow.png)
 
 Congratulations! Each time you `git push` your code, your microservice is now automatically deployed to production.
 
 ---
-
-⬅️ Previous guide:  [10 - Blue/Green deployment](../10-blue-green-deployment/README.md)
-
-➡️ Next guide: [12 - Making Microservices Talk To Each Other](../12-making-microservices-talk-to-each-other/README.md)
