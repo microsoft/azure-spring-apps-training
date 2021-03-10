@@ -93,7 +93,7 @@ echo "Your MySQL username is: ${MYSQL_USERNAME}"
 ```bash
 curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 ```
-3. Navigate to the path `C:\Users\demouser\weather-service` to find the city service folder 
+3. Navigate to the path `C:\Users\demouser\weather-service` to find the weather-service  folder 
 
 ![city service](media/weather-service.png)
 
