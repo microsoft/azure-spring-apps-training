@@ -114,37 +114,38 @@ cd ..
 
 1. Go to [the Azure portal](https://portal.azure.com):
 
-- Look for your Azure Spring Cloud instance in your resource group
+2. Look for your Azure Spring Cloud instance in your resource group
 
 ![Cloud Spring in rg](media/spring-cloud.png)
 
-- Go to "Apps"
-  - Verify that `spring-cloud-microservice` has a `Registration status` of `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
+3. Go to "Apps"
+
+4. Verify that `spring-cloud-microservice` has a `Registration status` of `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
 
 ![Apps cloud microservice](media/apps-spring-cloud-microservice.png)
 
-  - Select `spring-cloud-microservice` to have more information on the microservice.
+5. Select `spring-cloud-microservice` to have more information on the microservice.
 
-- Click on assign endpoint and wait untill the endpoint has been assigned. 
+6. Click on assign endpoint and wait untill the endpoint has been assigned. 
 
 ![assign endpoint](media/assign-endpoint-spring-cloud-microservice.png)
 
-- Click on 'See more' to see "Test Endpoint"
+7. Click on 'See more' to see "Test Endpoint"
 
-- Copy the "Test Endpoint" that is provided.
+8. Copy the "Test Endpoint" that is provided.
 
-- Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
+9. Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
 ![configured](media/configured-by-spring-cloud.png)
 
-2. You can now use CURL again to test the `/hello` endpoint, this time it is served by Azure Spring Cloud and configured using the Spring Config Server from exercise 4.
+10. You can now use CURL again to test the `/hello` endpoint, this time it is served by Azure Spring Cloud and configured using the Spring Config Server from exercise 4.
 
-3. As a result, requesting the `/hello` endpoint should return the message that we configured in the `application.yml` file, coming from the Spring Cloud Config Server:
+11. As a result, requesting the `/hello` endpoint should return the message that we configured in the `application.yml` file, coming from the Spring Cloud Config Server:
 
 ```bash
 Configured by Azure Spring Cloud
 ```
-4. If successful, you should see the message: `Configured by Azure Spring Cloud`.
+12. If successful, you should see the message: `Configured by Azure Spring Cloud`.
 
 ![curl-configured](media/curl-configured-by-spring.png)
 
