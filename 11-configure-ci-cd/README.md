@@ -14,7 +14,7 @@ We are going to automate the deployment of the `weather-service` microservice th
 
 ![New Repo](media/new-repo.png)
 
-2. Open a fresh instance of Git Bash and login to your azure account using `az login` command.
+2. Open a fresh instance of Git Bash and login to your azure account using ```az login``` command.
 
 3. Enter the following commands and substitute the username/email of your Github account.
 
@@ -39,7 +39,9 @@ cd ..
 
 4. You now need to allow access from your GitHub workflow to your Azure Spring Cloud instance. Open up a terminal and type the following command.
 
-`AZ_RESOURCE_GROUP=spring-cloud-workshop-DID`
+```
+AZ_RESOURCE_GROUP=spring-cloud-workshop-DID
+```
 
 > Where DID is your DeploymentID (Unique Id) which can be found from the Environment Details page.
 
