@@ -42,7 +42,7 @@ application:
 
 1. Azure Spring Cloud can access Git repositories that are public, secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with GitHub.
 
-2. Follow the [GitHub guide to create a personal token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) and save your token. When asked to select scopes, check off the entire "repo" section (as shown below) and nothing else.
+2. Follow the [GitHub guide to create a personal token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) named `Azure Spring Cloud Config Server` and save your token. When asked to select scopes, check off the entire "repo" section (as shown below) and nothing else.
 
 ![GitHub personal access token](media/01-github-personal-access-token.png)
 
