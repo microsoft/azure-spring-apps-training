@@ -8,7 +8,7 @@ We'll use the reactive programming paradigm to build our microservice in this se
 
 ## Task 1 : Prepare the Cosmos DB database
 
-1. You should already have a CosmosDB account named `sclabc-DID` in the resource group `spring-cloud-workshop-DID`.
+1. You should have a CosmosDB account named `sclabc-DID` in the resource group `spring-cloud-workshop-DID`.
 
 ![Cosmos Db](media/cosmos-db-from-rg.png)
 
@@ -47,7 +47,7 @@ curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cl
 
 ![city service](media/city-service.png)
 
-> We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
+    > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
 
 ## Task 3 : Add the Cosmos DB API
 
