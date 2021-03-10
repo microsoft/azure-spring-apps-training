@@ -116,7 +116,7 @@ cd ..
 
 - Look for your Azure Spring Cloud instance in your resource group
 
-![Cloud Spring in rg](/02-build-a-simple-spring-boot-microservice/media/spring-cloud.png)
+![Cloud Spring in rg](media/spring-cloud.png)
 
 - Go to "Apps"
   - Verify that `spring-cloud-microservice` has a `Registration status` of `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
