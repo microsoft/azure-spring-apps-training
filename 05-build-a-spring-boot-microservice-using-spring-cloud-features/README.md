@@ -135,7 +135,7 @@ cd ..
 
 - Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
-![Endpoint](media/configured-by-spring-cloud.png)
+![configured](media/configured-by-spring-cloud.png)
 
 2. You can now use CURL again to test the `/hello` endpoint, this time it is served by Azure Spring Cloud and configured using the Spring Config Server from exercise 4.
 
@@ -146,7 +146,7 @@ Configured by Azure Spring Cloud
 ```
 4. If successful, you should see the message: `Configured by Azure Spring Cloud`.
 
-![Endpoint](media/curl-configured-by-spring.png)
+![curl-configured](media/curl-configured-by-spring.png)
 
 ## Task 6 : Stream application logs
 
