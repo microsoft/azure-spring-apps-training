@@ -207,7 +207,7 @@ az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPS
 cd ..
 ```
 
-## Test the project in the cloud
+## Task 8 : Test the project in the cloud
 
 1. Go to "Apps" in your Azure Spring Cloud instance.
 
@@ -218,7 +218,8 @@ cd ..
 4. Copy the "Test Endpoint" that is provided. You might have to click on `See more` to find it.
 
 5. Now you can now use CURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.
-you should get:
+
+You should get:
 
 ```json
 {"city":"Paris, France","description":"Very cloudy!","icon":"weather-fog"}
