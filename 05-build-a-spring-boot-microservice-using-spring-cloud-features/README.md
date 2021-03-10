@@ -126,26 +126,22 @@ cd ..
 
 5. Select `spring-cloud-microservice` to have more information on the microservice.
 
-6. Click on assign endpoint and wait untill the endpoint has been assigned. 
+6. Click on 'See more' to see "Test Endpoint"
 
-![assign endpoint](media/assign-endpoint-spring-cloud-microservice.png)
+7. Copy the "Test Endpoint" that is provided.
 
-7. Click on 'See more' to see "Test Endpoint"
-
-8. Copy the "Test Endpoint" that is provided.
-
-9. Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
+8. Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
 ![configured](media/configured-by-spring-cloud.png)
 
-10. You can now use CURL again to test the `/hello` endpoint, this time it is served by Azure Spring Cloud and configured using the Spring Config Server from exercise 4.
+9. You can now use CURL again to test the `/hello` endpoint, this time it is served by Azure Spring Cloud and configured using the Spring Config Server from exercise 4.
 
-11. As a result, requesting the `/hello` endpoint should return the message that we configured in the `application.yml` file, coming from the Spring Cloud Config Server:
+10. As a result, requesting the `/hello` endpoint should return the message that we configured in the `application.yml` file, coming from the Spring Cloud Config Server:
 
 ```bash
 Configured by Azure Spring Cloud
 ```
-12. If successful, you should see the message: `Configured by Azure Spring Cloud`.
+11. If successful, you should see the message: `Configured by Azure Spring Cloud`.
 
 ![curl-configured](media/curl-configured-by-spring.png)
 
