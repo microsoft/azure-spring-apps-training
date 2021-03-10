@@ -117,7 +117,7 @@ cd ..
 
 3. Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
 
-4. Click on assign endpoint and wait untill the endpoint has been assigned. 
+4. Click on assign endpoint and wait until the endpoint has been assigned and unassign the endpoint soon after. 
 
 ![assign endpoint](media/simple-microservice-endpoint-assign.png)
 
