@@ -23,7 +23,7 @@ az login # Sign into an azure account
 az account show # See the currently signed-in account.
 ```
 
-![Git Bash](/01-create-an-azure-spring-cloud-instance/media/git-bash.png)
+![Git Bash](media/git-bash.png)
 
 2. To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
@@ -37,7 +37,7 @@ curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-
 
 1. Navigate to the path `C:\Users\demouser\spring-cloud-microservice\src\main\java\com\example\demo`
 
-![Path](/02-build-a-simple-spring-boot-microservice/media/folder-path.png)
+![Path](media/folder-path.png)
 
 2. Search for notepad from the start menu and paste the following content in a new file:
 
@@ -62,7 +62,7 @@ public class HelloController {
 ```
 3. Save the file next to `DemoApplication.java` in the `C:\Users\demouser\spring-cloud-microservice\src\main\java\com\example\demo` as `HelloController.java` by changing the **save as type** to all files and then **save** as shown below.
 
-![HelloController](/02-build-a-simple-spring-boot-microservice/media/hello-controller-java.png)
+![HelloController](media/hello-controller-java.png)
 
 ## Task 3 : Test the project locally
 
