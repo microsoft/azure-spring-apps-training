@@ -75,6 +75,7 @@ echo "Your MySQL username is: ${MYSQL_USERNAME}"
 
 7. Populate the service binding fields as shown.
 
+  - Name : `weather-db`
   - The username will be displayed in last line of output from the section above.
   - The password can be retrieved from the environment details tab under `SQL Database Password`.
 
