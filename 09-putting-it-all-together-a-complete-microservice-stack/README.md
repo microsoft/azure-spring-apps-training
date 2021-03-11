@@ -38,9 +38,13 @@ Now that we have made two microservices publicly available, we will incorporate 
 
 >💡 Tracing data can take a couple of minutes to be ingested by the system, so use this time to generate some load.
 
-3. In the "Application Insights" menu in Azure Portal, you should now have access to a full application map, as well as a search engine that allows you to find performance bottlenecks.
+3. Navigate to your Azure spring cloud instance and under monitoring select "Application Insights"
 
-![Distributed tracing](media/02-distributed-tracing.png)
+![App insights](media/application-insights.png)
+
+4. In the "Application Insights" menu in Azure Portal, you should now have access to a full application map, as well as a search engine that allows you to find performance bottlenecks.
+
+![Distributed tracing](media/application-map.png)
 
 > 💡 If your application map looks different from the one above, select the hierarchical view from the layout switch in the top-right corner:
 >
