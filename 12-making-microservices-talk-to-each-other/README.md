@@ -211,7 +211,9 @@ az spring-cloud app create -n all-cities-weather-service
 
 ## Task 5 : Deploy the application
 
-1.You can now build your "all-cities-weather-service" project and send it to Azure Spring Cloud:
+1. You can now build your "all-cities-weather-service" project and send it to Azure Spring Cloud:
+
+>💡__Note:__ Open a new instance of Git Bash and login again using `az login` before running the following commands.
 
 ```bash
 cd all-cities-weather-service
