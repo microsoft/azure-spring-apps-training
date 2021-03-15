@@ -5,7 +5,7 @@
     "BaseURL": "https://github.com/CloudLabsAI-Azure/azure-spring-cloud-training",
     "Files": [
       {
-        "RawFilePath": " https://raw.githubusercontent.com/junnhssn/azure-spring-cloud-training/master/Getting-Started.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/Getting-Started.md",
         "Order": 1
       },
       {
