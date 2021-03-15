@@ -5,52 +5,56 @@
     "BaseURL": "https://github.com/CloudLabsAI-Azure/azure-spring-cloud-training",
     "Files": [
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/01-create-an-azure-spring-cloud-instance/README.md",
+        "RawFilePath": " https://raw.githubusercontent.com/junnhssn/azure-spring-cloud-training/master/Getting-Started.md",
         "Order": 1
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/02-build-a-simple-spring-boot-microservice/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/01-create-an-azure-spring-cloud-instance/README.md",
         "Order": 2
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/03-configure-monitoring/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/02-build-a-simple-spring-boot-microservice/README.md",
         "Order": 3
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/04-configure-a-spring-cloud-config-server/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/03-configure-monitoring/README.md",
         "Order": 4
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/04-configure-a-spring-cloud-config-server/README.md",
         "Order": 5
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md",
         "Order": 6
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/07-build-a-spring-boot-microservice-using-mysql/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md",
         "Order": 7
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/08-build-a-spring-cloud-gateway/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/07-build-a-spring-boot-microservice-using-mysql/README.md",
         "Order": 8
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/09-putting-it-all-together-a-complete-microservice-stack/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/08-build-a-spring-cloud-gateway/README.md",
         "Order": 9
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/10-blue-green-deployment/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/09-putting-it-all-together-a-complete-microservice-stack/README.md",
         "Order": 10
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/11-configure-ci-cd/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/10-blue-green-deployment/README.md",
         "Order": 11
       },
       {
-        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/12-making-microservices-talk-to-each-other/README.md",
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/11-configure-ci-cd/README.md",
         "Order": 12
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/azure-spring-cloud-training/master/12-making-microservices-talk-to-each-other/README.md",
+        "Order": 13
       }
     ]
   }
