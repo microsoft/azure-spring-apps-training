@@ -15,7 +15,7 @@ From Section 00, you should already have a CosmosDB account named `sclabc-<uniqu
 - Click on the "Data Explorer" menu item
   - Expand the container named `azure-spring-cloud-cosmosdb`.
   - In that container, expand the container named `City`.
-  - Click on "Items" and use the "New Item" button to create some sample items:
+  - Click on "Items" and use the "New Item" button to create some sample items using the contents below:
 
     ```json
     {
