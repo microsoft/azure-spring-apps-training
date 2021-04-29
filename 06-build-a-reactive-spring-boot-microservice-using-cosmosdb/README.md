@@ -65,7 +65,7 @@ curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cl
 
 ## Task 4 : Add Spring reactive code to get the data from the database
 
-1. Navigate to the path `C:\Users\demouser\city-service\src\main\java\com\example\demo`. Next to the `DemoApplication` class, create a `City.java` domain object:
+1. Navigate to the path `C:\Users\demouser\city-service\src\main\java\com\example\demo`. Next to the `DemoApplication` class, create a `City.java` file:
 
 ```java
 package com.example.demo;
