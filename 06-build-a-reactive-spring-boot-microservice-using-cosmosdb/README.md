@@ -38,7 +38,7 @@ The microservice that we create in this guide is [available here](city-service/)
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.6.1 -d javaVersion=11 | tar -xzvf -
 ```
 
 > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
@@ -51,7 +51,7 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.5.0</version>
+            <version>4.22.0</version>
         </dependency>
 ```
 
@@ -136,7 +136,7 @@ public class CityController {
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `city-service` application in your Azure Spring Cloud instance:
 
 ```bash
-az spring-cloud app create -n city-service
+az spring-cloud app create -n city-service --runtime-version Java_11
 ```
 
 ## Bind the Cosmos DB database to the application
