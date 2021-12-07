@@ -108,19 +108,15 @@ Create a similar OpenFeign client interface for the weather service, named `Weat
 ```java
 package com.example.demo;
 
-import com.example.demo.Weather;
-
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 @FeignClient("weather-service")
-@RequestMapping("/weather")
-public interface WeatherServiceClient{
+public interface WeatherServiceClient {
 
-    @GetMapping("/city")
+    @GetMapping("/weather/city")
     Weather getWeatherForCity(@RequestParam("name") String cityName);
 }
 
