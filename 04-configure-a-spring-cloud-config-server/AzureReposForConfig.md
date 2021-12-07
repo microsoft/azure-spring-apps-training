@@ -29,7 +29,7 @@ Azure Spring Cloud can access Git repositories that are public, secured by SSH, 
 
 1. In the Azure Repos portal for your project, click the "Clone" button:
 
-    ![Clone Button](media/clone-button.png)
+    ![Clone Button](media/04-clone-button.png)
 
 1. Copy the clone URL from the textbox. This URL will typically be in the form:
 
@@ -60,7 +60,7 @@ Azure Spring Cloud can access Git repositories that are public, secured by SSH, 
   - The __password__ is the password saved from the previous section
 - Click on "Apply" and wait for the operation to succeed
 
-![Spring Cloud config server](media/02-config-server-azdo.png)
+![Spring Cloud config server](media/03-config-server-azdo.png)
 
 ## Review
 
