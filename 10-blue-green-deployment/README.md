@@ -50,20 +50,25 @@ Build a new version of the application and deploy it to a new `deployment` calle
 ```bash
 cd weather-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deployment create --name green --app weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deployment create --name green --app weather-service --runtime-version Java_11 --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
 Once the application is deployed, if you go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) you will still have the same data, as the new version of the microservice is now in a staging area and not in production yet.
 
-Navigate to the Azure Spring Cloud instance in [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois) and click on "Deployments" (under Settings). You should now see the "green" deployment in the "Staging Deployment" column:
+Navigate to the Azure Spring Cloud instance in [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+
+- Look for your Azure Spring Cloud instance in your resource group
+- Go to "Apps"
+  - Select the `weather-service` microservice
+  - Click on "Deployments" in the menu. You should now see the "green" deployment, under the "default" deployment:
 
 ![Deployment Pane](media/02-deployment-pane.png)
 
 You can test the `green` deployment by invoking the same URL as in section 7, but replacing the deployment name `default` with `green`:
 
 ```bash
-curl https://***.test.azuremicroservices.io/weather-service/green/weather/city?name=Paris%2C%20France
+curl "https://***.test.azuremicroservices.io/weather-service/green/weather/city?name=Paris%2C%20France"
 ```
 
 And you should see the result of the recent modification:
@@ -83,8 +88,8 @@ az spring-cloud app set-deployment -n weather-service --deployment green
 Another solution is to use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
 - Find your Azure Spring Cloud instance
-- Click on the "deployment" menu
-- Select the `weather-service` application and click on "Set deployment"
+- Click on the "Apps" menu
+- Select the `weather-service` application and click on "Deployments"
 
 > If you want to reuse a deployment name, you need first to delete the previous deployment under that name:
 >
