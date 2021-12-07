@@ -32,7 +32,7 @@ Go to [https://spring-training.azureedge.net/](https://spring-training.azureedge
 
 ## Review the distributed tracing to better understand the architecture
 
-We have already enabled distributed tracing on our Azure Spring Cloud instance in Section 1 by adding the `--enable-java-agent` flag to the create command.
+Distributed tracing is enabled by default on Azure Spring Cloud, so your microservices and gateway are already being monitored.
 
 Now, you can use the VueJS application on [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) to generate some traffic on the microservices stack.
 
@@ -60,10 +60,9 @@ Now that distributed tracing is enabled, we can scale applications depending on 
 
 - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the overview page of your Azure Spring Cloud server and select "Apps" in the menu.
-  - Select one service and click on "Scale Out" in the menu. Select the service that you want to scale out.  
-![Application scaling](media/04-scale-out.png)
+  - Select one service and click on "Scale Out" in the menu. Select the service that you want to scale out.
   - Modify the number of instances to manually scale the service. You can also set custom auto scaling based on metrics. 
-  ![Application scaling](media/04b-auto-scaling.png)
+  ![Application scaling](media/04-scale-out.png)
 
 ---
 
