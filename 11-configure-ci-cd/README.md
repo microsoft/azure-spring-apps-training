@@ -22,7 +22,7 @@ git init
 git add .
 git commit -m 'Initial commit'
 git remote add origin <GIT HTTPS URL HERE>
-git push origin master
+git push origin main
 cd ..
 ```
 
@@ -64,10 +64,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        java-version: 1.8
+        distribution: 'temurin'
+        java-version: 11
+        check-latest: false
+        cache: 'maven'
     - name: Build with Maven
       run: mvn package -DskipTests
     - name: Login to Azure Spring Cloud
@@ -78,6 +81,7 @@ jobs:
       run: az extension add -y --name spring-cloud
     - name: Deploy to Azure Spring Cloud
       run: az spring-cloud app deploy --resource-group <AZ_RESOURCE_GROUP> --service <AZ_SPRING_CLOUD_NAME> --name weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+
 ```
 
 This workflow does the following:
