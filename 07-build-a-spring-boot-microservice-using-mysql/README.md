@@ -11,7 +11,7 @@ In this section, we'll build another data-driven microservice. This time, we wil
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `weather-service` application in your Azure Spring Cloud instance:
 
 ```bash
-az spring-cloud app create -n weather-service
+az spring-cloud app create -n weather-service --runtime-version Java_11
 ```
 
 
@@ -82,7 +82,7 @@ Now that we've provisioned the Azure Spring Cloud instance and configured the se
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=2.6.1 -d javaVersion=11 | tar -xzvf -
 ```
 
 > We use the `Spring Web`, `Spring Data JPA`, `MySQL Driver`, `Eureka Discovery Client` and the `Config Client` components.
@@ -202,9 +202,15 @@ cd ..
 - Go to "Apps" in your Azure Spring Cloud instance.
   - Verify that `weather-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in the Spring Cloud Service Registry.
   - Select `weather-service` to have more information on the microservice.
-- Copy/paste the "Test Endpoint" that is provided. You might have to click on `See more` to find it.
+- Copy/paste the "Test endpoint" that is provided.
 
 You can now use cURL to test the `/weather/city` endpoint. For example, to test for `Paris, France` city, append to the end of the test endpoint: `/weather/city?name=Paris%2C%20France`.
+
+```bash
+curl "https://primary:31SifNyr649htxU3IEpYaLbxRz6Gy3xAk0aLDFM49hcwx9zcCEXvPEGkHSpzJzKv@judubois-4876.test.azuremicroservices.io/weather-service/default/weather/city?name=Paris%2C%20France"
+```
+
+Here is the response you should receive:
 
 ```json
 {"city":"Paris, France","description":"Very cloudy!","icon":"weather-fog"}
