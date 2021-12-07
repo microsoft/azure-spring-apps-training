@@ -23,8 +23,6 @@ Having completed the setup in [Section 00](../00-setup-your-environment/README.m
 
 ![Send logs to the log analytics workspace](media/02-send-logs-to-log-analytics-workspace.png)
 
----
-
 ⬅️ Previous guide: [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md)
 
 ➡️ Next guide: [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md)
