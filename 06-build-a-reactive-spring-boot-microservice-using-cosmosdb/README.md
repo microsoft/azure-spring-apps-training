@@ -2,7 +2,9 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Build a reactive Spring Boot microservice that uses the [Spring reactive stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) and is bound to a [Cosmos DB database](https://docs.microsoft.com/en-us/azure/cosmos-db/?WT.mc_id=azurespringcloud-github-judubois) in order to access a globally-distributed database with optimum performance.
+In this section, we'll build an application that uses a [Cosmos DB database](https://docs.microsoft.com/en-us/azure/cosmos-db/?WT.mc_id=azurespringcloud-github-judubois) in order to access a globally-distributed database with optimum performance.
+
+We'll use the reactive programming paradigm to build our microservice in this section, leveraging the [Spring reactive stack](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html). In contrast, we'll build a more traditional data-driven microservice in the next section.
 
 ---
 
@@ -13,7 +15,7 @@ From Section 00, you should already have a CosmosDB account named `sclabc-<uniqu
 - Click on the "Data Explorer" menu item
   - Expand the container named `azure-spring-cloud-cosmosdb`.
   - In that container, expand the container named `City`.
-  - Click on "Items" and use the "New Item" button to create some sample items:
+  - Click on "Items" and use the "New Item" button to create some sample items using the contents below:
 
     ```json
     {
@@ -33,15 +35,15 @@ From Section 00, you should already have a CosmosDB account named `sclabc-<uniqu
 
 The microservice that we create in this guide is [available here](city-service/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 ```
 
 > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
 
-## Add the Cosmos DB v3 API
+## Add the Cosmos DB API
 
 In the application's `pom.xml` file, add the Cosmos DB dependency just after the `spring-cloud-starter-netflix-eureka-client` dependency:
 
@@ -49,29 +51,8 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.0.1</version>
+            <version>4.5.0</version>
         </dependency>
-```
-
-## Add a "cloud" Maven profile
-
-*To deploy to Azure Spring Cloud, we add a "cloud" Maven profile like in the previous guide [05 - Build a Spring Boot microservice using Spring Cloud features](../05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)*
-
-At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
-
-```xml
-    <profiles>
-        <profile>
-            <id>cloud</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.microsoft.azure</groupId>
-                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-                    <version>2.2.0</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
 ```
 
 ## Add Spring reactive code to get the data from the database
@@ -95,9 +76,10 @@ class City {
 }
 ```
 
-Then, in the same location, create a new `CityController` class that will be used to query the database.
+Then, in the same location, create a new `CityController.java` file that
+contains the code that will be used to query the database.
 
-> This class will get its Cosmos DB configuration from the Azure Spring Cloud service binding that we will configure later.
+> The CityController class will get its Cosmos DB configuration from the Azure Spring Cloud service binding that we will configure later.
 
 ```java
 package com.example.demo;
@@ -178,7 +160,7 @@ You can now build your "city-service" project and send it to Azure Spring Cloud:
 
 ```bash
 cd city-service
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
@@ -186,7 +168,7 @@ cd ..
 ## Test the project in the cloud
 
 - Go to "Apps" in your Azure Spring Cloud instance.
-  - Verify that `city-service` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Spring Cloud Service Registry.
+  - Verify that `city-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `city-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 

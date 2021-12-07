@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Build the simplest possible Spring Boot microservice, made with [https://start.spring.io/](https://start.spring.io/).
+In this section, we'll build a simple Spring boot microservice and deploy it to Azure Spring Cloud. This will give us a starting point for adding Spring Cloud technologies in later sections.
 
 ---
 
@@ -10,19 +10,23 @@ Build the simplest possible Spring Boot microservice, made with [https://start.s
 
 The microservice that we create in this guide is [available here](simple-microservice/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) via the command line.
+A typical way to create Spring Boot applications is to use the Spring Initializer at  [https://start.spring.io/](https://start.spring.io/). Feel free to explore it outside this training. **For the purposes of this training, we will only invoke the Spring Initializer site via the `curl` command**.
 
->💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands. If you are using the provided Docker container, this directory should be `/lab`.
+>💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands.
+
+In an __empty__ directory execute the curl command line below:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 ```
 
-> We force the Spring Boot version to be 2.3.1.RELEASE
+> We force the Spring Boot version to be 2.3.8.
 
 ## Add a new Spring MVC Controller
 
-Create a new class called `HelloController` in `src/main/java/com/example/demo`, next to `DemoApplication` with the following content:
+In the `simple-microservice/src/main/java/com/example/demo` directory, create a
+new file  called `HelloController.java` next to `DemoApplication.java` file with
+the following content:
 
 ```java
 package com.example.demo;
@@ -71,24 +75,21 @@ This section shows how to create an app instance and then deploy your code to it
 In order to create the app instance graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
 - Look for your Azure Spring Cloud instance in your resource group
-- Click on the "Overview" link at the top of the navigation sidebar. 
-- Click on the link "Create App".  You may have to scroll to reveal the "Create App" blade.
-
-![Create app](media/00-create-app-button.png)
-
+- Click on the "Apps" link under "Settings" on the navigation sidebar.
+- Click on "Create App" link at the top of the Apps page.
 - Create a new application named "simple-microservice"
 
 ![Create application](media/01-create-application.png)
 
 - Click on "Create".
 
-You can also use the command line to create the app instance, which is easier:
+Alternatively, you can use the command line to create the app instance, which is easier:
 
 ```bash
 az spring-cloud app create -n simple-microservice
 ```
 
-You can now build your "simple-microservice" project and send it to Azure Spring Cloud:
+You can now build your "simple-microservice" project and deploy it to Azure Spring Cloud:
 
 ```bash
 cd simple-microservice
@@ -105,17 +106,19 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 
 - Look for your Azure Spring Cloud instance in your resource group
 - Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
-- Mouse over the URL labeled as "Test Endpoint" and click the clipboard icon that appears.  This will give you something like:
+- Click on 'See more' to see "Test Endpoint"
+![See More](media/02-seemore.png)
+- Mouse over the URL labeled as "Test Endpoint" and click the clipboard icon that appears.  
+    This will give you something like:
    `https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/`
-   Note the text between `https://` and `@`.  These are the basic authentication credentials, without which you will not be authorized to access the service.
+   >💡 Note the text between `https://` and `@`.  These are the basic authentication credentials, without which you will not be authorized to access the service.
+- Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
 
 ```bash
-curl https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/hello/
+curl https://primary:...simple-microservice/default/hello/
 ```
-
->💡Note that we have appended `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
 If successful, you should see the message: `Hello from Azure Spring Cloud`.
 
@@ -128,7 +131,7 @@ If you need to check your code, the final project is available in the ["simple-m
 Here is the final script to build and deploy everything that was done in this guide:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 cd simple-microservice
 cat > HelloController.java << EOF
 package com.example.demo;

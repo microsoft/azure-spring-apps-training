@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Access Spring Boot applications logs and distributed tracing to understand common issues.
+Now that we have an application deployed, we'll configure Log Analytics, so that we can quickly search the application's logs if something goes wrong. We'll see how to take advantage of Log Analytics in a later section, but because it takes time for log entries to start coming in, we'll do the configuration steps here before moving on with the training.
 
 ---
 
@@ -14,7 +14,10 @@ There are actually three ways to access your application's logs: [Azure Storage]
 
 Having completed the setup in [Section 00](../00-setup-your-environment/README.md), you should have a Log Analytics workspace named `sclab-la-<unique string>` in your resource group for this workshop. We must now configure our Azure Spring Cloud instance to send its data to this workspace.
 
-- Go to the "Overview" page of your Azure Spring Cloud instance and select "Diagnostic settings" in the "Monitoring" section of the navigation pane.
+- Navigate to the Azure Spring Cloud instance  in Azure Portal and select "Diagnostic settings" in the "Monitoring" section of the navigation pane:
+
+[![Diagnostic Settings](media/01-diagnostic-settings.png)]
+
 - Click on "Add diagnostic setting" and configure your instance to send all its logs to the Log analytics workspace that we just created.
 - Fill in the values as shown here and click "Save".
 

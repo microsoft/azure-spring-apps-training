@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Cloud's distributed tracing mechanism, and scale our services depending on our needs.
+Now that we have made two microservices publicly available, we will incorporate a user interface to see them in action. Then, we will use Azure Monitor to monitor the flow of traffic to and among our services and to track metrics.
 
 ---
 
@@ -30,55 +30,15 @@ Go to [https://spring-training.azureedge.net/](https://spring-training.azureedge
 
 ![VueJS front-end](media/01-vuejs-frontend.png)
 
-## Enable distributed tracing to better understand the architecture
+## Review the distributed tracing to better understand the architecture
 
-In each application (`city-service`, `weather-service`, `gateway`), open up the `pom.xml` file and add the following Maven dependency as a child element of the __first__ `<dependencies>` element.
+We have already enabled distributed tracing on our Azure Spring Cloud instance in Section 1 by adding the `--enable-java-agent` flag to the create command.
 
-```java
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-        </dependency>
-```
-
-This dependency will add distributed tracing capabilities to our microservices and gateway.
-
-Now you need to update those applications on Azure Spring Cloud.
-
-Re-deploy the `city-service` microservice:
-
-```bash
-cd city-service
-./mvnw clean package -DskipTests -Pcloud
-az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
-cd ..
-```
-
-Re-deploy the `weather-service` microservice:
-
-```bash
-cd weather-service
-./mvnw clean package -DskipTests -Pcloud
-az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
-cd ..
-```
-
-Re-deploy the `gateway` gateway:
-
-```bash
-cd gateway
-./mvnw clean package -DskipTests -Pcloud
-az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
-cd ..
-```
-
-### Once everything is deployed
-
-We have already enabled distributed tracing on our Azure Spring Cloud instance in Section 3. Now, you can use the VueJS application on [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) to generate some traffic on the microservices stack.
+Now, you can use the VueJS application on [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) to generate some traffic on the microservices stack.
 
 >💡 Tracing data can take a couple of minutes to be ingested by the system, so use this time to generate some load.
 
-In the "Distributed tracing" menu in Azure Portal, you should now have access to a full application map, as well as a search engine that allows to find performance bottlenecks.
+In the "Application Insights" menu in Azure Portal, you should now have access to a full application map, as well as a search engine that allows you to find performance bottlenecks.
 
 ![Distributed tracing](media/02-distributed-tracing.png)
 
@@ -86,7 +46,13 @@ In the "Distributed tracing" menu in Azure Portal, you should now have access to
 >
 > ![layout switch](media/05-layout-switch.png)
 
+## Review the performance metrics
+
+Open a more holistic view at the `Performance` blade where you can see response times and request counts for operations exposed by your applications.
+
 ![Trace detail](media/03-trace-detail.png)
+
+For even more detailed data, navigate to the `Dependencies` tab in the `Performance` blade where you can see all your dependencies and their response times and request counts.
 
 ## Scale applications
 
@@ -94,10 +60,10 @@ Now that distributed tracing is enabled, we can scale applications depending on 
 
 - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the overview page of your Azure Spring Cloud server and select "Apps" in the menu.
-  - Select one service and click on "Scale"
-  - Modify the number of instances or change the CPU/RAM of the instance
-
-![Application scaling](media/04-application-scaling.png)
+  - Select one service and click on "Scale Out" in the menu. Select the service that you want to scale out.  
+![Application scaling](media/04-scale-out.png)
+  - Modify the number of instances to manually scale the service. You can also set custom auto scaling based on metrics. 
+  ![Application scaling](media/04b-auto-scaling.png)
 
 ---
 

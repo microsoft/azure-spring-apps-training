@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Basics on creating an instance and configuring the CLI to work efficiently.
+In this section, we'll create an Azure Spring Cloud instance using Azure CLI. While there are other ways of creating Azure resources, Azure CLI is the quickest and simplest method.
 
 ---
 
@@ -10,7 +10,7 @@ Basics on creating an instance and configuring the CLI to work efficiently.
 
 Ensure your Azure CLI is logged into your Azure subscription.
 
->💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash.
+>💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash. **Do not use WSL, CloudShell, or any other shell.**
 
 ```bash
 az login # Sign into an azure account
@@ -38,12 +38,13 @@ AZ_RESOURCE_GROUP=spring-cloud-lab
 AZ_SPRING_CLOUD_NAME=azure-spring-cloud-lab
 ```
 
-With these variables set, we can now create the Azure Spring Cloud instance:
+With these variables set, we can now create the Azure Spring Cloud instance. To enable the Java in-process monitoring agent, we add the `enable-java-agent` flag.
 
 ```bash
 az spring-cloud create \
     -g "$AZ_RESOURCE_GROUP" \
     -n "$AZ_SPRING_CLOUD_NAME" \
+    --enable-java-agent \
     --sku standard
 ```
 

@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Configure a Continuous Integration / Continuous Deployment platform using GitHub Actions, so our Spring Boot microservices are automatically deployed.
+In this section, we will use GitHub Actions to implement continuous deployment to Azure Spring Cloud. For simplicity, we will not implement blue-green deployments in this section, but don't hesitate to come back and add blue-green deployments after completing the remainder of the tutorial.
 
 ---
 
@@ -31,6 +31,9 @@ You now need to allow access from your GitHub workflow to your Azure Spring Clou
 🛑 Make sure you assign the name of your resource group to the variable `AZ_RESOURCE_GROUP` or substitute the value for it in the commands below.
 
 ```bash
+# Prevents a Git bash issue. Not necessary outside of Windows:
+export MSYS_NO_PATHCONV=1
+
 # Get the ARM resource ID of the resource group
 RESOURCE_ID=$(az group show --name "$AZ_RESOURCE_GROUP" --query id -o tsv)
 
@@ -66,7 +69,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn package -DskipTests -Pcloud
+      run: mvn package -DskipTests
     - name: Login to Azure Spring Cloud
       uses: azure/login@v1
       with:

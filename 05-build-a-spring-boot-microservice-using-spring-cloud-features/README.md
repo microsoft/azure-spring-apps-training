@@ -2,7 +2,7 @@
 
 __This guide is part of the [Azure Spring Cloud training](../README.md)__
 
-Build a Spring Boot microservice that is cloud-enabled: it uses a Spring Cloud Service Registry and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) which are both managed and supported by Azure Spring Cloud.
+In this section, we'll build a similar service to the one from section 2, but with the addition of two important Spring Cloud features. First, we'll add this service to Spring Cloud registry for discovery by other services. Second, we'll use Spring Cloud Config to inject a setting from a Git repository into the application and display it on the screen.
 
 ---
 
@@ -20,34 +20,13 @@ For both features, it will just be a matter of adding an official Spring Boot st
 
 The microservice that we create in this guide is [available here](spring-cloud-microservice/).
 
-To create our microservice, we will use [https://start.spring.io/](https://start.spring.io/) with the command line:
+To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.3.1.RELEASE | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
 ```
 
 > This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Spring Cloud Service Registry and the Spring Cloud Config Server.
-
-## Add a "cloud" Maven profile
-
-In order to securely connect to Azure Spring Cloud services (Spring Cloud Service Registry and Spring Cloud Config), we need to add a specific Maven dependency. We will add in a specific Maven profile, so it doesn't pollute the rest of the application.
-
-At the end of the application's `pom.xml` file (just before the closing `</project>` XML node), add the following code:
-
-```xml
-    <profiles>
-        <profile>
-            <id>cloud</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.microsoft.azure</groupId>
-                    <artifactId>spring-cloud-starter-azure-spring-cloud-client</artifactId>
-                    <version>2.2.0</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-```
 
 ## Add a new Spring MVC Controller
 
@@ -68,7 +47,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return message;
+        return message + '\n';
     }
 }
 ```
@@ -113,7 +92,7 @@ You can now build your "spring-cloud-microservice" project and send it to Azure 
 
 ```bash
 cd spring-cloud-microservice
-./mvnw clean package -DskipTests -Pcloud
+./mvnw clean package -DskipTests
 az spring-cloud app deploy -n spring-cloud-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
@@ -124,7 +103,7 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 
 - Look for your Azure Spring Cloud instance in your resource group
 - Go to "Apps"
-  - Verify that `spring-cloud-microservice` has a `Discovery status` which says `UP(1),DOWN(0)`. This shows that it is correctly registered in Spring Cloud Service Registry.
+  - Verify that `spring-cloud-microservice` has a `Registration status` of `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `spring-cloud-microservice` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
@@ -143,6 +122,8 @@ When you run an application on your machine, you can see its output in the conso
 ```bash
 az spring-cloud app logs --name spring-cloud-microservice -f
 ```
+
+_Please be aware it might take a couple of minutes for the logs to show up._
 
 You should see the console output of `spring-cloud-microservice` scroll by on your terminal:
 
