@@ -50,7 +50,7 @@ Build a new version of the application and deploy it to a new `deployment` calle
 ```bash
 cd weather-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deployment create --name green --app weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deployment create --name green --app weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 

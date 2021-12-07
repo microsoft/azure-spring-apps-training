@@ -23,7 +23,7 @@ The microservice that we create in this guide is [available here](spring-cloud-m
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.6.1 -d javaVersion=11 | tar -xzvf -
 ```
 
 > This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Spring Cloud Service Registry and the Spring Cloud Config Server.
@@ -51,6 +51,16 @@ public class HelloController {
     }
 }
 ```
+
+## Configure Spring Boot
+
+Edit the file `src/main/resources/application.properties` and add the following line:
+
+```properties
+spring.config.import=optional:configserver:
+```
+
+This line makes using the Spring Cloud Config server optional. This will be useful in development mode (when we won't have a Spring Cloud Config server), and can be removed later in production.
 
 ## Test the project locally
 
@@ -85,7 +95,7 @@ kill %1
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-cloud-microservice` application in your Azure Spring Cloud instance:
 
 ```bash
-az spring-cloud app create -n spring-cloud-microservice
+az spring-cloud app create -n spring-cloud-microservice --runtime-version Java_11
 ```
 
 You can now build your "spring-cloud-microservice" project and send it to Azure Spring Cloud:
@@ -93,7 +103,7 @@ You can now build your "spring-cloud-microservice" project and send it to Azure 
 ```bash
 cd spring-cloud-microservice
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n spring-cloud-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deploy -n spring-cloud-microservice --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
@@ -105,7 +115,7 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 - Go to "Apps"
   - Verify that `spring-cloud-microservice` has a `Registration status` of `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `spring-cloud-microservice` to have more information on the microservice.
-- Copy/paste the "Test Endpoint" that is provided.
+- Copy/paste the "Test endpoint" that is provided.
 
 You can now use cURL again to test the `/hello` endpoint, this time it is served by Azure Spring Cloud and configured using the Spring Config Server from [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md).
 

@@ -193,7 +193,7 @@ You can now build your "weather-service" project and send it to Azure Spring Clo
 ```bash
 cd weather-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deploy -n weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 

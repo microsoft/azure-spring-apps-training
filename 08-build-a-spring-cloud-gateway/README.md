@@ -59,7 +59,7 @@ You can now build your "gateway" project and send it to Azure Spring Cloud:
 ```bash
 cd gateway
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n gateway --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deploy -n gateway --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 
 ```

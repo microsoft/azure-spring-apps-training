@@ -161,7 +161,7 @@ You can now build your "city-service" project and send it to Azure Spring Cloud:
 ```bash
 cd city-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n city-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deploy -n city-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 

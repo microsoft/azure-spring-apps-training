@@ -77,7 +77,7 @@ jobs:
     - name: Install Azure Spring Cloud extension
       run: az extension add -y --name spring-cloud
     - name: Deploy to Azure Spring Cloud
-      run: az spring-cloud app deploy --resource-group <AZ_RESOURCE_GROUP> --service <AZ_SPRING_CLOUD_NAME> --name weather-service --jar-path target/demo-0.0.1-SNAPSHOT.jar
+      run: az spring-cloud app deploy --resource-group <AZ_RESOURCE_GROUP> --service <AZ_SPRING_CLOUD_NAME> --name weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 ```
 
 This workflow does the following:
