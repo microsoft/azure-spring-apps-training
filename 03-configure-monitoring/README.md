@@ -16,7 +16,7 @@ Having completed the setup in [Section 00](../00-setup-your-environment/README.m
 
 - Navigate to the Azure Spring Cloud instance  in Azure Portal and select "Diagnostic settings" in the "Monitoring" section of the navigation pane:
 
-[![Diagnostic Settings](media/01-diagnostic-settings.png)]
+![Diagnostic Settings](media/01-diagnostic-settings.png)
 
 - Click on "Add diagnostic setting" and configure your instance to send all its logs to the Log analytics workspace that we just created.
 - Fill in the values as shown here and click "Save".

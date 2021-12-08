@@ -17,10 +17,10 @@ A typical way to create Spring Boot applications is to use the Spring Initialize
 In an __empty__ directory execute the curl command line below:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.6.1 -d javaVersion=11 | tar -xzvf -
 ```
 
-> We force the Spring Boot version to be 2.3.8.
+> We force the Spring Boot version to be 2.6.1, and keep default settings that use the `com.example.demo` package.
 
 ## Add a new Spring MVC Controller
 
@@ -77,16 +77,16 @@ In order to create the app instance graphically, you can use [the Azure portal](
 - Look for your Azure Spring Cloud instance in your resource group
 - Click on the "Apps" link under "Settings" on the navigation sidebar.
 - Click on "Create App" link at the top of the Apps page.
-- Create a new application named "simple-microservice"
+- Create a new application named "simple-microservice", using the Java 11 environment.
 
-![Create application](media/01-create-application.png)
+![Create application](media/00-create-application.png)
 
 - Click on "Create".
 
 Alternatively, you can use the command line to create the app instance, which is easier:
 
 ```bash
-az spring-cloud app create -n simple-microservice
+az spring-cloud app create -n simple-microservice --runtime-version Java_11
 ```
 
 You can now build your "simple-microservice" project and deploy it to Azure Spring Cloud:
@@ -94,7 +94,7 @@ You can now build your "simple-microservice" project and deploy it to Azure Spri
 ```bash
 cd simple-microservice
 ./mvnw clean package
-az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deploy -n simple-microservice --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
@@ -106,12 +106,11 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
 
 - Look for your Azure Spring Cloud instance in your resource group
 - Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
-- Click on 'See more' to see "Test Endpoint"
-![See More](media/02-seemore.png)
-- Mouse over the URL labeled as "Test Endpoint" and click the clipboard icon that appears.  
-    This will give you something like:
-   `https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/`
-   >💡 Note the text between `https://` and `@`.  These are the basic authentication credentials, without which you will not be authorized to access the service.
+- Find the "Test endpoint" in the "Essentials" section.
+![Test endpoint](media/01-test-endpoint.png)
+- This will give you something like:
+  `https://primary:BBQM6nsYnmmdQREXQINityNx63kWUbjsP7SIvqKhOcWDfP6HJTqg27klMLaSfpTB@rwo1106f.test.azuremicroservices.io/simple-microservice/default/`
+  >💡 Note the text between `https://` and `@`.  These are the basic authentication credentials, without which you will not be authorized to access the service.
 - Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
 You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
@@ -131,7 +130,7 @@ If you need to check your code, the final project is available in the ["simple-m
 Here is the final script to build and deploy everything that was done in this guide:
 
 ```
-curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.3.8 -d javaVersion=1.8 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=web -d baseDir=simple-microservice -d bootVersion=2.6.1 -d javaVersion=11 | tar -xzvf -
 cd simple-microservice
 cat > HelloController.java << EOF
 package com.example.demo;
@@ -149,9 +148,10 @@ public class HelloController {
 }
 EOF
 mv HelloController.java src/main/java/com/example/demo/HelloController.java
-az spring-cloud app create -n simple-microservice
+az spring-cloud app create -n simple-microservice --runtime-version Java_11
 ./mvnw clean package
-az spring-cloud app deploy -n simple-microservice --jar-path target/demo-0.0.1-SNAPSHOT.jar
+az spring-cloud app deploy -n simple-microservice --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+cd ..
 ```
 
 ---

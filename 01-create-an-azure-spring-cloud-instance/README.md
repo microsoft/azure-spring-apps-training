@@ -38,13 +38,12 @@ AZ_RESOURCE_GROUP=spring-cloud-lab
 AZ_SPRING_CLOUD_NAME=azure-spring-cloud-lab
 ```
 
-With these variables set, we can now create the Azure Spring Cloud instance. To enable the Java in-process monitoring agent, we add the `enable-java-agent` flag.
+With these variables set, we can now create the Azure Spring Cloud instance.
 
 ```bash
 az spring-cloud create \
     -g "$AZ_RESOURCE_GROUP" \
     -n "$AZ_SPRING_CLOUD_NAME" \
-    --enable-java-agent \
     --sku standard
 ```
 
