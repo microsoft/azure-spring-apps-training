@@ -52,7 +52,7 @@ Inside the `weather-service` directory, create a new directory called `.github/w
 
 In that file, copy/paste the following content, performing the indicated substitutions:
 
->🛑 You must substitute the name of your Azure Spring Cloud instance for `<AZ_SPRING_CLOUD_NAME>` and the name of the resource group for `<AZ_RESOURCE_GROUP>` in the YAML below.
+>🛑 You must substitute the name of your Azure Spring Cloud instance for `<AZ_SPRING_CLOUD_NAME>` in the YAML below.
 
 ```yaml
 name: Build and deploy to Azure Spring Cloud
@@ -77,10 +77,19 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Install Azure Spring Cloud extension
-      run: az extension add -y --name spring-cloud
+    - name: Get Subscription ID
+      run: |
+        echo "SUBSCRIPTION_ID=$(az account show --query id --output tsv --only-show-errors)" >> $GITHUB_ENV
+      shell: bash
     - name: Deploy to Azure Spring Cloud
-      run: az spring-cloud app deploy --resource-group <AZ_RESOURCE_GROUP> --service <AZ_SPRING_CLOUD_NAME> --name weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+      uses: azure/spring-cloud-deploy@v1
+      with:
+        action: deploy
+        azure-subscription: ${{ env.SUBSCRIPTION_ID }}
+        service-name: <AZ_SPRING_CLOUD_NAME>
+        app-name: weather-service
+        use-staging-deployment: false
+        package: target/demo-0.0.1-SNAPSHOT.jar
 
 ```
 
@@ -89,8 +98,8 @@ This workflow does the following:
 - It sets up the JDK
 - It compiles and packages the application using Maven
 - It authenticates to Azure Spring Cloud using the credentials we just configured
-- It adds the Azure Spring Cloud extensions to the Azure CLI (this step should disappear when the service is in final release)
-- It deploys the application to your Azure Spring Cloud instance
+- It fetches your current subscription ID
+- It deploys the application to your Azure Spring Cloud instance, using the Azure Spring Cloud GitHub Action.
 
 This workflow is configured to be triggered whenever code is pushed to the repository.
 There are many other [events that trigger GitHub actions](https://help.github.com/en/articles/events-that-trigger-workflows). You could, for example, deploy each time a new tag is created on the project.
