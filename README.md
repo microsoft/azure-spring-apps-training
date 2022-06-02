@@ -4,9 +4,9 @@ languages:
 - java
 ---
 
-# Azure Spring Cloud training
+# Azure Spring Apps training
 
-You will find here a full workshop on Azure Spring Cloud, including guides and demos.
+You will find here a full workshop on Azure Spring Apps, including guides and demos.
 
 This lab is based on a public workshop created by [Julien Dubois](https://twitter.com/juliendubois) and available for free to everyone, under the [MIT license](LICENSE.txt).
 
@@ -16,13 +16,13 @@ This is not the official documentation but an opinionated training.
 
 It is a hands-on training, and it will use the command line extensively. The idea is to get coding very quickly and play with the platform, from a simple demo to far more complex examples.
 
-After completing all the guides, you should have a fairly good understanding of everything that Azure Spring Cloud offers.
+After completing all the guides, you should have a fairly good understanding of everything that Azure Spring Apps offers.
 
 ## Symbols
 
 >🛑 -  __Manual Modification Required__. When this symbol appears in front of one or more commands, you will need to modify the commands as indicated prior to running them.
 
->🚧 - __Preview-specific__. This symbol indicates steps that are only necessary while Azure Spring Cloud is in preview.
+>🚧 - __Preview-specific__. This symbol indicates steps that are only necessary while Azure Spring Apps is in preview.
 
 >💡 - __Frustration Avoidance Tip__. These will help you avoid potential pitfalls.
 
@@ -30,7 +30,7 @@ After completing all the guides, you should have a fairly good understanding of 
 
 Prerequisites and environment setup.
 
-## [01 - Create an Azure Spring Cloud cluster](01-create-an-azure-spring-cloud-instance/README.md)
+## [01 - Create an Azure Spring Apps cluster](01-create-an-azure-spring-cloud-instance/README.md)
 
 Basics on creating a cluster and configuring the CLI to work efficiently.
 
@@ -44,11 +44,11 @@ Access Spring Boot applications logs to understand common issues.
 
 ## [04 - Configure a Spring Cloud Config server](04-configure-a-spring-cloud-config-server/README.md)
 
-Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), that will be entirely managed and supported by Azure Spring Cloud, to be used by Spring Boot microservices.
+Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), that will be entirely managed and supported by Azure Spring Apps, to be used by Spring Boot microservices.
 
 ## [05 - Build a Spring Boot microservice using Spring Cloud features](05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)
 
-Build a Spring Boot microservice that is cloud-enabled: it uses a Spring Cloud Service Registry and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) which are both managed and supported by Azure Spring Cloud.
+Build a Spring Boot microservice that is cloud-enabled: it uses a Spring Cloud Service Registry and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) which are both managed and supported by Azure Spring Apps.
 
 ## [06 - Build a reactive Spring Boot microservice using Cosmos DB](06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md)
 
@@ -64,11 +64,11 @@ Build a [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 
 
 ## [09 - Putting it all together, a complete microservice stack](09-putting-it-all-together-a-complete-microservice-stack/README.md)
 
-Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Cloud's distributed tracing mechanism and scale our services depending on our needs.
+Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Apps's distributed tracing mechanism and scale our services depending on our needs.
 
 ## [10 - Blue/Green deployment](10-blue-green-deployment/README.md)
 
-Deploy new versions of applications in a staging environment and switch between staging and production with Azure Spring Cloud.
+Deploy new versions of applications in a staging environment and switch between staging and production with Azure Spring Apps.
 
 ## [11 - Configure CI/CD](11-configure-ci-cd/README.md)
 
