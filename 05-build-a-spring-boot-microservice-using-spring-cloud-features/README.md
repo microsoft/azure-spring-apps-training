@@ -95,7 +95,7 @@ kill %1
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-cloud-microservice` application in your Azure Spring Apps instance:
 
 ```bash
-az spring app create -n spring-cloud-microservice --runtime-version Java_11
+az spring app create -n spring-cloud-microservice --runtime-version Java_17
 ```
 
 You can now build your "spring-cloud-microservice" project and send it to Azure Spring Apps:

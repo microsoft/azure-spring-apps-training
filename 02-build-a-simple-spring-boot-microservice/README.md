@@ -86,7 +86,7 @@ In order to create the app instance graphically, you can use [the Azure portal](
 Alternatively, you can use the command line to create the app instance, which is easier:
 
 ```bash
-az spring app create -n simple-microservice --runtime-version Java_11
+az spring app create -n simple-microservice --runtime-version Java_17
 ```
 
 You can now build your "simple-microservice" project and deploy it to Azure Spring Apps:
@@ -148,7 +148,7 @@ public class HelloController {
 }
 EOF
 mv HelloController.java src/main/java/com/example/demo/HelloController.java
-az spring app create -n simple-microservice --runtime-version Java_11
+az spring app create -n simple-microservice --runtime-version Java_17
 ./mvnw clean package
 az spring app deploy -n simple-microservice --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..

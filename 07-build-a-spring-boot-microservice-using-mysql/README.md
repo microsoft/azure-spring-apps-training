@@ -11,7 +11,7 @@ In this section, we'll build another data-driven microservice. This time, we wil
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `weather-service` application in your Azure Spring Apps instance:
 
 ```bash
-az spring app create -n weather-service --runtime-version Java_11
+az spring app create -n weather-service --runtime-version Java_17
 ```
 
 
