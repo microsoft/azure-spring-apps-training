@@ -43,10 +43,10 @@ spring:
 
 ## Create the application on Azure Spring Apps
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `gateway` application in your Azure Spring Apps instance. As this application is a gateway, we add the `--is-public true` flag so it is exposed publicly.
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `gateway` application in your Azure Spring Apps instance. As this application is a gateway, we add the `--assign-endpoint true` flag so it is exposed publicly.
 
 ```bash
-az spring app create -n gateway --runtime-version Java_17 --is-public true
+az spring app create -n gateway --runtime-version Java_17 --assign-endpoint true
 ```
 
 ## Deploy the application
