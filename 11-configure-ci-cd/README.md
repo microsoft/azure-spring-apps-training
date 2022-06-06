@@ -38,7 +38,7 @@ export MSYS_NO_PATHCONV=1
 RESOURCE_ID=$(az group show --name "$AZ_RESOURCE_GROUP" --query id -o tsv)
 
 # Create a service principal with a Contributor role to the resource group.
-SPNAME="sp-$(az spring-cloud list --query '[].name' -o tsv)"
+SPNAME="sp-$(az spring list --query '[].name' -o tsv)"
 az ad sp create-for-rbac --name "${SPNAME}" --role contributor --scopes "$RESOURCE_ID" --sdk-auth
 ```
 

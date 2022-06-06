@@ -46,7 +46,7 @@ spring:
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `gateway` application in your Azure Spring Apps instance. As this application is a gateway, we add the `--is-public true` flag so it is exposed publicly.
 
 ```bash
-az spring-cloud app create -n gateway --runtime-version Java_11 --is-public true
+az spring app create -n gateway --runtime-version Java_11 --is-public true
 ```
 
 ## Deploy the application
@@ -56,7 +56,7 @@ You can now build your "gateway" project and send it to Azure Spring Apps:
 ```bash
 cd gateway
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n gateway --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring app deploy -n gateway --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 

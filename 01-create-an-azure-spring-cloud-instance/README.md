@@ -41,7 +41,7 @@ AZ_SPRING_APPS_NAME=azure-spring-apps-lab
 With these variables set, we can now create the Azure Spring Apps instance.
 
 ```bash
-az spring-cloud create \
+az spring create \
     -g "$AZ_RESOURCE_GROUP" \
     -n "$AZ_SPRING_APPS_NAME" \
     --sku standard

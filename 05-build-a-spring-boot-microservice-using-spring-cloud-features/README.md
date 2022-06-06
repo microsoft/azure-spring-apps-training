@@ -95,7 +95,7 @@ kill %1
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-cloud-microservice` application in your Azure Spring Apps instance:
 
 ```bash
-az spring-cloud app create -n spring-cloud-microservice --runtime-version Java_11
+az spring app create -n spring-cloud-microservice --runtime-version Java_11
 ```
 
 You can now build your "spring-cloud-microservice" project and send it to Azure Spring Apps:
@@ -103,7 +103,7 @@ You can now build your "spring-cloud-microservice" project and send it to Azure 
 ```bash
 cd spring-cloud-microservice
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n spring-cloud-microservice --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring app deploy -n spring-cloud-microservice --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
@@ -130,7 +130,7 @@ Configured by Azure Spring Apps
 When you run an application on your machine, you can see its output in the console. When you run a microservice on Azure Spring Apps, you can also see its console output through Azure CLI:
 
 ```bash
-az spring-cloud app logs --name spring-cloud-microservice -f
+az spring app logs --name spring-cloud-microservice -f
 ```
 
 _Please be aware it might take a couple of minutes for the logs to show up._

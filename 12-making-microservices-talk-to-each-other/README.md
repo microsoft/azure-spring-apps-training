@@ -196,7 +196,7 @@ feign.client.config.default.readTimeout=160000000
 As before, create a specific `all-cities-weather-service` application in your Azure Spring Apps instance:
 
 ```bash
-az spring-cloud app create -n all-cities-weather-service --runtime-version Java_11
+az spring app create -n all-cities-weather-service --runtime-version Java_11
 ```
 
 ## Deploy the application
@@ -206,7 +206,7 @@ You can now build your "all-cities-weather-service" project and send it to Azure
 ```bash
 cd all-cities-weather-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n all-cities-weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring app deploy -n all-cities-weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 

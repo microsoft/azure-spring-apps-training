@@ -50,7 +50,7 @@ Build a new version of the application and deploy it to a new `deployment` calle
 ```bash
 cd weather-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deployment create --name green --app weather-service --runtime-version Java_11 --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring app deployment create --name green --app weather-service --runtime-version Java_11 --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
@@ -82,7 +82,7 @@ Note: we're not testing the green deployment through the `gateway` application. 
 To put this `green` deployment into production, you can use the command line:
 
 ```bash
-az spring-cloud app set-deployment -n weather-service --deployment green
+az spring app set-deployment -n weather-service --deployment green
 ```
 
 Another solution is to use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
@@ -94,7 +94,7 @@ Another solution is to use [the Azure portal](https://portal.azure.com/?WT.mc_id
 > If you want to reuse a deployment name, you need first to delete the previous deployment under that name:
 >
 > ```bash
-> az spring-cloud app deployment delete --name green --app weather-service
+> az spring app deployment delete --name green --app weather-service
 > ```
 
 Once you have swapped deployments and see that `green` is active, you need to wait a few seconds for the Spring Cloud Service Registry to synchronize and use this new version from the `gateway` application. You will then be able to see the new modified data:

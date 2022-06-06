@@ -136,7 +136,7 @@ public class CityController {
 As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `city-service` application in your Azure Spring Apps instance:
 
 ```bash
-az spring-cloud app create -n city-service --runtime-version Java_11
+az spring app create -n city-service --runtime-version Java_11
 ```
 
 ## Bind the Cosmos DB database to the application
@@ -161,7 +161,7 @@ You can now build your "city-service" project and send it to Azure Spring Apps:
 ```bash
 cd city-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n city-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring app deploy -n city-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
