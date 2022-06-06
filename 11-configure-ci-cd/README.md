@@ -52,7 +52,7 @@ Inside the `weather-service` directory, create a new directory called `.github/w
 
 In that file, copy/paste the following content, performing the indicated substitutions:
 
->🛑 You must substitute the name of your Azure Spring Apps instance for `<AZ_SPRING_CLOUD_NAME>` in the YAML below.
+>🛑 You must substitute the name of your Azure Spring Apps instance for `<AZ_SPRING_APPS_NAME>` in the YAML below.
 
 ```yaml
 name: Build and deploy to Azure Spring Apps
@@ -86,7 +86,7 @@ jobs:
       with:
         action: deploy
         azure-subscription: ${{ env.SUBSCRIPTION_ID }}
-        service-name: <AZ_SPRING_CLOUD_NAME>
+        service-name: <AZ_SPRING_APPS_NAME>
         app-name: weather-service
         use-staging-deployment: false
         package: target/demo-0.0.1-SNAPSHOT.jar
