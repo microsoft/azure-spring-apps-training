@@ -1,14 +1,14 @@
 # 07 - Build a Spring Boot microservice using MySQL
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
 In this section, we'll build another data-driven microservice. This time, we will use a relational database, a [MySQL database managed by Azure](https://docs.microsoft.com/en-us/azure/mysql/?WT.mc_id=azurespringcloud-github-judubois). And we'll use Java Persistence API (JPA) to access the data in a way that is more frequently used in the Java ecosystem.
 
 ---
 
-## Create the application on Azure Spring Cloud
+## Create the application on Azure Spring Apps
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `weather-service` application in your Azure Spring Cloud instance:
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `weather-service` application in your Azure Spring Apps instance:
 
 ```bash
 az spring-cloud app create -n weather-service --runtime-version Java_11
@@ -22,7 +22,7 @@ After following the steps in Section 00, you should have an Azure Database for M
 Before we can use it however, we will need to perform several tasks:
 
 1. Create a MySQL firewall rule to allow connections from our local environment.
-1. Create a MySQL firewall rule to allow connections from Azure Services. This will enable connections from Azure Spring Cloud.
+1. Create a MySQL firewall rule to allow connections from Azure Services. This will enable connections from Azure Spring Apps.
 1. Create a MySQL database.
 
 > 💡When prompted for a password, enter the MySQL password you specified when deploying the ARM template in [Section 00](../00-setup-your-environment/README.md).
@@ -61,10 +61,10 @@ echo "Your MySQL username is: ${MYSQL_USERNAME}"
 
 ## Bind the MySQL database to the application
 
-As we did for CosmosDB in the previous section, create a service binding for the MySQL database to make it available to Azure Spring Cloud microservices.
+As we did for CosmosDB in the previous section, create a service binding for the MySQL database to make it available to Azure Spring Apps microservices.
 In the [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Navigate to your Azure Spring Cloud instance
+- Navigate to your Azure Spring Apps instance
 - Click on Apps
 - Click on `weather-service`.
 - Click on "Service Bindings" and then on "Create Service Binding".
@@ -77,7 +77,7 @@ In the [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github
 
 ## Create a Spring Boot microservice
 
-Now that we've provisioned the Azure Spring Cloud instance and configured the service binding, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
+Now that we've provisioned the Azure Spring Apps instance and configured the service binding, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
 
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
@@ -188,7 +188,7 @@ INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `ico
 
 ## Deploy the application
 
-You can now build your "weather-service" project and send it to Azure Spring Cloud:
+You can now build your "weather-service" project and send it to Azure Spring Apps:
 
 ```bash
 cd weather-service
@@ -199,7 +199,7 @@ cd ..
 
 ## Test the project in the cloud
 
-- Go to "Apps" in your Azure Spring Cloud instance.
+- Go to "Apps" in your Azure Spring Apps instance.
   - Verify that `weather-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in the Spring Cloud Service Registry.
   - Select `weather-service` to have more information on the microservice.
 - Copy/paste the "Test endpoint" that is provided.

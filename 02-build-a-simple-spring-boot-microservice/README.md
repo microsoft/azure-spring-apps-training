@@ -1,8 +1,8 @@
 # 02 - Build a simple Spring Boot microservice
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
-In this section, we'll build a simple Spring boot microservice and deploy it to Azure Spring Cloud. This will give us a starting point for adding Spring Cloud technologies in later sections.
+In this section, we'll build a simple Spring boot microservice and deploy it to Azure Spring Apps. This will give us a starting point for adding Spring Cloud technologies in later sections.
 
 ---
 
@@ -39,7 +39,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello from Azure Spring Cloud\n";
+        return "Hello from Azure Spring Apps\n";
     }
 }
 ```
@@ -56,7 +56,7 @@ cd simple-microservice
 cd ..
 ```
 
-Requesting the `/hello` endpoint should return the "Hello from Azure Spring Cloud" message.
+Requesting the `/hello` endpoint should return the "Hello from Azure Spring Apps" message.
 
 ```bash
 curl http://127.0.0.1:8080/hello
@@ -68,13 +68,13 @@ Finally, kill running app:
 kill %1
 ```
 
-## Create and deploy the application on Azure Spring Cloud
+## Create and deploy the application on Azure Spring Apps
 
 This section shows how to create an app instance and then deploy your code to it.
 
 In order to create the app instance graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Look for your Azure Spring Cloud instance in your resource group
+- Look for your Azure Spring Apps instance in your resource group
 - Click on the "Apps" link under "Settings" on the navigation sidebar.
 - Click on "Create App" link at the top of the Apps page.
 - Create a new application named "simple-microservice", using the Java 11 environment.
@@ -89,7 +89,7 @@ Alternatively, you can use the command line to create the app instance, which is
 az spring-cloud app create -n simple-microservice --runtime-version Java_11
 ```
 
-You can now build your "simple-microservice" project and deploy it to Azure Spring Cloud:
+You can now build your "simple-microservice" project and deploy it to Azure Spring Apps:
 
 ```bash
 cd simple-microservice
@@ -104,7 +104,7 @@ This creates a jar file on your local disk and uploads it to the app instance yo
 
 Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Look for your Azure Spring Cloud instance in your resource group
+- Look for your Azure Spring Apps instance in your resource group
 - Click "Apps" in the "Settings" section of the navigation pane and select "simple-microservice"
 - Find the "Test endpoint" in the "Essentials" section.
 ![Test endpoint](media/01-test-endpoint.png)
@@ -113,17 +113,17 @@ Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-git
   >💡 Note the text between `https://` and `@`.  These are the basic authentication credentials, without which you will not be authorized to access the service.
 - Append `hello/` to the URL.  Failure to do this will result in a "404 not found".
 
-You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Cloud.  For example.
+You can now use cURL again to test the `/hello` endpoint, this time served by Azure Spring Apps.  For example.
 
 ```bash
 curl https://primary:...simple-microservice/default/hello/
 ```
 
-If successful, you should see the message: `Hello from Azure Spring Cloud`.
+If successful, you should see the message: `Hello from Azure Spring Apps`.
 
 ## Conclusion
 
-Congratulations, you have deployed your first Spring Boot microservice to Azure Spring Cloud!
+Congratulations, you have deployed your first Spring Boot microservice to Azure Spring Apps!
 
 If you need to check your code, the final project is available in the ["simple-microservice" folder](simple-microservice/).
 
@@ -143,7 +143,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello from Azure Spring Cloud";
+        return "Hello from Azure Spring Apps";
     }
 }
 EOF
@@ -156,6 +156,6 @@ cd ..
 
 ---
 
-⬅️ Previous guide: [01 - Create an Azure Spring Cloud instance](../01-create-an-azure-spring-cloud-instance/README.md)
+⬅️ Previous guide: [01 - Create an Azure Spring Apps instance](../01-create-an-azure-spring-cloud-instance/README.md)
 
 ➡️ Next guide: [03 - Configure monitoring](../03-configure-monitoring/README.md)

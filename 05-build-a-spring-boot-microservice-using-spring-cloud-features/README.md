@@ -1,6 +1,6 @@
 # 05 - Build a Spring Boot microservice using Spring Cloud features
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
 In this section, we'll build a similar service to the one from section 2, but with the addition of two important Spring Cloud features. First, we'll add this service to Spring Cloud registry for discovery by other services. Second, we'll use Spring Cloud Config to inject a setting from a Git repository into the application and display it on the screen.
 
@@ -14,7 +14,7 @@ This guide builds upon the previous guides: we are going to build again a simple
 
 - It will get its configuration from the Spring Cloud Config server that we configured in the previous guide, [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md)
 
-For both features, it will just be a matter of adding an official Spring Boot starter, and Azure Spring Cloud will take care of everything else.
+For both features, it will just be a matter of adding an official Spring Boot starter, and Azure Spring Apps will take care of everything else.
 
 ## Create a simple Spring Cloud microservice
 
@@ -64,7 +64,7 @@ This line makes using the Spring Cloud Config server optional. This will be usef
 
 ## Test the project locally
 
-Before deploying the microservice to Azure Spring Cloud, let's run it locally.
+Before deploying the microservice to Azure Spring Apps, let's run it locally.
 
 >💡 Do not be alarmed when you see exception stack traces:
 > ![Exception stack trace](media/01-exception-stack-trace.png)
@@ -90,15 +90,15 @@ Kill the locally running microservice:
 kill %1
 ```
 
-## Create and deploy the application on Azure Spring Cloud
+## Create and deploy the application on Azure Spring Apps
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-cloud-microservice` application in your Azure Spring Cloud instance:
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-cloud-microservice` application in your Azure Spring Apps instance:
 
 ```bash
 az spring-cloud app create -n spring-cloud-microservice --runtime-version Java_11
 ```
 
-You can now build your "spring-cloud-microservice" project and send it to Azure Spring Cloud:
+You can now build your "spring-cloud-microservice" project and send it to Azure Spring Apps:
 
 ```bash
 cd spring-cloud-microservice
@@ -111,23 +111,23 @@ cd ..
 
 Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Look for your Azure Spring Cloud instance in your resource group
+- Look for your Azure Spring Apps instance in your resource group
 - Go to "Apps"
   - Verify that `spring-cloud-microservice` has a `Registration status` of `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `spring-cloud-microservice` to have more information on the microservice.
 - Copy/paste the "Test endpoint" that is provided.
 
-You can now use cURL again to test the `/hello` endpoint, this time it is served by Azure Spring Cloud and configured using the Spring Config Server from [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md).
+You can now use cURL again to test the `/hello` endpoint, this time it is served by Azure Spring Apps and configured using the Spring Config Server from [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md).
 
 As a result, requesting the `/hello` endpoint should return the message that we configured in the `application.yml` file, coming from the Spring Cloud Config Server:
 
 ```bash
-Configured by Azure Spring Cloud
+Configured by Azure Spring Apps
 ```
 
 ## Stream application logs
 
-When you run an application on your machine, you can see its output in the console. When you run a microservice on Azure Spring Cloud, you can also see its console output through Azure CLI:
+When you run an application on your machine, you can see its output in the console. When you run a microservice on Azure Spring Apps, you can also see its console output through Azure CLI:
 
 ```bash
 az spring-cloud app logs --name spring-cloud-microservice -f
@@ -145,7 +145,7 @@ Press CTRL+C to stop following the output and return to the shell.
 
 Streaming the console output as we just did may be helpful in understanding the immediate state of a microservice. However, sometimes it's necessary to look further into the past or to look for something specific. This is easily done with Log Analytics. In section 3, we enabled log aggregation in Azure Log Analytics. Such settings changes can take 1-2 minutes to apply, so by now, you should be able to query Azure Log Analytics.
 
-[Open Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois) and navigate to your Azure Spring Cloud instance. Click on "Logs". This is a shortcut to the Log Analytics workspace that was created earlier. If a tutorial appears, feel free to skip it for now.
+[Open Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois) and navigate to your Azure Spring Apps instance. Click on "Logs". This is a shortcut to the Log Analytics workspace that was created earlier. If a tutorial appears, feel free to skip it for now.
 
 This workspace allows you to run queries on the aggregated logs. The most common query is to get the latest log from a specific application:
 
@@ -165,7 +165,7 @@ AppPlatformLogsforSpring
 
 ![Query logs](media/03-logs-query.png)
 
->💡 It can also take 1-2 minutes for the console output of an Azure Spring Cloud microservice to be read into Log Analytics.
+>💡 It can also take 1-2 minutes for the console output of an Azure Spring Apps microservice to be read into Log Analytics.
 
 ## Conclusion
 

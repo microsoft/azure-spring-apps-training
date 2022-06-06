@@ -1,6 +1,6 @@
 # 00 - Setup your environment
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
 In this section, we'll set up everything you need to expeditiously complete the training.
 
@@ -8,12 +8,12 @@ In this section, we'll set up everything you need to expeditiously complete the 
 
 ## Creating Azure Resources
 
-To save time, we provide an ARM template for creating all the Azure resources you will need for this lab other than the Azure Spring Cloud instance itself. Use the Deploy to Azure button below.
+To save time, we provide an ARM template for creating all the Azure resources you will need for this lab other than the Azure Spring Apps instance itself. Use the Deploy to Azure button below.
 
 > 💡 Use the following settings for deploying the Azure Template:
 >
 > * Create a new resource group.
-> * In the location field, select the nearest region from [the list of regions where Azure Spring Cloud is available](https://azure.microsoft.com/global-infrastructure/services/?products=spring-cloud&regions=all).
+> * In the location field, select the nearest region from [the list of regions where Azure Spring Apps is available](https://azure.microsoft.com/global-infrastructure/services/?products=spring-cloud&regions=all).
 > * Save the MySQL password you specify in this step. You will need it in section 6. If you don't set one, it will be `super$ecr3t`.
 
 [![Deploy to Azure](media/deploybutton.svg)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Fazure-spring-cloud-training%2Fmaster%2F00-setup-your-environment%2Fazuredeploy.json?WT.mc_id=azurespringcloud-github-judubois)
@@ -47,4 +47,4 @@ You can then use Visual Studio Code or an IDE of your choice.
 
 ---
 
-➡️ Next guide: [01 - Create an Azure Spring Cloud instance](../01-create-an-azure-spring-cloud-instance/README.md)
+➡️ Next guide: [01 - Create an Azure Spring Apps instance](../01-create-an-azure-spring-cloud-instance/README.md)
