@@ -34,8 +34,8 @@ To limit typing, set the variable `AZ_RESOURCE_GROUP` to the name of the resourc
 >🛑 Be sure to substitute your own values for `AZ_RESOURCE_GROUP` and `AZ_SPRING_APPS_NAME` as described above. __`AZ_SPRING_APPS_NAME` must be globally unique, use lowercase letters and should not have special characters.__
 
 ```bash
-AZ_RESOURCE_GROUP=spring-cloud-lab
-AZ_SPRING_APPS_NAME=azure-spring-cloud-lab
+AZ_RESOURCE_GROUP=spring-apps-lab
+AZ_SPRING_APPS_NAME=azure-spring-apps-lab
 ```
 
 With these variables set, we can now create the Azure Spring Apps instance.
