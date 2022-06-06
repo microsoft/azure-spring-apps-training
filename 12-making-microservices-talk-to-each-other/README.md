@@ -19,7 +19,7 @@ Note how the code we create in this section is endpoint-agnostic. All we specify
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.6.1 -d javaVersion=11 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.7.0 -d javaVersion=11 | tar -xzvf -
 ```
 
 ## Add Spring code to call other microservices
