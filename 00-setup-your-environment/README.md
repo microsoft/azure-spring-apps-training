@@ -37,7 +37,7 @@ This training lab requires the following to be installed on your machine:
 
 > 💡 If you try the command above and you see the error `bash: az: command not found`, run the following command: `alias az='az.cmd'` and try again.
 
-* 🚧 The `spring-cloud` extension for Azure CLI. You can install this extension after installing Azure CLI by running `az extension add -n spring-cloud -y`. If the extension is already installed, update it to the latest version by running `az extension update -n spring-cloud`.
+* 🚧 The `spring` extension for Azure CLI. You can install this extension after installing Azure CLI by running `az extension add -n spring -y`. If the extension is already installed, update it to the latest version by running `az extension update -n spring`.
 
 > 💡 In sections 9 and 10, you will access the UI of the Microservice applications in a web browser. Use the [new Edge](https://microsoft.com/edge/?WT.mc_id=azurespringcloud-github-judubois), Google Chrome, or Firefox for these sections.
 
