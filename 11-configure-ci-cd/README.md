@@ -68,7 +68,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         distribution: 'temurin'
-        java-version: 11
+        java-version: 17
         check-latest: false
         cache: 'maven'
     - name: Build with Maven
