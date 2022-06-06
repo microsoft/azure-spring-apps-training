@@ -77,7 +77,7 @@ In order to create the app instance graphically, you can use [the Azure portal](
 - Look for your Azure Spring Apps instance in your resource group
 - Click on the "Apps" link under "Settings" on the navigation sidebar.
 - Click on "Create App" link at the top of the Apps page.
-- Create a new application named "simple-microservice", using the Java 11 environment.
+- Create a new application named "simple-microservice", using the Java 17 environment.
 
 ![Create application](media/00-create-application.png)
 
