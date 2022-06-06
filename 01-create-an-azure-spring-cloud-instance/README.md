@@ -51,7 +51,7 @@ For the remainder of this workshop, we will be running Azure CLI commands refere
 
 ```bash
 az configure --defaults group=$AZ_RESOURCE_GROUP
-az configure --defaults spring-cloud=$AZ_SPRING_APPS_NAME
+az configure --defaults spring=$AZ_SPRING_APPS_NAME
 ```
 
 ---
