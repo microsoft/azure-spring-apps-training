@@ -1,6 +1,6 @@
 # 12 - Making Microservices Talk to Each Other
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
 Creating a microservice that talks to other microservices.
 
@@ -12,14 +12,14 @@ There is a glaring inefficiency in this design: the browser first calls `city-se
 
 To resolve this inefficiency, we will create a single microservice that implements the [Transaction Script](https://www.martinfowler.com/eaaCatalog/transactionScript.html) pattern: it will orchestrate the calls to individual microservices and return the weather for all cities. To do this, we will use [Spring Cloud OpenFeign](https://spring.io/projects/spring-cloud-openfeign). OpenFeign will automatically obtain the URLs of invoked microservices from Spring Cloud Registry, allowing us to build our `all-cities-weather-services` microservice without needing to resolve the locations of the constituent microservices.
 
-Note how the code we create in this section is endpoint-agnostic. All we specify is the name of the services we want to invoke in the `@FeignClient` annotation. OpenFeign and the Azure Spring Cloud discovery service then work together behind the scenes to connect our new microservice to the services we've created previously.
+Note how the code we create in this section is endpoint-agnostic. All we specify is the name of the services we want to invoke in the `@FeignClient` annotation. OpenFeign and the Azure Spring Apps discovery service then work together behind the scenes to connect our new microservice to the services we've created previously.
 
 ## Create a Spring Boot Microservice
 
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.6.1 -d javaVersion=11 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.7.0 -d javaVersion=17 | tar -xzvf -
 ```
 
 ## Add Spring code to call other microservices
@@ -191,22 +191,22 @@ feign.client.config.default.connectTimeout=160000000
 feign.client.config.default.readTimeout=160000000
 ```
 
-## Create the application on Azure Spring Cloud
+## Create the application on Azure Spring Apps
 
-As before, create a specific `all-cities-weather-service` application in your Azure Spring Cloud instance:
+As before, create a specific `all-cities-weather-service` application in your Azure Spring Apps instance:
 
 ```bash
-az spring-cloud app create -n all-cities-weather-service --runtime-version Java_11
+az spring app create -n all-cities-weather-service --runtime-version Java_17
 ```
 
 ## Deploy the application
 
-You can now build your "all-cities-weather-service" project and send it to Azure Spring Cloud:
+You can now build your "all-cities-weather-service" project and send it to Azure Spring Apps:
 
 ```bash
 cd all-cities-weather-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n all-cities-weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring app deploy -n all-cities-weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
@@ -223,8 +223,8 @@ https://<Your gateway URL>/ALL-CITIES-WEATHER-SERVICE/
 You should get the JSON output with the weather for all the cities:
 
 ```json
-[{"city":"Paris, France","description":"It's always sunny on Azure Spring Cloud","icon":"weather-sunny"},
-{"city":"London, UK","description":"It's always sunny on Azure Spring Cloud","icon":"weather-sunny"}]
+[{"city":"Paris, France","description":"It's always sunny on Azure Spring Apps","icon":"weather-sunny"},
+{"city":"London, UK","description":"It's always sunny on Azure Spring Apps","icon":"weather-sunny"}]
 ```
 
 ---

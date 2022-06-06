@@ -1,8 +1,8 @@
-# 04a - Using Azure Repos for Azure Spring Cloud Configuration
+# 04a - Using Azure Repos for Azure Spring Apps Configuration
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
-Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), that will be entirely managed and supported by Azure Spring Cloud, to be used by Spring Boot microservices. 
+Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), that will be entirely managed and supported by Azure Spring Apps, to be used by Spring Boot microservices. 
 
 ---
 
@@ -18,14 +18,14 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
     
     ```yml
     application:
-        message: Configured by Azure Spring Cloud
+        message: Configured by Azure Spring Apps
     ```
     
     Commit and push the new file.
 
 ## Obtain Repository URL and Credentials
 
-Azure Spring Cloud can access Git repositories that are public, secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with Azure Repos.
+Azure Spring Apps can access Git repositories that are public, secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with Azure Repos.
 
 1. In the Azure Repos portal for your project, click the "Clone" button:
 
@@ -48,10 +48,10 @@ Azure Spring Cloud can access Git repositories that are public, secured by SSH, 
 1. Click "Generate Git Credentials". A username and password will appear. Save these for use in the next section.
 
 
-## Configure Azure Spring Cloud to access the Git repository
+## Configure Azure Spring Apps to access the Git repository
 
 - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
-- Go to the overview page of your Azure Spring Cloud server and select "Config server" in the menu
+- Go to the overview page of your Azure Spring Apps server and select "Config server" in the menu
 - Configure the repository we previously created:
   - Add the repository URL that you have saved from the previous section.
 
@@ -64,7 +64,7 @@ Azure Spring Cloud can access Git repositories that are public, secured by SSH, 
 
 ## Review
 
-We have now created a private configuration repository. We have enabled Azure Spring Cloud to create a configuration server with the configuration files from this repository.
+We have now created a private configuration repository. We have enabled Azure Spring Apps to create a configuration server with the configuration files from this repository.
 
 In the next section, we will create an application that consumes this configuration, specifically the custom message we defined in `application.yml`.
 

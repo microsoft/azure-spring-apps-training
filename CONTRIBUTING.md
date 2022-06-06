@@ -1,4 +1,4 @@
-# Contributing to the Azure Spring Cloud training
+# Contributing to the Azure Spring Apps training
 
 As this training is [Open Source](LICENSE.txt), contributions are highly welcome!
 

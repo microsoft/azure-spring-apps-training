@@ -1,6 +1,6 @@
 # Conclusion
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
 ---
 
@@ -18,11 +18,11 @@ az group delete -g "$AZ_RESOURCE_GROUP" --yes --no-wait
 
 ## Additional Resources
 
-As an addendum to this workshop, consider taking the [tutorial on using alerts and action groups with Azure Spring Cloud](https://docs.microsoft.com/azure/spring-cloud/spring-cloud-tutorial-alerts-action-groups/?WT.mc_id=azurespringcloud-github-judubois) to detect and respond to abnormal conditions.
+As an addendum to this workshop, consider taking the [tutorial on using alerts and action groups with Azure Spring Apps](https://docs.microsoft.com/azure/spring-cloud/spring-cloud-tutorial-alerts-action-groups/?WT.mc_id=azurespringcloud-github-judubois) to detect and respond to abnormal conditions.
 
-Also, check out our tutorial to [Deploy Azure Spring Cloud a virtual network](https://docs.microsoft.com/azure/spring-cloud/spring-cloud-tutorial-deploy-in-azure-virtual-network).
+Also, check out our tutorial to [Deploy Azure Spring Apps a virtual network](https://docs.microsoft.com/azure/spring-cloud/spring-cloud-tutorial-deploy-in-azure-virtual-network).
 
-Have a look through the [Azure Spring Cloud documentation](https://docs.microsoft.com/azure/spring-cloud/?WT.mc_id=azurespringcloud-github-judubois) for more quickstarts, tutorials, and reference materials.
+Have a look through the [Azure Spring Apps documentation](https://docs.microsoft.com/azure/spring-cloud/?WT.mc_id=azurespringcloud-github-judubois) for more quickstarts, tutorials, and reference materials.
 
 Find more about the monitoring power for [Spring Cloud with Application Insights](https://docs.microsoft.com/en-us/azure/spring-cloud/spring-cloud-howto-application-insights?WT.mc_id=java-13165-sakriema).
 

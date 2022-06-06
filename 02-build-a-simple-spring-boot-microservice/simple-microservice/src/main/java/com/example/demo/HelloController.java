@@ -14,6 +14,6 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Hello from Azure Spring Cloud\n";
+        return "Hello from Azure Spring Apps\n";
     }
 }

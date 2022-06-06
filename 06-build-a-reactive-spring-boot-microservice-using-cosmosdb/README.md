@@ -1,6 +1,6 @@
 # 06 - Build a reactive Spring Boot microservice using Cosmos DB
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
 In this section, we'll build an application that uses a [Cosmos DB database](https://docs.microsoft.com/en-us/azure/cosmos-db/?WT.mc_id=azurespringcloud-github-judubois) in order to access a globally-distributed database with optimum performance.
 
@@ -38,7 +38,7 @@ The microservice that we create in this guide is [available here](city-service/)
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.6.1 -d javaVersion=11 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.7.0 -d javaVersion=17 | tar -xzvf -
 ```
 
 > We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
@@ -51,7 +51,7 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.22.0</version>
+            <version>4.30.1</version>
         </dependency>
 ```
 
@@ -79,7 +79,7 @@ class City {
 Then, in the same location, create a new `CityController.java` file that
 contains the code that will be used to query the database.
 
-> The CityController class will get its Cosmos DB configuration from the Azure Spring Cloud service binding that we will configure later.
+> The CityController class will get its Cosmos DB configuration from the Azure Spring Apps service binding that we will configure later.
 
 ```java
 package com.example.demo;
@@ -131,19 +131,19 @@ public class CityController {
 }
 ```
 
-## Create the application on Azure Spring Cloud
+## Create the application on Azure Spring Apps
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `city-service` application in your Azure Spring Cloud instance:
+As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `city-service` application in your Azure Spring Apps instance:
 
 ```bash
-az spring-cloud app create -n city-service --runtime-version Java_11
+az spring app create -n city-service --runtime-version Java_17
 ```
 
 ## Bind the Cosmos DB database to the application
 
-Azure Spring Cloud can automatically bind the Cosmos DB database we created to our microservice.
+Azure Spring Apps can automatically bind the Cosmos DB database we created to our microservice.
 
-- Go to "Apps" in your Azure Spring Cloud instance.
+- Go to "Apps" in your Azure Spring Apps instance.
 - Select the `city-service` application
 - Go to `Service bindings`
 - Click on `Create service binding``
@@ -156,18 +156,18 @@ Azure Spring Cloud can automatically bind the Cosmos DB database we created to o
 
 ## Deploy the application
 
-You can now build your "city-service" project and send it to Azure Spring Cloud:
+You can now build your "city-service" project and send it to Azure Spring Apps:
 
 ```bash
 cd city-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deploy -n city-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring app deploy -n city-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
 ## Test the project in the cloud
 
-- Go to "Apps" in your Azure Spring Cloud instance.
+- Go to "Apps" in your Azure Spring Apps instance.
   - Verify that `city-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `city-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.

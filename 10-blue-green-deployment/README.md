@@ -1,6 +1,6 @@
 # 10 - Blue/Green deployment
 
-__This guide is part of the [Azure Spring Cloud training](../README.md)__
+__This guide is part of the [Azure Spring Apps training](../README.md)__
 
 The blue-green deployment pattern allows you to test latest application changes on production infrastructure, but without exposing the changes to consumers until your testing is complete. In this section, we'll perform a blue-green deployment with Azure CLI. Although we will go through the deployment steps manually, the Azure CLI commands we'll use can be automated in a CI/CD pipeline.
 
@@ -35,7 +35,7 @@ public class WeatherController {
     @GetMapping("/city")
     public @ResponseBody Weather getWeatherForCity(@RequestParam("name") String cityName) {
         return weatherRepository.findById(cityName).map(weather -> {
-            weather.setDescription("It's always sunny on Azure Spring Cloud");
+            weather.setDescription("It's always sunny on Azure Spring Apps");
             weather.setIcon("weather-sunny");
             return weather;
         }).get();
@@ -50,15 +50,15 @@ Build a new version of the application and deploy it to a new `deployment` calle
 ```bash
 cd weather-service
 ./mvnw clean package -DskipTests
-az spring-cloud app deployment create --name green --app weather-service --runtime-version Java_11 --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+az spring app deployment create --name green --app weather-service --runtime-version Java_17 --artifact-path target/demo-0.0.1-SNAPSHOT.jar
 cd ..
 ```
 
 Once the application is deployed, if you go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) you will still have the same data, as the new version of the microservice is now in a staging area and not in production yet.
 
-Navigate to the Azure Spring Cloud instance in [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+Navigate to the Azure Spring Apps instance in [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Look for your Azure Spring Cloud instance in your resource group
+- Look for your Azure Spring Apps instance in your resource group
 - Go to "Apps"
   - Select the `weather-service` microservice
   - Click on "Deployments" in the menu. You should now see the "green" deployment, under the "default" deployment:
@@ -74,7 +74,7 @@ curl "https://***.test.azuremicroservices.io/weather-service/green/weather/city?
 And you should see the result of the recent modification:
 
 ```json
-{"city":"Paris, France","description":"It's always sunny on Azure Spring Cloud","icon":"weather-sunny"}
+{"city":"Paris, France","description":"It's always sunny on Azure Spring Apps","icon":"weather-sunny"}
 ```
 
 Note: we're not testing the green deployment through the `gateway` application. The purpose of a green deployment is to test changes to a microservice before routing production traffic to it. Therefore, if you access `weather-service` through the public Gateway URL, as you did in section 8, you will be routed to the original version of the service.
@@ -82,19 +82,19 @@ Note: we're not testing the green deployment through the `gateway` application. 
 To put this `green` deployment into production, you can use the command line:
 
 ```bash
-az spring-cloud app set-deployment -n weather-service --deployment green
+az spring app set-deployment -n weather-service --deployment green
 ```
 
 Another solution is to use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
 
-- Find your Azure Spring Cloud instance
+- Find your Azure Spring Apps instance
 - Click on the "Apps" menu
 - Select the `weather-service` application and click on "Deployments"
 
 > If you want to reuse a deployment name, you need first to delete the previous deployment under that name:
 >
 > ```bash
-> az spring-cloud app deployment delete --name green --app weather-service
+> az spring app deployment delete --name green --app weather-service
 > ```
 
 Once you have swapped deployments and see that `green` is active, you need to wait a few seconds for the Spring Cloud Service Registry to synchronize and use this new version from the `gateway` application. You will then be able to see the new modified data:
