@@ -51,7 +51,7 @@ In the application's `pom.xml` file, add the Cosmos DB dependency just after the
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.38.1</version>
+            <version>4.30.1</version>
         </dependency>
 ```
 
