@@ -7,6 +7,7 @@ languages:
 # Azure Spring Apps training
 
 You will find here a full workshop on Azure Spring Apps, including guides and demos.
+You can run this workshop with the monthly free grant from Azure Spring Apps. [Learn More](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/price-reduction-azure-spring-apps-does-more-costs-less/ba-p/3614058)
 
 This lab is based on a public workshop created by [Julien Dubois](https://twitter.com/juliendubois) and available for free to everyone, under the [MIT license](LICENSE.txt).
 
