@@ -19,7 +19,7 @@ Note how the code we create in this section is endpoint-agnostic. All we specify
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=2.7.5 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=3.1.1 -d javaVersion=17 | tar -xzvf -
 ```
 
 ## Add Spring code to call other microservices
@@ -122,7 +122,7 @@ public interface WeatherServiceClient {
 
 ```
 
-To enable Spring Cloud to discovery the underlying services and to automatically generate OpenFeign clients, add the annotations @EnableDiscoveryClient and @EnableFeignClients to the `DemoApplication` class (as well as the corresponding `import` statements):
+To enable Spring Cloud to discover the underlying services and to automatically generate OpenFeign clients, add the annotations @EnableDiscoveryClient and @EnableFeignClients to the `DemoApplication` class (as well as the corresponding `import` statements):
 
 ```java
 package com.example.demo;
@@ -214,7 +214,7 @@ cd ..
 
 You can use the gateway created in Section 8 to access the all-cities-weather-service directly.
 
->💡__Note:__ the trailing slash (`/`) is not optional.
+>💡**Important Note:** the trailing slash (`/`) is not optional!
 
 ```bash
 https://<Your gateway URL>/ALL-CITIES-WEATHER-SERVICE/

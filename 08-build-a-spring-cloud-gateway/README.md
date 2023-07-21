@@ -10,10 +10,10 @@ A Spring Cloud gateway allows you to selectively expose your microservices and t
 
 The application that we create in this guide is [available here](gateway/).
 
-To create our gateway, we will invoke the Spring Initalizer service from the command line:
+To create our gateway, we will invoke the Spring Initalizr service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=cloud-gateway,cloud-eureka,cloud-config-client -d baseDir=gateway -d bootVersion=2.7.5 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=cloud-gateway,cloud-eureka,cloud-config-client -d baseDir=gateway -d bootVersion=3.1.1 -d javaVersion=17 | tar -xzvf -
 ```
 
 > We use the `Cloud Gateway`, `Eureka Discovery Client` and the `Config Client` components.
@@ -39,7 +39,7 @@ spring:
 ```
 
 - The `spring.cloud.gateway.discovery.locator.enabled=true` part is to configure Spring Cloud Gateway to use the Spring Cloud Service Registry to discover the available microservices.
-- The `spring.cloud.gateway.globalcors.corsConfiguration` part is to allow CORS requests to our gateway. This will be helpful in the next guide, when we will add a front-end that is not hosted on Azure Spring Apps.
+- The `spring.cloud.gateway.globalcors.corsConfiguration` part is to allow Cross-Origin Resource Sharing (CORS) requests to our gateway. This will be helpful in the next guide, when we will add a front-end that is not hosted on Azure Spring Apps.
 
 ## Create the application on Azure Spring Apps
 

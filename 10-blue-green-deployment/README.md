@@ -22,7 +22,7 @@ package com.example.demo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping(path="/weather")
 public class WeatherController {
 
@@ -33,12 +33,12 @@ public class WeatherController {
     }
 
     @GetMapping("/city")
-    public @ResponseBody Weather getWeatherForCity(@RequestParam("name") String cityName) {
+    public Optional<Weather> getWeatherForCity(@RequestParam("name") String cityName) {
         return weatherRepository.findById(cityName).map(weather -> {
             weather.setDescription("It's always sunny on Azure Spring Apps");
             weather.setIcon("weather-sunny");
             return weather;
-        }).get();
+        });
     }
 }
 ```
@@ -82,7 +82,7 @@ Note: we're not testing the green deployment through the `gateway` application. 
 To put this `green` deployment into production, you can use the command line:
 
 ```bash
-az spring app set-deployment -n weather-service --deployment green
+az spring app set-deployment -n weather-service -d green
 ```
 
 Another solution is to use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):

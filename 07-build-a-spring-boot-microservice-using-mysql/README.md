@@ -29,13 +29,12 @@ Before we can use it however, we will need to perform several tasks:
 
 ```bash
 # Obtain the info on the MYSQL server in our resource group:
-MYSQL_INFO=$(az mysql server list --query '[0]')
-MYSQL_SERVERNAME=$(az mysql server list --query '[0].name' -o tsv)
-MYSQL_USERNAME="$(az mysql server list --query '[0].administratorLogin' -o tsv)@${MYSQL_SERVERNAME}"
-MYSQL_HOST="$(az mysql server list --query '[0].fullyQualifiedDomainName' -o tsv)"
+export MYSQL_SERVERNAME=$(az mysql server list --query '[0].name' -o tsv)
+export MYSQL_USERNAME="$(az mysql server list --query '[0].administratorLogin' -o tsv)@${MYSQL_SERVERNAME}"
+export MYSQL_HOST="$(az mysql server list --query '[0].fullyQualifiedDomainName' -o tsv)"
 
 # Create a firewall rule to allow connections from your machine:
-MY_IP=$(curl whatismyip.akamai.com 2>/dev/null)
+export MY_IP=$(curl whatismyip.akamai.com 2>/dev/null)
 az mysql server firewall-rule create \
     --server-name $MYSQL_SERVERNAME \
     --name "connect-from-lab" \
@@ -51,7 +50,7 @@ az mysql server firewall-rule create \
 
 # Create a MySQL database
 az mysql db create \
-    --name "azure-spring-cloud-training" \
+    --name "azure-spring-apps-training" \
     --server-name $MYSQL_SERVERNAME
 
 # Display MySQL username (to be used in the next section)
@@ -67,7 +66,7 @@ In the [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github
 - Navigate to your Azure Spring Apps instance
 - Click on Apps
 - Click on `weather-service`.
-- Click on "Service Bindings" and then on "Create Service Binding".
+- Click on "Service Bindings" and then on "Create service binding".
 - Populate the service binding fields as shown.
   - The username will be displayed in last line of output from the section above.
   - The password is the one you specified in section 0. The default value is `super$ecr3t`.
@@ -82,7 +81,7 @@ Now that we've provisioned the Azure Spring Apps instance and configured the ser
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=2.7.5 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=3.1.1 -d javaVersion=17 | tar -xzvf -
 ```
 
 > We use the `Spring Web`, `Spring Data JPA`, `MySQL Driver`, `Eureka Discovery Client` and the `Config Client` components.
@@ -153,7 +152,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path="/weather")
+@RequestMapping("/weather")
 public class WeatherController {
 
     private final WeatherRepository weatherRepository;
@@ -163,8 +162,8 @@ public class WeatherController {
     }
 
     @GetMapping("/city")
-    public @ResponseBody Weather getWeatherForCity(@RequestParam("name") String cityName) {
-        return weatherRepository.findById(cityName).get();
+    public Optional<Weather> getWeatherForCity(@RequestParam("name") String cityName) {
+        return weatherRepository.findById(cityName);
     }
 }
 ```
@@ -180,8 +179,8 @@ spring.jpa.hibernate.ddl-auto=create
 Then, in order to have Spring Boot add sample data at startup, create a `src/main/resources/import.sql` file and add:
 
 ```sql
-INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `icon`) VALUES ('Paris, France', 'Very cloudy!', 'weather-fog');
-INSERT INTO `azure-spring-cloud-training`.`weather` (`city`, `description`, `icon`) VALUES ('London, UK', 'Quite cloudy', 'weather-pouring');
+INSERT INTO `azure-spring-apps-training`.`weather` (`city`, `description`, `icon`) VALUES ('Paris, France', 'Very cloudy!', 'weather-fog');
+INSERT INTO `azure-spring-apps-training`.`weather` (`city`, `description`, `icon`) VALUES ('London, UK', 'Quite cloudy', 'weather-pouring');
 ```
 
 > The icons we are using are the ones from [https://materialdesignicons.com/](https://materialdesignicons.com/) - you can pick their other weather icons if you wish.
