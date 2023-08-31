@@ -35,11 +35,11 @@ You now need to allow access from your GitHub workflow to your Azure Spring Apps
 export MSYS_NO_PATHCONV=1
 
 # Get the ARM resource ID of the resource group
-RESOURCE_ID=$(az group show --name "$AZ_RESOURCE_GROUP" --query id -o tsv)
+export RESOURCE_ID=$(az group show --name $AZ_RESOURCE_GROUP --query id -o tsv)
 
 # Create a service principal with a Contributor role to the resource group.
-SPNAME="sp-$(az spring list --query '[].name' -o tsv)"
-az ad sp create-for-rbac --name "${SPNAME}" --role contributor --scopes "$RESOURCE_ID" --sdk-auth
+export SPNAME=sp-$AZ_SPRING_APPS_NAME
+az ad sp create-for-rbac --name $SPNAME --role contributor --scopes $RESOURCE_ID --sdk-auth
 ```
 
 This should output a JSON text, that you need to copy.
@@ -48,7 +48,7 @@ Then, in your GitHub project, select `Settings > Secrets` and add a new secret c
 
 ## Create a GitHub Action
 
-Inside the `weather-service` directory, create a new directory called `.github/workflows` and add a file called `azure-spring-cloud.yml` in it. This file is a GitHub workflow and will use the secret we just configured above to deploy the application to your Azure Spring Apps instance.
+Inside the `weather-service` directory, create a new directory called `.github/workflows` and add a file called `azure-spring-apps.yml` in it. This file is a GitHub workflow and will use the secret we just configured above to deploy the application to your Azure Spring Apps instance.
 
 In that file, copy/paste the following content, performing the indicated substitutions:
 
@@ -106,7 +106,7 @@ There are many other [events that trigger GitHub actions](https://help.github.co
 
 ## Test the GitHub Action
 
-You can now commit and push the `azure-spring-cloud.yml` file we just created.
+You can now commit and push the `azure-spring-apps.yml` file we just created.
 
 Going to the `Actions` tab of your  GitHub project, you should see that your project is automatically built and deployed to your Azure Spring Apps instance:
 
