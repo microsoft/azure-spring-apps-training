@@ -22,13 +22,13 @@ import java.util.List;
 @RestController
 public class CityController {
 
-    @Value("${azure.cosmosdb.uri}")
+    @Value("${azure.cosmos.uri}")
     private String cosmosDbUrl;
 
-    @Value("${azure.cosmosdb.key}")
+    @Value("${azure.cosmos.key}")
     private String cosmosDbKey;
 
-    @Value("${azure.cosmosdb.database}")
+    @Value("${azure.cosmos.database}")
     private String cosmosDbDatabase;
 
     private CosmosAsyncContainer container;

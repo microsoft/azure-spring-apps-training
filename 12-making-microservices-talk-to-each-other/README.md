@@ -16,10 +16,10 @@ Note how the code we create in this section is endpoint-agnostic. All we specify
 
 ## Create a Spring Boot Microservice
 
-To create our microservice, we will invoke the Spring Initalizer service from the command line:
+To create our microservice, we will invoke the Spring Initializr service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=3.1.1 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=cloud-feign,web,cloud-eureka,cloud-config-client -d baseDir=all-cities-weather-service -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
 ```
 
 ## Add Spring code to call other microservices
@@ -187,8 +187,8 @@ public class AllCitiesWeatherController {
 In order to stop the Feign services timing out automatically, open up the `src/main/resources/application.properties` file and add:
 
 ```properties
-feign.client.config.default.connectTimeout=160000000
-feign.client.config.default.readTimeout=160000000
+spring.cloud.openfeign.client.config.default.connectTimeout=160000000
+spring.cloud.openfeign.client.config.default.readTimeout=160000000
 ```
 
 ## Create the application on Azure Spring Apps
@@ -196,7 +196,7 @@ feign.client.config.default.readTimeout=160000000
 As before, create a specific `all-cities-weather-service` application in your Azure Spring Apps instance:
 
 ```bash
-az spring app create -n all-cities-weather-service --runtime-version Java_17
+az spring app create -n all-cities-weather-service --runtime-version Java_17 -s $AZ_SPRING_APPS_NAME -g $AZ_RESOURCE_GROUP
 ```
 
 ## Deploy the application
