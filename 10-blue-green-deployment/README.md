@@ -4,8 +4,6 @@ __This guide is part of the [Azure Spring Apps training](../README.md)__
 
 The blue-green deployment pattern allows you to test latest application changes on production infrastructure, but without exposing the changes to consumers until your testing is complete. In this section, we'll perform a blue-green deployment with Azure CLI. Although we will go through the deployment steps manually, the Azure CLI commands we'll use can be automated in a CI/CD pipeline.
 
->🛑 This API is currently in transition. It's recommended that for the time being, you skip this guide and proceed directly to the next one: [11 - Configure CI/CD](../11-configure-ci-cd/README.md)
-
 ---
 
 We are going to deploy a new release of the "weather-service" microservice that was developed in [07 - Build a Spring Boot microservice using MySQL](../07-build-a-spring-boot-microservice-using-mysql/README.md).
@@ -24,7 +22,7 @@ package com.example.demo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping(path="/weather")
 public class WeatherController {
 
@@ -35,12 +33,12 @@ public class WeatherController {
     }
 
     @GetMapping("/city")
-    public Optional<Weather> getWeatherForCity(@RequestParam("name") String cityName) {
+    public @ResponseBody Weather getWeatherForCity(@RequestParam("name") String cityName) {
         return weatherRepository.findById(cityName).map(weather -> {
             weather.setDescription("It's always sunny on Azure Spring Apps");
             weather.setIcon("weather-sunny");
             return weather;
-        });
+        }).get();
     }
 }
 ```
@@ -84,7 +82,7 @@ Note: we're not testing the green deployment through the `gateway` application. 
 To put this `green` deployment into production, you can use the command line:
 
 ```bash
-az spring app set-deployment -n weather-service -d green
+az spring app set-deployment -n weather-service --deployment green
 ```
 
 Another solution is to use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):

@@ -23,7 +23,7 @@ The microservice that we create in this guide is [available here](spring-cloud-m
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=3.1.1 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=2.7.5 -d javaVersion=17 | tar -xzvf -
 ```
 
 > This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Spring Cloud Service Registry and the Spring Cloud Config Server.
@@ -42,7 +42,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @Value("${application.message:Not configured by Spring Cloud Config Server}")
+    @Value("${application.message:Not configured by a Spring Cloud Server}")
     private String message;
 
     @GetMapping("/hello")
@@ -130,7 +130,7 @@ Configured by Azure Spring Apps
 When you run an application on your machine, you can see its output in the console. When you run a microservice on Azure Spring Apps, you can also see its console output through Azure CLI:
 
 ```bash
-az spring app logs -n spring-cloud-microservice -f
+az spring app logs --name spring-cloud-microservice -f
 ```
 
 _Please be aware it might take a couple of minutes for the logs to show up._

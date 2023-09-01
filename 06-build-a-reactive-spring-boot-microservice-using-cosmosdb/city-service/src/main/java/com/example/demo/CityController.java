@@ -11,24 +11,24 @@ import com.azure.cosmos.CosmosClientBuilder;
 import com.azure.cosmos.models.CosmosQueryRequestOptions;
 import com.azure.cosmos.models.FeedResponse;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
 public class CityController {
 
-    @Value("${azure.cosmos.uri}")
+    @Value("${azure.cosmosdb.uri}")
     private String cosmosDbUrl;
 
-    @Value("${azure.cosmos.key}")
+    @Value("${azure.cosmosdb.key}")
     private String cosmosDbKey;
 
-    @Value("${azure.cosmos.database}")
+    @Value("${azure.cosmosdb.database}")
     private String cosmosDbDatabase;
 
     private CosmosAsyncContainer container;

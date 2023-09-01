@@ -8,12 +8,12 @@ We'll use the reactive programming paradigm to build our microservice in this se
 
 ---
 
-## Prepare the Azure Cosmos DB database
+## Prepare the Cosmos DB database
 
 From Section 00, you should already have a CosmosDB account named `sclabc-<unique string>`.
 
 - Click on the "Data Explorer" menu item
-  - Expand the container named `azure-spring-apps-cosmosdb`.
+  - Expand the container named `azure-spring-cloud-cosmosdb`.
   - In that container, expand the container named `City`.
   - Click on "Items" and use the "New Item" button to create some sample items using the contents below:
 
@@ -31,27 +31,27 @@ From Section 00, you should already have a CosmosDB account named `sclabc-<uniqu
 
 ![Data explorer](media/02-data-explorer.png)
 
-## Create a Spring WebFlux microservice
+## Create a Spring Webflux microservice
 
 The microservice that we create in this guide is [available here](city-service/).
 
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=3.1.1 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=2.7.5 -d javaVersion=17 | tar -xzvf -
 ```
 
-> We use the `Spring WebFlux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
+> We use the `Spring Webflux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
 
-## Add the Azure Cosmos DB API
+## Add the Cosmos DB API
 
-In the application's `pom.xml` file, add the Azure Cosmos DB dependency just after the `spring-cloud-starter-netflix-eureka-client` dependency:
+In the application's `pom.xml` file, add the Cosmos DB dependency just after the `spring-cloud-starter-netflix-eureka-client` dependency:
 
 ```xml
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.47.0</version>
+            <version>4.30.1</version>
         </dependency>
 ```
 
@@ -139,7 +139,7 @@ As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring
 az spring app create -n city-service --runtime-version Java_17
 ```
 
-## Bind the Azure Cosmos DB database to the application
+## Bind the Cosmos DB database to the application
 
 Azure Spring Apps can automatically bind the Cosmos DB database we created to our microservice.
 
@@ -172,7 +172,7 @@ cd ..
   - Select `city-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
 
-You can now use cURL to test the `/cities` endpoint, and it should give you the list of cities you created. For example, if you only created `Paris, France` and `London, UK` as is shown in this guide, you should get:
+You can now use cURL to test the `/cities` endpoint, and it should give you the list of cities you created. For example, if you only created `Paris, France` and `London, UK` like it is shown in this guide, you should get:
 
 ```json
 [[{"name":"Paris, France"},{"name":"London, UK"}]]

@@ -6,6 +6,7 @@
 
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,13 +17,11 @@ import java.util.stream.Stream;
 @RestController
 public class AllCitiesWeatherController {
 
+    @Autowired
     private CityServiceClient cityServiceClient;
-    private WeatherServiceClient weatherServiceClient;
 
-    public AllCitiesWeatherController(CityServiceClient cityServiceClient, WeatherServiceClient weatherServiceClient) {
-        this.cityServiceClient = cityServiceClient;
-        this.weatherServiceClient = weatherServiceClient;
-    }
+    @Autowired
+    private WeatherServiceClient weatherServiceClient;
 
     @GetMapping("/")
     public List<Weather> getAllCitiesWeather() {

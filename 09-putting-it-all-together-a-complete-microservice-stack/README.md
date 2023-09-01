@@ -11,8 +11,8 @@ Now that we have made two microservices publicly available, we will incorporate 
 We now have a complete microservices stack:
 
 - A gateway based on Spring Cloud Gateway.
-- A reactive `city-service` microservice, that stores its data in Azure Cosmos DB.
-- A `weather-service` microservice, that stores its data in MySQL
+- A reactive `city-service` microservice, that stores its data on Cosmos DB.
+- A `weather-service` microservice, that stores its data on MySQL
 
 In order to finish this architecture, we need to add a front-end to it:
 
@@ -61,7 +61,7 @@ Now that distributed tracing is enabled, we can scale applications depending on 
 - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
 - Go to the overview page of your Azure Spring Apps server and select "Apps" in the menu.
   - Select one service and click on "Scale Out" in the menu. Select the service that you want to scale out.
-  - Modify the number of instances to manually scale the service. You can also set custom autoscaling based on metrics. 
+  - Modify the number of instances to manually scale the service. You can also set custom auto scaling based on metrics. 
   ![Application scaling](media/04-scale-out.png)
 
 ---

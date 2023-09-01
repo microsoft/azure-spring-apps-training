@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient("weather-service")
 public interface WeatherServiceClient {
+
     @GetMapping("/weather/city")
     Weather getWeatherForCity(@RequestParam("name") String cityName);
 }

@@ -13,6 +13,7 @@ import java.util.List;
 
 @FeignClient("city-service")
 public interface CityServiceClient {
+
     @GetMapping("/cities")
     List<List<City>> getAllCities();
 }

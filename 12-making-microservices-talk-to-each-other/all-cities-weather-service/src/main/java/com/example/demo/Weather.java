@@ -7,6 +7,7 @@
 package com.example.demo;
 
 public class Weather {
+
     private String city;
 
     private String description;
