@@ -10,14 +10,14 @@ In this section, we'll build a simple Spring boot microservice and deploy it to 
 
 The microservice that we create in this guide is [available here](simple-microservice/).
 
-A typical way to create Spring Boot applications is to use the Spring Initializer at  [https://start.spring.io/](https://start.spring.io/). Feel free to explore it outside this training. **For the purposes of this training, we will only invoke the Spring Initializer site via the `curl` command**.
+A typical way to create Spring Boot applications is to use the Spring Initializr at  [https://start.spring.io/](https://start.spring.io/). Feel free to explore it outside this training. **For the purposes of this training, we will only invoke the Spring Initializr site via the `curl` command**.
 
 >💡 __Note:__ All subsequent commands in this workshop should be run from the same directory, except where otherwise indicated via `cd` commands.
 
 In an __empty__ directory execute the curl command line below:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web -d baseDir=simple-microservice -d bootVersion=3.1.1 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web -d baseDir=simple-microservice -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
 ```
 
 > We force the Spring Boot version to be 3.1.1, and keep default settings that use the `com.example.demo` package.
