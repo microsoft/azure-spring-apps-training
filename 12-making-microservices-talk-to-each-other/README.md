@@ -196,7 +196,7 @@ spring.cloud.openfeign.client.config.default.readTimeout=160000000
 As before, create a specific `all-cities-weather-service` application in your Azure Spring Apps instance:
 
 ```bash
-az spring app create -n all-cities-weather-service --runtime-version Java_17 -s $AZ_SPRING_APPS_NAME -g $AZ_RESOURCE_GROUP
+az spring app create -n all-cities-weather-service --runtime-version Java_17
 ```
 
 ## Deploy the application

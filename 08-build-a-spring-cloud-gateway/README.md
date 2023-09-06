@@ -13,7 +13,7 @@ The application that we create in this guide is [available here](gateway/).
 To create our gateway, we will invoke the Spring Initalizr service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=cloud-gateway,cloud-eureka,cloud-config-client -d baseDir=gateway -d bootVersion=3.1.1 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=cloud-gateway,cloud-eureka,cloud-config-client -d baseDir=gateway -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
 ```
 
 > We use the `Cloud Gateway`, `Eureka Discovery Client` and the `Config Client` components.
