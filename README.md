@@ -12,6 +12,10 @@ You can run this workshop with the monthly free grant from Azure Spring Apps. [L
 This lab is open-source, and under the [MIT license](LICENSE.txt).
 All Contributions are more then welcome! [Learn more at contribution guidelines.](CONTRIBUTING.md)
 
+<a href="https://github.com/microsoft/azure-spring-apps-training/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=microsoft/azure-spring-apps-training" />
+</a>
+
 ## What you should expect
 
 This is not the official documentation but an opinionated training.
