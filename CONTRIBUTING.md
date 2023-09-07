@@ -14,4 +14,11 @@ You can choose any tool to do those border, here's how we do it:
 
 ## Contributors
 
-Many thanks to our contributors! The full list is available at [https://github.com/microsoft/azure-spring-cloud-training/graphs/contributors](https://github.com/microsoft/azure-spring-cloud-training/graphs/contributors).
+Many thanks to our contributors!
+
+<a href="https://github.com/microsoft/azure-spring-apps-training/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=microsoft/azure-spring-apps-training" />
+</a>
+
+ The full list is available at [https://github.com/microsoft/azure-spring-cloud-training/graphs/contributors](https://github.com/microsoft/azure-spring-cloud-training/graphs/contributors).
+ 
