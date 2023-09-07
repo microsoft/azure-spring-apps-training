@@ -7,7 +7,6 @@
 package com.example.demo;
 
 public class City {
-
     private String name;
 
     public String getName() {

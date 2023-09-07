@@ -8,8 +8,10 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
-@RequestMapping(path = "/weather")
+@RequestMapping("/weather")
 public class WeatherController {
 
     private final WeatherRepository weatherRepository;
@@ -19,8 +21,7 @@ public class WeatherController {
     }
 
     @GetMapping("/city")
-    public @ResponseBody
-    Weather getWeatherForCity(@RequestParam("name") String cityName) {
-        return weatherRepository.findById(cityName).get();
+    public Optional<Weather> getWeatherForCity(@RequestParam("name") String cityName) {
+        return weatherRepository.findById(cityName);
     }
 }

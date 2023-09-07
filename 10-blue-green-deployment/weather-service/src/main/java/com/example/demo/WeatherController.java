@@ -10,7 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/weather")
@@ -23,12 +24,11 @@ public class WeatherController {
     }
 
     @GetMapping("/city")
-    public @ResponseBody
-    Weather getWeatherForCity(@RequestParam("name") String cityName) {
+    public Optional<Weather> getWeatherForCity(@RequestParam("name") String cityName) {
         return weatherRepository.findById(cityName).map(weather -> {
             weather.setDescription("It's always sunny on Azure Spring Apps");
             weather.setIcon("weather-sunny");
             return weather;
-        }).get();
+        });
     }
 }

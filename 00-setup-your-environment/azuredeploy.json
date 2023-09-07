@@ -102,13 +102,13 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
             "apiVersion": "2019-08-01",
-            "name": "[concat(parameters('cosmosdb_account_name'), '/azure-spring-cloud-cosmosdb')]",
+            "name": "[concat(parameters('cosmosdb_account_name'), '/azure-spring-apps-cosmosdb')]",
             "dependsOn": [
                 "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosdb_account_name'))]"
             ],
             "properties": {
                 "resource": {
-                    "id": "azure-spring-cloud-cosmosdb"
+                    "id": "azure-spring-apps-cosmosdb"
                 },
                 "options": {
                     "throughput" : "400"
@@ -118,9 +118,9 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
             "apiVersion": "2019-08-01",
-            "name": "[concat(parameters('cosmosdb_account_name'), '/azure-spring-cloud-cosmosdb/City')]",
+            "name": "[concat(parameters('cosmosdb_account_name'), '/azure-spring-apps-cosmosdb/City')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('cosmosdb_account_name'), 'azure-spring-cloud-cosmosdb')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('cosmosdb_account_name'), 'azure-spring-apps-cosmosdb')]",
                 "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('cosmosdb_account_name'))]"
             ],
             "properties": {

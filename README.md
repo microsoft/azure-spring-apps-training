@@ -37,7 +37,7 @@ Basics on creating a cluster and configuring the CLI to work efficiently.
 
 ## [02 - Build a simple Spring Boot microservice](02-build-a-simple-spring-boot-microservice/README.md)
 
-Build the simplest possible Spring Boot microservice using the Spring Initializer.
+Build the simplest possible Spring Boot microservice using the Spring Initializr.
 
 ## [03 - Configure application logs](03-configure-monitoring/README.md)
 
