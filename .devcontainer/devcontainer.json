@@ -10,7 +10,7 @@
 				"octref.vetur"
 			],
 			"settings": {
-				"java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+				"java.jdt.ls.java.home": "/usr/lib/jvm/msopenjdk-current/bin/java",
 				"maven.executablePath": "/usr/share/maven/bin/mvn",
 				"terminal.integrated.shell.linux": "/bin/bash"
 			}
