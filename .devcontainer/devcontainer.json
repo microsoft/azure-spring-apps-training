@@ -1,0 +1,19 @@
+{
+	"name": "Azure Spring Apps Training",
+	"image": "mcr.microsoft.com/devcontainers/java:1-17-bullseye",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"vscjava.vscode-java-pack",
+				"vmware.vscode-boot-dev-pack",
+				"ms-azuretools.vscode-docker",
+				"octref.vetur"
+			],
+			"settings": {
+				"java.home": "/usr/lib/jvm/java-17-openjdk-amd64",
+				"maven.executablePath": "/usr/share/maven/bin/mvn",
+				"terminal.integrated.shell.linux": "/bin/bash"
+			}
+		}
+	}
+}
