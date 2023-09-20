@@ -9,6 +9,7 @@ package com.example.demo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,14 +27,13 @@ public class AllCitiesWeatherController {
 
     @GetMapping("/")
     public List<Weather> getAllCitiesWeather() {
-        Stream<City> allCities = cityServiceClient.getAllCities().stream().flatMap(list -> list.stream());
+        Stream<City> allCities = cityServiceClient.getAllCities().stream().flatMap(Collection::stream);
 
         //Obtain weather for all cities in parallel
-        List<Weather> allCitiesWeather = allCities.parallel()
-                .peek(city -> System.out.println("City: >>" + city.getName() + "<<"))
-                .map(city -> weatherServiceClient.getWeatherForCity(city.getName()))
+        return allCities.parallel()
+                .peek(city -> System.out.println("City: >>" + city.name() + "<<"))
+                .map(city -> weatherServiceClient.getWeatherForCity(city.name()))
                 .collect(Collectors.toList());
 
-        return allCitiesWeather;
     }
 }
