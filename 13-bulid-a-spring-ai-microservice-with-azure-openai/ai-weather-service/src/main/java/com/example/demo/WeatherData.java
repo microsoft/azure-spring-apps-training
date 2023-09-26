@@ -379,37 +379,4 @@ public class WeatherData {
            2023/9/9	32.19	16.98	0	62.37	0.00
            2023/9/10	32.84	16.59	0	59.94	0.00
            """;
-    public static final String BELGIUM = """
-            Date	Weather	Temperature
-            1-Nov	sunny	16
-            2-Nov	sunny	15
-            3-Nov	sunny	12
-            4-Nov	sunny	11
-            5-Nov	sunny	11
-            6-Nov	rainy	12
-            7-Nov	cloudy	15
-            8-Nov	sunny	15
-            9-Nov	cloudy	14
-            10-Nov	sunny	14
-            11-Nov	sunny	14
-            12-Nov	sunny	16
-            13-Nov	sunny	15
-            14-Nov	sunny	8
-            15-Nov	sunny	13
-            16-Nov	sunny	12
-            17-Nov	cloudy	12
-            18-Nov	rainy	10
-            19-Nov	rainy	8
-            20-Nov	rainy	9
-            21-Nov	sunny	8
-            22-Nov	cloudy	9
-            23-Nov	cloudy	10
-            24-Nov	sunny	11
-            25-Nov	cloudy	11
-            26-Nov	sunny	11
-            27-Nov	rainy	9
-            28-Nov	cloudy	10
-            29-Nov	cloudy	8
-            30-Nov	cloudy	7
-            """;
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>AI Weather Service</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.4.min.js"></script>
@@ -9,12 +10,13 @@
 
 <body>
 <h1>
-    AI Weather Forecast
+    AI Weather Service
 </h1>
-<form>
-    City: <input type="text" id="city">
-    <button type="button">Ask AI</button>
-</form>
+<div>
+    <label>Question:</label>
+    <textarea id="question" cols="40" rows="5" title="question" style="display: block"></textarea>
+    <button type="button" >Ask AI</button>
+</div>
 <p>
     Response:
 </p>
@@ -23,17 +25,13 @@
 <script>
     $(document).ready(function(){
       $("button").click(function() {
-        var city = $("#city").val();
-        if (city) {
+        var question = $("#question").val();
+        if (question) {
             $("button").prop('disabled', true);
-            $.ajax({
-                url: "/weather/city?name=" + city,
-                success: function(result) {
-                    $("#response").text(result[0].text);
-                },
-                complete: function() {
-                    $("button").prop('disabled', false);
-                }
+            $.post("/weather/ask", { question: question }, function(result) {
+                $("#response").text(result[0].text);
+            }).always(function() {
+                $("button").prop('disabled', false);
             });
         }
       });
