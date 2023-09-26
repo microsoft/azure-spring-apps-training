@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+<h1>
+    AI Weather Forecast
+</h1>
+<form>
+    City: <input type="text" id="city">
+    <button type="button">Ask AI</button>
+</form>
+<p>
+    Response:
+</p>
+<div id="response"></div>
+
+<script>
+    $(document).ready(function(){
+      $("button").click(function() {
+        var city = $("#city").val();
+        if (city) {
+            $("button").prop('disabled', true);
+            $.ajax({
+                url: "/weather/city?name=" + city,
+                success: function(result) {
+                    $("#response").text(result[0].text);
+                },
+                complete: function() {
+                    $("button").prop('disabled', false);
+                }
+            });
+        }
+      });
+    });
+</script>
+</body>
+
+</html>
