@@ -41,15 +41,16 @@ export AZ_SPRING_APPS_NAME=azure-spring-apps-lab
 To use the most developer focussed option of Azure Spring Apps, the Dedicated Consumption Plan, we create a container environment and the workload profile.
 
 ```bash
+export AZ_CONTAINER_APP_ENV=$AZ_SPRING_APPS_NAME'-env'
 
 az containerapp env create \
     --resource-group $AZ_RESOURCE_GROUP \
-    --name $AZ_SPRING_APPS_NAME env \
+    --name $AZ_CONTAINER_APP_ENV \
     --enable-workload-profiles
 
 az containerapp env workload-profile set \
     --resource-group $AZ_RESOURCE_GROUP \
-    --name $AZ_SPRING_APPS_NAME env \
+    --name $AZ_CONTAINER_APP_ENV \
     --workload-profile-name my-wlp \
     --workload-profile-type D4 \
     --min-nodes 1 \
@@ -57,7 +58,7 @@ az containerapp env workload-profile set \
 
 export MANAGED_ENV_RESOURCE_ID=$(az containerapp env show \
     --resource-group $AZ_RESOURCE_GROUP \
-    --name $AZ_SPRING_APPS_NAME env \
+    --name $AZ_CONTAINER_APP_ENV \
     --query id \
     --output tsv)
 ```
