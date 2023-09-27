@@ -58,7 +58,7 @@ For even more detailed data, navigate to the `Dependencies` tab in the `Performa
 
 Now that distributed tracing is enabled, we can scale applications depending on our needs.
 
-- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
+- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois).
 - Go to the overview page of your Azure Spring Apps server and select "Apps" in the menu.
   - Select one service and click on "Scale Out" in the menu. Select the service that you want to scale out.
   - Modify the number of instances to manually scale the service. You can also set custom autoscaling based on metrics. 
