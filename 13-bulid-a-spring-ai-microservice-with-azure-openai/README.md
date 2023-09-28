@@ -1,12 +1,11 @@
-## Prepare Azure OpenAI Service
+# 13 - Bulid a Spring-AI microservice with Azure OpenAI
 
-**Note: the Azure CLI version must be >= 2.51.0**
+## Prepare Azure OpenAI Service
 
 1. Use the following commands to define variables:
 
    ```bash
    LOCATION="eastus"
-   RESOURCE_GROUP="<resource-group-name>"
    OPENAI_RESOURCE_NAME="<Azure-OpenAI-resource-name>"
    ```
 
@@ -15,7 +14,6 @@
    ```bash
    az cognitiveservices account create \
       -n ${OPENAI_RESOURCE_NAME} \
-      -g ${RESOURCE_GROUP} \
       -l ${LOCATION} \
       --kind OpenAI \
       --sku s0 \
@@ -25,7 +23,6 @@
 1. Create the model deployments for `text-embedding-ada-002` and `gpt-35-turbo-16k` in your Azure OpenAI service.
    ```bash
    az cognitiveservices account deployment create \
-       -g ${RESOURCE_GROUP} \
        -n ${OPENAI_RESOURCE_NAME} \
        --deployment-name text-embedding-ada-002 \
        --model-name text-embedding-ada-002 \
@@ -33,7 +30,6 @@
        --model-format OpenAI
 
    az cognitiveservices account deployment create \
-       -g ${RESOURCE_GROUP} \
        -n ${OPENAI_RESOURCE_NAME} \
        --deployment-name gpt-35-turbo-16k \
        --model-name gpt-35-turbo-16k \
@@ -60,21 +56,11 @@
 
 
 ## Deploy to Azure Spring Apps
-1. Use the following commands to define variables:
-
-    ```bash
-    RESOURCE_GROUP="<resource-group-name>"
-    SERVICE_NAME="<Azure-Spring-Apps-instance-name>"
-    APP_NAME="<Spring-app-name>"
-    ```
-
 1. Use the following command to specify the app name on Azure Spring Apps and to allocate required resources:
 
     ```bash
     az spring app create \
-        --resource-group ${RESOURCE_GROUP} \
-        --service ${SERVICE_NAME} \
-        --name ${APP_NAME} \
+        --name ai-weather-service \
         --cpu 2 \
         --memory 4Gi \
         --min-replicas 2 \
@@ -88,9 +74,7 @@
 
     ```bash
     az spring app deploy \
-        --resource-group ${RESOURCE_GROUP} \
-        --service ${SERVICE_NAME} \
-        --name ${APP_NAME} \
+        --name ai-weather-service \
         --artifact-path target/demo-0.0.1-SNAPSHOT.jar \
         --env SPRING_AI_AZURE_OPENAI_API_KEY=${SPRING_AI_AZURE_OPENAI_API_KEY} SPRING_AI_AZURE_OPENAI_ENDPOINT=${SPRING_AI_AZURE_OPENAI_ENDPOINT} \
         --runtime-version Java_17
