@@ -10,7 +10,7 @@ In this section, we'll create an Azure Spring Apps instance using Azure CLI. Whi
 
 Ensure your Azure CLI is logged into your Azure subscription.
 
->💡 If using Windows, make sure you enter these commands and all others that follow in Git Bash. **Do not use WSL, CloudShell, or any other shell.**
+>💡 If using Windows, you can run those commands in Git Bash, WSL 2.0 or another cloud shell.
 
 ```bash
 az login # Sign into an azure account
