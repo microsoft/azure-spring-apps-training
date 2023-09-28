@@ -61,7 +61,7 @@ echo "Your MySQL username is: ${MYSQL_USERNAME}"
 ## Bind the MySQL database to the application
 
 As we did for CosmosDB in the previous section, create a service binding for the MySQL database to make it available to Azure Spring Apps microservices.
-In the [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+In the [Azure Portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois):
 
 - Navigate to your Azure Spring Apps instance
 - Click on Apps
@@ -78,7 +78,7 @@ In the [Azure Portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github
 
 Now that we've provisioned the Azure Spring Apps instance and configured the service binding, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
 
-To create our microservice, we will invoke the Spring Initalizer service from the command line:
+To create our microservice, we will invoke the Spring Initalizr service from the command line:
 
 ```bash
 curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web,data-jpa,mysql,cloud-eureka,cloud-config-client -d baseDir=weather-service -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -

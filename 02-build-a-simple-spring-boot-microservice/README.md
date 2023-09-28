@@ -20,7 +20,7 @@ In an __empty__ directory execute the curl command line below:
 curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web -d baseDir=simple-microservice -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
 ```
 
-> We force the Spring Boot version to be 3.1.1, and keep default settings that use the `com.example.demo` package.
+> We force the Spring Boot version to be 3.1.3, and keep default settings that use the `com.example.demo` package.
 
 ## Add a new Spring MVC Controller
 
@@ -72,7 +72,7 @@ kill %1
 
 This section shows how to create an app instance and then deploy your code to it.
 
-In order to create the app instance graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+In order to create the app instance graphically, you can use [the Azure portal](https://portal.azure.com/?WT.mc_id=java-asa-judubois):
 
 - Look for your Azure Spring Apps instance in your resource group
 - Click on the "Apps" link under "Settings" on the navigation sidebar.

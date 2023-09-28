@@ -29,37 +29,7 @@ Next to the `DemoApplication` class, create a `Weather` class:
 ```java
 package com.example.demo;
 
-public class Weather {
-
-    private String city;
-
-    private String description;
-
-    private String icon;
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+public record Weather (String city, String description, String icon ) {
 }
 ```
 
@@ -68,19 +38,10 @@ Note: this is the same `Weather` class that we created in Section 7 when we defi
 Next, in the same location create the `City` class. This is the same `City` class that we created in Section 6.
 
 ```java
+
 package com.example.demo;
 
-public class City {
-
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+public record City (String name) {
 }
 ```
 
@@ -145,40 +106,38 @@ public class DemoApplication {
 Everything is now in place to implement the `all-cities-weather-service`. Create the class `AllCitiesWeatherController` as follows:
 
 ```java
+
 package com.example.demo;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.example.demo.City;
-import com.example.demo.CityServiceClient;
-import com.example.demo.Weather;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 public class AllCitiesWeatherController {
 
-    @Autowired
     private CityServiceClient cityServiceClient;
-
-    @Autowired 
     private WeatherServiceClient weatherServiceClient;
 
+    public AllCitiesWeatherController(CityServiceClient cityServiceClient, WeatherServiceClient weatherServiceClient) {
+        this.cityServiceClient = cityServiceClient;
+        this.weatherServiceClient = weatherServiceClient;
+    }
+
     @GetMapping("/")
-    public List<Weather> getAllCitiesWeather(){
-        Stream<City> allCities = cityServiceClient.getAllCities().stream().flatMap(list -> list.stream());
+    public List<Weather> getAllCitiesWeather() {
+        Stream<City> allCities = cityServiceClient.getAllCities().stream().flatMap(Collection::stream);
 
         //Obtain weather for all cities in parallel
-        List<Weather> allCitiesWeather = allCities.parallel()
-            .peek(city -> System.out.println("City: >>"+city.getName()+"<<"))
-            .map(city -> weatherServiceClient.getWeatherForCity(city.getName()))
-            .collect(Collectors.toList());
+        return allCities.parallel()
+                .peek(city -> System.out.println("City: >>" + city.name() + "<<"))
+                .map(city -> weatherServiceClient.getWeatherForCity(city.name()))
+                .collect(Collectors.toList());
 
-        return allCitiesWeather;
     }
 }
 ```

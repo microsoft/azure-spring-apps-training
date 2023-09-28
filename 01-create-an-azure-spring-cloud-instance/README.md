@@ -38,13 +38,39 @@ export AZ_RESOURCE_GROUP=spring-apps-lab
 export AZ_SPRING_APPS_NAME=azure-spring-apps-lab
 ```
 
-With these variables set, we can now create the Azure Spring Apps instance.
+To use the most developer focussed option of Azure Spring Apps, the Dedicated Consumption Plan, we create a container environment and the workload profile.
+
+```bash
+export AZ_CONTAINER_APP_ENV=$AZ_SPRING_APPS_NAME'-env'
+
+az containerapp env create \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --name $AZ_CONTAINER_APP_ENV \
+    --enable-workload-profiles
+
+az containerapp env workload-profile set \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --name $AZ_CONTAINER_APP_ENV \
+    --workload-profile-name my-wlp \
+    --workload-profile-type D4 \
+    --min-nodes 1 \
+    --max-nodes 2
+
+export MANAGED_ENV_RESOURCE_ID=$(az containerapp env show \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --name $AZ_CONTAINER_APP_ENV \
+    --query id \
+    --output tsv)
+```
+
+With these prerequists set, we can now create the Azure Spring Apps instance.
 
 ```bash
 az spring create \
-    -g "$AZ_RESOURCE_GROUP" \
-    -n "$AZ_SPRING_APPS_NAME" \
-    --sku standard
+    --resource-group $AZ_RESOURCE_GROUP \
+    --name $AZ_SPRING_APPS_NAME \
+    --managed-environment $MANAGED_ENV_RESOURCE_ID \
+    --sku StandardGen2
 ```
 
 For the remainder of this workshop, we will be running Azure CLI commands referencing the same resource group and Azure Spring Apps instance. So let's set them as defaults, so we don't have to specify them again:
