@@ -79,7 +79,7 @@ class City {
 Then, in the same location, create a new `CityController.java` file that
 contains the code that will be used to query the database.
 
-> The CityController class will get its Cosmos DB configuration from the Azure Spring Apps service binding that we will configure later.
+> The CityController class will get its Cosmos DB configuration from the Azure Spring Apps Service Connector that we will configure later.
 
 ```java
 package com.example.demo;
@@ -94,19 +94,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
 public class CityController {
 
-    @Value("${azure.cosmosdb.uri}")
+    @Value("${azure.cosmos.uri}")
     private String cosmosDbUrl;
 
-    @Value("${azure.cosmosdb.key}")
+    @Value("${azure.cosmos.key}")
     private String cosmosDbKey;
 
-    @Value("${azure.cosmosdb.database}")
+    @Value("${azure.cosmos.database}")
     private String cosmosDbDatabase;
 
     private CosmosAsyncContainer container;
@@ -139,20 +139,37 @@ As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring
 az spring app create -n city-service --runtime-version Java_17
 ```
 
-## Bind the Azure Cosmos DB database to the application
+## Connect the Azure Cosmos DB database to the application
 
-Azure Spring Apps can automatically bind the Cosmos DB database we created to our microservice.
+Azure Spring Apps can automatically connect the Cosmos DB database we created to our microservice.
 
 - Go to "Apps" in your Azure Spring Apps instance.
 - Select the `city-service` application
-- Go to `Service bindings`
-- Click on `Create service binding``
-  - Give your binding a name, for example `cosmosdb-city`
-  - Select the Cosmos DB account and database we created and keep the default `sql` API type
-  - In the drop-down list, select the primary master key
-  - Click on `Create` to create the database binding
+- Go to `Service Connector`
+- Click on `+ Create`
+- Choose `Cosmos DB` as the Service type
+- Give your Connection a name, for example `cosmos-city`
+- Select the `NoSQL` API type
+- Select the Cosmos DB account and Database we created in the initial 00 setup step
+- Verify that the Client type is `SpringBoot`
+- Click the `Next: Authentication` button
 
-![Bind Cosmos DB database](media/03-bind-service-cosmosdb.png)
+![Connect to Cosmos DB database 1 of 4](media/03-service-connector-cosmos.png)
+
+- Select `Connection string` for the authentication type
+- Expand the `Advanced` tag below to verify the property names injected into the connected app
+- Click the `Next: Networking` button
+
+![Connect to Cosmos DB database 2 of 4](media/04-service-connector-cosmos.png)
+
+- Leave `Configure firewall rules to enable access to target service` selected
+- Click the `Next: Review + Create` button
+
+![Connect to Cosmos DB database 3 of 4](media/05-service-connector-cosmos.png)
+
+- Once validation passes, click the `Create` button to create the Service Connector
+
+![Connect to Cosmos DB database 4 of 4](media/06-service-connector-cosmos.png)
 
 ## Deploy the application
 
