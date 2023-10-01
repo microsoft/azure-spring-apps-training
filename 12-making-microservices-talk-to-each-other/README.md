@@ -24,7 +24,7 @@ curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=c
 
 ## Add Spring code to call other microservices
 
-Next to the `DemoApplication` class, create a `Weather` class:
+Next to the `DemoApplication` class, create a `Weather` record:
 
 ```java
 package com.example.demo;
@@ -33,7 +33,7 @@ public record Weather (String city, String description, String icon ) {
 }
 ```
 
-Note: this is the same `Weather` class that we created in Section 7 when we defined the original `weather-service` with one important difference: we no longer annotate the class as a JPA entity for data retrieval.
+Note: this corresponds to the `Weather` class that we created in Section 7 when we defined the original `weather-service` with two important differences: we no longer annotate the class as a JPA entity for data retrieval, and we define it as a Java record instead of a class. The differences between records and classes are many but in this particular case, they can be used interchangeably.
 
 Next, in the same location create the `City` class. This is the same `City` class that we created in Section 6.
 
@@ -173,10 +173,8 @@ cd ..
 
 You can use the gateway created in Section 8 to access the all-cities-weather-service directly.
 
->💡**Important Note:** the trailing slash (`/`) is not optional!
-
 ```bash
-https://<Your gateway URL>/ALL-CITIES-WEATHER-SERVICE/
+https://<Your gateway URL>/ALL-CITIES-WEATHER-SERVICE
 ```
 
 You should get the JSON output with the weather for all the cities:

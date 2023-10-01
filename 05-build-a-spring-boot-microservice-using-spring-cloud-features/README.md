@@ -78,7 +78,7 @@ cd spring-cloud-microservice
 cd ..
 ```
 
-Requesting the `/hello` endpoint should return the "Not configured by a Spring Cloud Server" message.
+Requesting the `/hello` endpoint should return the "Not configured by Spring Cloud Server" message.
 
 ```bash
 curl http://127.0.0.1:8080/hello

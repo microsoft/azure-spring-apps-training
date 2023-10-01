@@ -7,7 +7,6 @@ import org.springframework.ai.prompt.PromptTemplate;
 import org.springframework.ai.prompt.SystemPromptTemplate;
 import org.springframework.ai.prompt.messages.Message;
 import org.springframework.ai.prompt.messages.UserMessage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,13 +21,11 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/weather")
 public class AiWeatherController {
-
     private final AiClient aiClient;
 
     @Value("classpath:/prompts/weather-service.st")
     private Resource weatherServiceTemplate;
 
-    @Autowired
     public AiWeatherController(AiClient aiClient) {
         this.aiClient = aiClient;
     }
