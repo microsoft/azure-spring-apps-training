@@ -8,10 +8,10 @@ A key feature of cloud-native applications is *externalized configuration* - the
 
 > 💡 If your organization uses Azure Repos as your source code repository, see [Using Azure Repos for Azure Spring Apps configuration](AzureReposForConfig.md)
 
-> ⏱ If you want to skip the step of creating a private repository, you can use this public repository instead: [https://github.com/Azure-Samples/spring-cloud-sample-public-config.git](https://github.com/Azure-Samples/spring-cloud-sample-public-config.git). __Storing configuration in a public repository is not recommended in real-world deployments.__ We offer this public repository only as a shortcut for this workshop, for example if you don't have a GitHub account. 
+> ⏱ If you want to skip the step of creating a private repository, you can use this public repository instead: [https://github.com/Azure-Samples/spring-cloud-sample-public-config.git](https://github.com/Azure-Samples/spring-cloud-sample-public-config.git). __Storing configuration in a public repository is not recommended in real-world deployments.__ We offer this public repository only as a shortcut for this workshop, for example if you don't have a GitHub account.
 >
 > To use this shortcut:
->  - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
+>  - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois).
 >  - Go to the overview page of your Azure Spring Apps server and select "Config server" in the menu
 >  - Set the repository URL: `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`
 >  - Click on "Validate" and wait for the operation to succeed
@@ -41,28 +41,46 @@ Commit and push the new file.
 
 Azure Spring Apps can access Git repositories that are public, secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with GitHub.
 
-Follow the [GitHub guide to create a personal token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) and save your token. When asked to select scopes, check off the entire "repo" section (as shown below) and nothing else.
+Let's create a new token by going into the GitHub developer settings and selecting "Personal access tokens" and "Fine-grained tokens" in the menu. Give it a name such as `spring apps training`.
 
 ![GitHub personal access token](media/01-github-personal-access-token.png)
 
+We select the private config repository, we've just created.
+
+![GitHub private config repository selection](media/02-github-token-select-repositories.png)
+
+And then we specify the Repository permissions.
+
+![GitHub repository permission](media/03-github-repo-permission.png)
+
+Only the `Contents` `Read-only` permission is required.
+
+![GitHub Content Read-only permission](media/04-github-repo-permission-content-readonly.png)
+
+After that is done, click on "Generate token" and copy the token value.
+
+![GitHub generate token](media/05-github-generate-token.png)
+
 Once the token is generated, leave that tab open until the end of this section.
+
+If you need more help here, please follow the [GitHub guide to create a personal token documentation.](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
 
 ## Configure Azure Spring Apps to access the Git repository
 
-- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
+- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois).
 - Go to the overview page of your Azure Spring Apps server and select "Config server" in the menu
 - Configure the repository we previously created:
   - Add the repository URL, for example `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`
 
      >💡 Make sure you include the `.git` ending in the URL.
-
+  - For the label, select the branch name, for example the GitHub default `main`
   - Click on `Authentication` and select `HTTP Basic`
   - The __username__ is your GitHub login name
   - The __password__ is the personal token we created in the previous section
 - Click on "Validate" and wait for the operation to succeed  
 - Click on "Apply" and wait for the operation to succeed
 
-![Spring Cloud config server](media/02-config-server.png)
+![Spring Cloud config server](media/06-config-server.png)
 
 ## Review
 
