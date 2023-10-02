@@ -8,10 +8,10 @@ A key feature of cloud-native applications is *externalized configuration* - the
 
 > 💡 If your organization uses Azure Repos as your source code repository, see [Using Azure Repos for Azure Spring Apps configuration](AzureReposForConfig.md)
 
-> ⏱ If you want to skip the step of creating a private repository, you can use this public repository instead: [https://github.com/Azure-Samples/spring-cloud-sample-public-config.git](https://github.com/Azure-Samples/spring-cloud-sample-public-config.git). __Storing configuration in a public repository is not recommended in real-world deployments.__ We offer this public repository only as a shortcut for this workshop, for example if you don't have a GitHub account. 
+> ⏱ If you want to skip the step of creating a private repository, you can use this public repository instead: [https://github.com/Azure-Samples/spring-cloud-sample-public-config.git](https://github.com/Azure-Samples/spring-cloud-sample-public-config.git). __Storing configuration in a public repository is not recommended in real-world deployments.__ We offer this public repository only as a shortcut for this workshop, for example if you don't have a GitHub account.
 >
 > To use this shortcut:
->  - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
+>  - Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois).
 >  - Go to the overview page of your Azure Spring Apps server and select "Config server" in the menu
 >  - Set the repository URL: `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`
 >  - Click on "Validate" and wait for the operation to succeed
@@ -67,7 +67,7 @@ If you need more help here, please follow the [GitHub guide to create a personal
 
 ## Configure Azure Spring Apps to access the Git repository
 
-- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
+- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois).
 - Go to the overview page of your Azure Spring Apps server and select "Config server" in the menu
 - Configure the repository we previously created:
   - Add the repository URL, for example `https://github.com/Azure-Samples/spring-cloud-sample-public-config.git`
