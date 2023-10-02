@@ -12,10 +12,10 @@ We'll use the reactive programming paradigm to build our microservice in this se
 
 From Section 00, you should already have a Cosmos DB account named `sclabc-<unique string>`.
 
-- Click on the "Data Explorer" menu item
+- Click on the `Data Explorer` menu item
   - Expand the container named `azure-spring-apps-cosmosdb`.
   - In that container, expand the container named `City`.
-  - Click on "Items" and use the "New Item" button to create some sample items using the contents below:
+  - Click on `Items` and use the `New Item` button to create some sample items using the contents below:
 
     ```json
     {
@@ -184,7 +184,7 @@ cd ..
 
 ## Test the project in the cloud
 
-- Go to "Apps" in your Azure Spring Apps instance.
+- Go to `Apps` in your Azure Spring Apps instance.
   - Verify that `city-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
   - Select `city-service` to have more information on the microservice.
 - Copy/paste the "Test Endpoint" that is provided.
