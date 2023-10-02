@@ -10,7 +10,7 @@ We'll use the reactive programming paradigm to build our microservice in this se
 
 ## Prepare the Azure Cosmos DB database
 
-From Section 00, you should already have a CosmosDB account named `sclabc-<unique string>`.
+From Section 00, you should already have a Cosmos DB account named `sclabc-<unique string>`.
 
 - Click on the "Data Explorer" menu item
   - Expand the container named `azure-spring-apps-cosmosdb`.
@@ -143,12 +143,12 @@ az spring app create -n city-service --runtime-version Java_17
 
 Azure Spring Apps can automatically connect the Cosmos DB database we created to our microservice.
 
-- Go to "Apps" in your Azure Spring Apps instance.
+- Go to `Apps` in your Azure Spring Apps instance.
 - Select the `city-service` application
 - Go to `Service Connector`
 - Click on `+ Create`
 - Choose `Cosmos DB` as the Service type
-- Give your Connection a name, for example `cosmos_city`
+- Give your Connection a name, for example "cosmos_city"
 - Select the `NoSQL` API type
 - Select the Cosmos DB account and Database we created in the initial 00 setup step
 - Verify that the Client type is `SpringBoot`
