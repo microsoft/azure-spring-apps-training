@@ -58,25 +58,51 @@ echo "Your MySQL username is: ${MYSQL_USERNAME}"
 
 ```
 
-## Bind the MySQL database to the application
+## Connect the MySQL database to the application
 
-As we did for CosmosDB in the previous section, create a service binding for the MySQL database to make it available to Azure Spring Apps microservices.
+As we did for Cosmos DB in the previous section, create a Service Connector for the MySQL database to make it available to the `weather-service` microservice.
 In the [Azure Portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois):
 
 - Navigate to your Azure Spring Apps instance
-- Click on Apps
+- Click on `Apps`
 - Click on `weather-service`.
-- Click on "Service Bindings" and then on "Create service binding".
-- Populate the service binding fields as shown.
-  - The username will be displayed in last line of output from the section above.
-  - The password is the one you specified in section 0. The default value is `super$ecr3t`.
-- Click on `Create` to create the database binding
+- Click on `Service Connector` and then on `+ Create`.
+- Populate the Service Connector fields as shown:
+  - For Service type, select `DB for MySQL single server`
+  - Specify a connection name, e.g. "weatherdb"
+  - Verify the correct subscription is shown
+  - Choose the MySQL server created in the preceding steps
+  - Select the MySQL database created earlier
+  - Select `SpringBoot` as the Client type
+  - Click the `Next: Authentication` button
 
-![MySQL Service Binding](media/01-create-service-binding-mysql.png)
+![MySQL Service Connector, 1 of 5](media/01-create-service-connector-mysql.png)
+
+- Verify `Connection string` is selected
+- Select `Continue with...Database credentials` and fill in Username and Password
+  - The Username was echoed to the terminal as the last command executed earlier
+  - The password is the one you specified in section 0. The default value is `super$ecr3t`.
+- Expand `Advanced` to visually inspect the injected Spring Data properties (optional)
+
+![MySQL Service Connector, 2 of 5](media/02-create-service-connector-mysql.png)
+
+- Review the properties automatically injected by the Service Connector to the `weather-service`
+- Click `Next: Networking`
+
+![MySQL Service Connector, 3 of 5](media/03-create-service-connector-mysql.png)
+
+- Verify that `Configure firewall rules to enable access to target service` is selected
+- Click on `Next: Review + Create`
+
+![MySQL Service Connector, 4 of 5](media/04-create-service-connector-mysql.png)
+
+- After receiving the "Validation passed" message, click the `Create` button to create the Service Connector
+
+![MySQL Service Connector, 5 of 5](media/05-create-service-connector-mysql.png)
 
 ## Create a Spring Boot microservice
 
-Now that we've provisioned the Azure Spring Apps instance and configured the service binding, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
+Now that we've provisioned the Azure Spring Apps instance and configured the Service Connector, let's get the code for `weather-service` ready. The microservice that we create in this guide is [available here](weather-service/).
 
 To create our microservice, we will invoke the Spring Initalizr service from the command line:
 
