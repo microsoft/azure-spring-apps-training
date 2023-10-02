@@ -148,7 +148,7 @@ Azure Spring Apps can automatically connect the Cosmos DB database we created to
 - Go to `Service Connector`
 - Click on `+ Create`
 - Choose `Cosmos DB` as the Service type
-- Give your Connection a name, for example `cosmos-city`
+- Give your Connection a name, for example `cosmos_city`
 - Select the `NoSQL` API type
 - Select the Cosmos DB account and Database we created in the initial 00 setup step
 - Verify that the Client type is `SpringBoot`

@@ -93,8 +93,8 @@ Next to the `DemoApplication` class, create a `Weather` JPA entity:
 ```java
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Weather {
@@ -148,8 +148,9 @@ And finish coding this application by adding a Spring MVC controller called `Wea
 ```java
 package com.example.demo;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/weather")
