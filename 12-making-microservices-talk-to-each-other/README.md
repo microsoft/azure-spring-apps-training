@@ -12,7 +12,7 @@ There is a glaring inefficiency in this design: the browser first calls `city-se
 
 To resolve this inefficiency, we will create a single microservice that implements the [Transaction Script](https://www.martinfowler.com/eaaCatalog/transactionScript.html) pattern: it will orchestrate the calls to individual microservices and return the weather for all cities. To do this, we will use [Spring Cloud OpenFeign](https://spring.io/projects/spring-cloud-openfeign).
 
-In Azure Container Apps, services within the same environment can communicate with each other using their internal fully qualified domain names (FQDNs). For example, `city-service` can be accessed at `http://city-service.internal.<environment-name>.azurecontainerapps.io`. You can configure OpenFeign clients to use these internal URLs for inter-service communication.
+In Azure Container Apps, services within the same environment can communicate with each other using their internal fully qualified domain names (FQDNs). When using OpenFeign with the `@FeignClient` annotation, you can specify the service name, and configure the actual URL through environment variables or application properties. For internal communication between Container Apps in the same environment, services can use the pattern `http://<service-name>` or the full internal FQDN `http://<service-name>.internal.<environment-name>.azurecontainerapps.io`.
 
 ## Create a Spring Boot Microservice
 
@@ -163,10 +163,7 @@ az containerapp create \
   --target-port 8080 \
   --ingress external \
   --min-replicas 1 \
-  --max-replicas 3 \
-  --env-vars \
-    CITY_SERVICE_URL=http://city-service.internal.$AZ_CONTAINERAPP_ENV.azurecontainerapps.io \
-    WEATHER_SERVICE_URL=http://weather-service.internal.$AZ_CONTAINERAPP_ENV.azurecontainerapps.io
+  --max-replicas 3
 ```
 
 ## Deploy the application
