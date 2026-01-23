@@ -1,8 +1,8 @@
-# 04a - Using Azure Repos for Azure Spring Apps Configuration
+# 04a - Using Azure Repos for Configuration
 
-__This guide is part of the [Azure Spring Apps training](../README.md)__
+__This guide is part of the [Azure Container Apps training](../README.md)__
 
-Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), that will be entirely managed and supported by Azure Spring Apps, to be used by Spring Boot microservices. 
+Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), deployed as a container app, to be used by Spring Boot microservices. 
 
 ---
 
@@ -18,7 +18,7 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
     
     ```yml
     application:
-        message: Configured by Azure Spring Apps
+        message: Configured by Azure Container Apps
     ```
     
     Commit and push the new file.
@@ -48,23 +48,35 @@ Azure Spring Apps can access Git repositories that are public, secured by SSH, o
 1. Click "Generate Git Credentials". A username and password will appear. Save these for use in the next section.
 
 
-## Configure Azure Spring Apps to access the Git repository
+## Deploy Spring Cloud Config Server to Azure Container Apps
 
-- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois).
-- Go to the overview page of your Azure Spring Apps server and select "Config server" in the menu
-- Configure the repository we previously created:
-  - Add the repository URL that you have saved from the previous section.
+Now deploy the Spring Cloud Config Server as a container app, configured with your Azure Repos credentials:
 
-  - Click on `Authentication` and select `HTTP Basic`
-  - The __username__ is the username saved from the previous section
-  - The __password__ is the password saved from the previous section
-- Click on "Apply" and wait for the operation to succeed
+```bash
+# Set your Azure DevOps organization, project, and repository details
+export AZDO_ORG_URL=https://dev.azure.com/<organization name>/<project name>/_git/<repository name>
+export AZDO_USERNAME=<username from previous section>
+export AZDO_PASSWORD=<password from previous section>
 
-![Spring Cloud config server](media/03-config-server-azdo.png)
+az containerapp create \
+    --name config-server \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --environment $AZ_CONTAINERAPP_ENV \
+    --image hyness/spring-cloud-config-server:latest \
+    --target-port 8888 \
+    --ingress internal \
+    --env-vars \
+        SPRING_CLOUD_CONFIG_SERVER_GIT_URI=$AZDO_ORG_URL \
+        SPRING_CLOUD_CONFIG_SERVER_GIT_DEFAULT_LABEL=main \
+        SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME=$AZDO_USERNAME \
+        SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD=$AZDO_PASSWORD \
+    --min-replicas 1 \
+    --max-replicas 1
+```
 
 ## Review
 
-We have now created a private configuration repository. We have enabled Azure Spring Apps to create a configuration server with the configuration files from this repository.
+We have now created a private configuration repository and deployed a Spring Cloud Config Server as a container app with the configuration files from this repository.
 
 In the next section, we will create an application that consumes this configuration, specifically the custom message we defined in `application.yml`.
 

@@ -27,7 +27,7 @@
       color="indigo"
       app
     >
-      <span class="white--text"><a  class="white--text" href="https://github.com/microsoft/azure-spring-cloud-training">Azure Spring Apps training</a></span>
+      <span class="white--text"><a  class="white--text" href="https://github.com/microsoft/azure-spring-apps-training">Azure Container Apps training</a></span>
     </v-footer>
   </v-app>
 </template>
