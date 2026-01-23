@@ -17,10 +17,10 @@ A typical way to create Spring Boot applications is to use the Spring Initializr
 In an __empty__ directory execute the curl command line below:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web -d baseDir=simple-microservice -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web -d baseDir=simple-microservice -d bootVersion=3.3.2 -d javaVersion=17 | tar -xzvf -
 ```
 
-> We force the Spring Boot version to be 3.1.3, and keep default settings that use the `com.example.demo` package.
+> We force the Spring Boot version to be 3.3.2, and keep default settings that use the `com.example.demo` package.
 
 ## Add a new Spring MVC Controller
 
@@ -130,7 +130,7 @@ If you need to check your code, the final project is available in the ["simple-m
 Here is the final script to build and deploy everything that was done in this guide:
 
 ```
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web -d baseDir=simple-microservice -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web -d baseDir=simple-microservice -d bootVersion=3.3.2 -d javaVersion=17 | tar -xzvf -
 cd simple-microservice
 cat > HelloController.java << EOF
 package com.example.demo;

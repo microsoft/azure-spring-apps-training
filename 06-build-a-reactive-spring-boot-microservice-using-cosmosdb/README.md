@@ -38,7 +38,7 @@ The microservice that we create in this guide is [available here](city-service/)
 To create our microservice, we will invoke the Spring Initalizr service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=3.3.2 -d javaVersion=17 | tar -xzvf -
 ```
 
 > We use the `Spring WebFlux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
