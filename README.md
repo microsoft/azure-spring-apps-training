@@ -4,10 +4,10 @@ languages:
 - java
 ---
 
-# Azure Spring Apps training
+# Azure Container Apps training (Spring Boot microservices)
 
-You will find here a full workshop on Azure Spring Apps, including guides and demos.
-You can run this workshop with the monthly free grant from Azure Spring Apps. [Learn More](https://aka.ms/costs-less)
+You will find here a full workshop on deploying Spring Boot microservices to Azure Container Apps, including guides and demos.
+Azure Container Apps provides a serverless container platform for deploying microservices applications.
 
 This lab is open-source, and under the [MIT license](LICENSE.txt).
 All Contributions are more then welcome! [Learn more at contribution guidelines.](CONTRIBUTING.md)
@@ -22,13 +22,13 @@ This is not the official documentation but an opinionated training.
 
 It is a hands-on training, and it will use the command line extensively. The idea is to get coding very quickly and play with the platform, from a simple demo to far more complex examples.
 
-After completing all the guides, you should have a fairly good understanding of everything that Azure Spring Apps offers.
+After completing all the guides, you should have a fairly good understanding of deploying Spring Boot microservices to Azure Container Apps.
 
 ## Symbols
 
 >🛑 -  __Manual Modification Required__. When this symbol appears in front of one or more commands, you will need to modify the commands as indicated prior to running them.
 
->🚧 - __Preview-specific__. This symbol indicates steps that are only necessary while Azure Spring Apps is in preview.
+>🚧 - __Preview-specific__. This symbol indicates steps that are only necessary while certain features are in preview.
 
 >💡 - __Frustration Avoidance Tip__. These will help you avoid potential pitfalls.
 
@@ -36,9 +36,9 @@ After completing all the guides, you should have a fairly good understanding of 
 
 Prerequisites and environment setup.
 
-## [01 - Create an Azure Spring Apps cluster](01-create-an-azure-spring-cloud-instance/README.md)
+## [01 - Create an Azure Container Apps environment](01-create-an-azure-spring-cloud-instance/README.md)
 
-Basics on creating a cluster and configuring the CLI to work efficiently.
+Basics on creating a Container Apps environment and configuring the CLI to work efficiently.
 
 ## [02 - Build a simple Spring Boot microservice](02-build-a-simple-spring-boot-microservice/README.md)
 
@@ -50,11 +50,11 @@ Access Spring Boot applications logs to understand common issues.
 
 ## [04 - Configure a Spring Cloud Config server](04-configure-a-spring-cloud-config-server/README.md)
 
-Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), that will be entirely managed and supported by Azure Spring Apps, to be used by Spring Boot microservices.
+Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config), deployed as a container app, to be used by Spring Boot microservices.
 
 ## [05 - Build a Spring Boot microservice using Spring Cloud features](05-build-a-spring-boot-microservice-using-spring-cloud-features/README.md)
 
-Build a Spring Boot microservice that is cloud-enabled: it uses a Spring Cloud Service Registry and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) which are both managed and supported by Azure Spring Apps.
+Build a Spring Boot microservice that is cloud-enabled: it uses a Spring Cloud Service Registry and a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-config) deployed on Azure Container Apps.
 
 ## [06 - Build a reactive Spring Boot microservice using Cosmos DB](06-build-a-reactive-spring-boot-microservice-using-cosmosdb/README.md)
 
@@ -70,11 +70,11 @@ Build a [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway) 
 
 ## [09 - Putting it all together, a complete microservice stack](09-putting-it-all-together-a-complete-microservice-stack/README.md)
 
-Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Spring Apps's distributed tracing mechanism and scale our services depending on our needs.
+Use a front-end to access graphically our complete microservice stack. Monitor our services with Azure Container Apps monitoring and scale our services depending on our needs.
 
 ## [10 - Blue/Green deployment](10-blue-green-deployment/README.md)
 
-Deploy new versions of applications in a staging environment and switch between staging and production with Azure Spring Apps.
+Deploy new versions of applications using Azure Container Apps revisions to achieve blue/green deployments.
 
 ## [11 - Configure CI/CD](11-configure-ci-cd/README.md)
 
