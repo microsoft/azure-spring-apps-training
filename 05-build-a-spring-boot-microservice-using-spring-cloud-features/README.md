@@ -1,20 +1,18 @@
 # 05 - Build a Spring Boot microservice using Spring Cloud features
 
-__This guide is part of the [Azure Spring Apps training](../README.md)__
+__This guide is part of the [Azure Container Apps training](../README.md)__
 
-In this section, we'll build a similar service to the one from section 2, but with the addition of two important Spring Cloud features. First, we'll add this service to Spring Cloud registry for discovery by other services. Second, we'll use Spring Cloud Config to inject a setting from a Git repository into the application and display it on the screen.
+In this section, we'll build a similar service to the one from section 2, but with the addition of Spring Cloud Config client capabilities. We'll use Spring Cloud Config to inject a setting from a Git repository (via our config server) into the application and display it on the screen.
 
 ---
 
 ## What we are going to build
 
-This guide builds upon the previous guides: we are going to build again a simple Spring Boot microservice like in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), but this time it will use two major Spring Cloud features:
-
-- It will be connected to a Spring Cloud Service Registry so it can discover other microservices, as well as being discovered itself!
+This guide builds upon the previous guides: we are going to build again a simple Spring Boot microservice like in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), but this time it will use Spring Cloud Config:
 
 - It will get its configuration from the Spring Cloud Config server that we configured in the previous guide, [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md)
 
-For both features, it will just be a matter of adding an official Spring Boot starter, and Azure Spring Apps will take care of everything else.
+It will just be a matter of adding an official Spring Boot starter, and configuring the connection to our config server.
 
 ## Create a simple Spring Cloud microservice
 
@@ -23,10 +21,10 @@ The microservice that we create in this guide is [available here](spring-cloud-m
 To create our microservice, we will invoke the Spring Initalizer service from the command line:
 
 ```bash
-curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web,cloud-eureka,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
+curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=web,cloud-config-client -d baseDir=spring-cloud-microservice -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
 ```
 
-> This time, we add the `Eureka Discovery Client` and the `Config Client` Spring Boot starters, which will respectively automatically trigger the use of Spring Cloud Service Registry and the Spring Cloud Config Server.
+> This time, we add the `Config Client` Spring Boot starter, which will automatically trigger the use of the Spring Cloud Config Server.
 
 ## Add a new Spring MVC Controller
 
@@ -54,13 +52,16 @@ public class HelloController {
 
 ## Configure Spring Boot
 
-Edit the file `src/main/resources/application.properties` and add the following line:
+Edit the file `src/main/resources/application.properties` and add the following lines:
 
 ```properties
-spring.config.import=optional:configserver:
+spring.config.import=optional:configserver:http://${CONFIG_SERVER_URL:localhost:8888}
+spring.application.name=spring-cloud-microservice
 ```
 
-This line makes using the Spring Cloud Config server optional. This will be useful in development mode (when we won't have a Spring Cloud Config server), and can be removed later in production.
+The first line makes the Spring Cloud Config server optional for local development. The second line sets the application name, which will be used by the config server to identify which configuration to serve.
+
+> 💡 The `CONFIG_SERVER_URL` will be provided as an environment variable when we deploy to Azure Container Apps.
 
 ## Test the project locally
 
@@ -90,47 +91,92 @@ Kill the locally running microservice:
 kill %1
 ```
 
-## Create and deploy the application on Azure Spring Apps
+## Create and deploy the application on Azure Container Apps
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `spring-cloud-microservice` application in your Azure Spring Apps instance:
-
-```bash
-az spring app create -n spring-cloud-microservice --runtime-version Java_17
-```
-
-You can now build your "spring-cloud-microservice" project and send it to Azure Spring Apps:
+First, create a `Dockerfile` in the `spring-cloud-microservice` directory:
 
 ```bash
 cd spring-cloud-microservice
+cat > Dockerfile << 'EOF'
+FROM eclipse-temurin:17-jdk-alpine as build
+WORKDIR /workspace/app
+
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+
+RUN ./mvnw package -DskipTests
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+
+FROM eclipse-temurin:17-jre-alpine
+VOLUME /tmp
+ARG DEPENDENCY=/workspace/app/target/dependency
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.example.demo.DemoApplication"]
+EOF
+cd ..
+```
+
+Now get the config server URL and deploy the application:
+
+```bash
+# Get the config server internal URL
+CONFIG_SERVER_URL=$(az containerapp show \
+    --name config-server \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --query properties.configuration.ingress.fqdn \
+    -o tsv)
+
+cd spring-cloud-microservice
 ./mvnw clean package -DskipTests
-az spring app deploy -n spring-cloud-microservice --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+
+# Deploy to Azure Container Apps
+az containerapp up \
+    --name spring-cloud-microservice \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --environment $AZ_CONTAINERAPP_ENV \
+    --source . \
+    --target-port 8080 \
+    --ingress external \
+    --env-vars CONFIG_SERVER_URL=$CONFIG_SERVER_URL
+
 cd ..
 ```
 
 ## Test the project in the cloud
 
-Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+Get the URL for your microservice:
 
-- Look for your Azure Spring Apps instance in your resource group
-- Go to "Apps"
-  - Verify that `spring-cloud-microservice` has a `Registration status` of `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
-  - Select `spring-cloud-microservice` to have more information on the microservice.
-- Copy/paste the "Test endpoint" that is provided.
+```bash
+MICROSERVICE_URL=$(az containerapp show \
+    --name spring-cloud-microservice \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --query properties.configuration.ingress.fqdn \
+    -o tsv)
 
-You can now use cURL again to test the `/hello` endpoint, this time it is served by Azure Spring Apps and configured using the Spring Config Server from [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md).
+curl https://$MICROSERVICE_URL/hello
+```
+
+You can now use cURL to test the `/hello` endpoint, this time it is served by Azure Container Apps and configured using the Spring Config Server from [04 - Configure a Spring Cloud Config server](../04-configure-a-spring-cloud-config-server/README.md).
 
 As a result, requesting the `/hello` endpoint should return the message that we configured in the `application.yml` file, coming from the Spring Cloud Config Server:
 
 ```bash
-Configured by Azure Spring Apps
+Configured by Azure Container Apps
 ```
 
 ## Stream application logs
 
-When you run an application on your machine, you can see its output in the console. When you run a microservice on Azure Spring Apps, you can also see its console output through Azure CLI:
+When you run an application on your machine, you can see its output in the console. When you run a microservice on Azure Container Apps, you can also see its console output through Azure CLI:
 
 ```bash
-az spring app logs -n spring-cloud-microservice -f
+az containerapp logs show \
+    --name spring-cloud-microservice \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --follow
 ```
 
 _Please be aware it might take a couple of minutes for the logs to show up._
@@ -143,21 +189,19 @@ Press CTRL+C to stop following the output and return to the shell.
 
 ## Query application logs
 
-Streaming the console output as we just did may be helpful in understanding the immediate state of a microservice. However, sometimes it's necessary to look further into the past or to look for something specific. This is easily done with Log Analytics. In section 3, we enabled log aggregation in Azure Log Analytics. Such settings changes can take 1-2 minutes to apply, so by now, you should be able to query Azure Log Analytics.
+Streaming the console output as we just did may be helpful in understanding the immediate state of a microservice. However, sometimes it's necessary to look further into the past or to look for something specific. This is easily done with Log Analytics. In section 3, we configured log aggregation in Azure Log Analytics.
 
-[Open Azure Portal](https://portal.azure.com/?WT.mc_id=java-spring-judubois) and navigate to your Azure Spring Apps instance. Click on "Logs". This is a shortcut to the Log Analytics workspace that was created earlier. If a tutorial appears, feel free to skip it for now.
+[Open Azure Portal](https://portal.azure.com/?WT.mc_id=java-spring-judubois) and navigate to your Container Apps environment. Click on "Logs". This is a shortcut to the Log Analytics workspace that was created earlier. If a tutorial appears, feel free to skip it for now.
 
 This workspace allows you to run queries on the aggregated logs. The most common query is to get the latest log from a specific application:
 
-__Important:__ Spring Boot applications logs have a dedicated `AppPlatformLogsforSpring` type.
+Here is how to get the 50 most recent logs for the microservice we just deployed:
 
-Here is how to get its 50 most recent logs of the `AppPlatformLogsforSpring` type for the microservice we just deployed:
+Insert this text in the text area that states "Type your queries here or click on of the example queries to start". Click the text of the query, then click "Run".
 
-Insert this text in the text area that states "Type your queries here or click on of the example queries to start".  Click the text of the query, then click "Run".
-
-```sql
-AppPlatformLogsforSpring
-| where AppName == "spring-cloud-microservice"
+```kusto
+ContainerAppConsoleLogs_CL
+| where ContainerAppName_s == "spring-cloud-microservice"
 | project TimeGenerated, Log
 | order by TimeGenerated desc
 | limit 50
