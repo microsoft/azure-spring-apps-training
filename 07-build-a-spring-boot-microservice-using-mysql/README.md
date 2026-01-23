@@ -28,29 +28,29 @@ Before we can use it however, we will need to perform several tasks:
 > 💡When prompted for a password, enter the MySQL password you specified when deploying the ARM template in [Section 00](../00-setup-your-environment/README.md).
 
 ```bash
-# Obtain the info on the MYSQL server in our resource group:
-export MYSQL_SERVERNAME=$(az mysql server list --query '[0].name' -o tsv)
-export MYSQL_USERNAME="$(az mysql server list --query '[0].administratorLogin' -o tsv)@${MYSQL_SERVERNAME}"
-export MYSQL_HOST="$(az mysql server list --query '[0].fullyQualifiedDomainName' -o tsv)"
+# Obtain the info on the MYSQL flexible server in our resource group:
+export MYSQL_SERVERNAME=$(az mysql flexible-server list --query '[0].name' -o tsv)
+export MYSQL_USERNAME="$(az mysql flexible-server list --query '[0].administratorLogin' -o tsv)@${MYSQL_SERVERNAME}"
+export MYSQL_HOST="$(az mysql flexible-server list --query '[0].fullyQualifiedDomainName' -o tsv)"
 
 # Create a firewall rule to allow connections from your machine:
 export MY_IP=$(curl whatismyip.akamai.com 2>/dev/null)
-az mysql server firewall-rule create \
-    --server-name $MYSQL_SERVERNAME \
-    --name "connect-from-lab" \
+az mysql flexible-server firewall-rule create \
+    --name $MYSQL_SERVERNAME \
+    --rule-name "connect-from-lab" \
     --start-ip-address "$MY_IP" \
     --end-ip-address "$MY_IP"
 
 # Create a firewall rule to allow connections from Azure services:
-az mysql server firewall-rule create \
-    --server-name $MYSQL_SERVERNAME \
-    --name "connect-from-azure" \
+az mysql flexible-server firewall-rule create \
+    --name $MYSQL_SERVERNAME \
+    --rule-name "connect-from-azure" \
     --start-ip-address "0.0.0.0" \
     --end-ip-address "0.0.0.0"
 
 # Create a MySQL database
-az mysql db create \
-    --name "azure-spring-apps-training" \
+az mysql flexible-server db create \
+    --database-name "azure-spring-apps-training" \
     --server-name $MYSQL_SERVERNAME
 
 # Display MySQL username (to be used in the next section)
@@ -68,7 +68,7 @@ In the [Azure Portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois):
 - Click on `weather-service`.
 - Click on `Service Connector` and then on `+ Create`.
 - Populate the Service Connector fields as shown:
-  - For Service type, select `DB for MySQL single server`
+  - For Service type, select `DB for MySQL flexible server`
   - Specify a connection name, e.g. "weatherdb"
   - Verify the correct subscription is shown
   - Choose the MySQL server created in the preceding steps
