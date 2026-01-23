@@ -25,7 +25,7 @@ Configure a [Spring Cloud Config Server](https://cloud.spring.io/spring-cloud-co
 
 ## Obtain Repository URL and Credentials
 
-Azure Spring Apps can access Git repositories that are public, secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with Azure Repos.
+Spring Cloud Config Server can access Git repositories that are public, secured by SSH, or secured using HTTP basic authentication. We will use that last option, as it is easier to create and manage with Azure Repos.
 
 1. In the Azure Repos portal for your project, click the "Clone" button:
 

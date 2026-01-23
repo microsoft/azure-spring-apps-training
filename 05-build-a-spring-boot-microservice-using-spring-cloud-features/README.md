@@ -65,7 +65,7 @@ The first line makes the Spring Cloud Config server optional for local developme
 
 ## Test the project locally
 
-Before deploying the microservice to Azure Spring Apps, let's run it locally.
+Before deploying the microservice to Azure Container Apps, let's run it locally.
 
 >💡 Do not be alarmed when you see exception stack traces:
 > ![Exception stack trace](media/01-exception-stack-trace.png)
@@ -209,7 +209,7 @@ ContainerAppConsoleLogs_CL
 
 ![Query logs](media/03-logs-query.png)
 
->💡 It can also take 1-2 minutes for the console output of an Azure Spring Apps microservice to be read into Log Analytics.
+>💡 It can also take 1-2 minutes for the console output of an Azure Container Apps microservice to be read into Log Analytics.
 
 ## Conclusion
 
