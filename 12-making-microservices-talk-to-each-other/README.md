@@ -1,6 +1,6 @@
 # 12 - Making Microservices Talk to Each Other
 
-__This guide is part of the [Azure Spring Apps training](../README.md)__
+__This guide is part of the [Azure Container Apps training](../README.md)__
 
 Creating a microservice that talks to other microservices.
 
@@ -10,9 +10,9 @@ In [Section 6](../06-build-a-reactive-spring-boot-microservice-using-cosmos/READ
 
 There is a glaring inefficiency in this design: the browser first calls `city-service`, waits for it to respond, and upon getting that response, calls `weather-service` for each of the cities returned. All these remote calls are made over public internet, whose speed is never guaranteed.
 
-To resolve this inefficiency, we will create a single microservice that implements the [Transaction Script](https://www.martinfowler.com/eaaCatalog/transactionScript.html) pattern: it will orchestrate the calls to individual microservices and return the weather for all cities. To do this, we will use [Spring Cloud OpenFeign](https://spring.io/projects/spring-cloud-openfeign). OpenFeign will automatically obtain the URLs of invoked microservices from Spring Cloud Registry, allowing us to build our `all-cities-weather-services` microservice without needing to resolve the locations of the constituent microservices.
+To resolve this inefficiency, we will create a single microservice that implements the [Transaction Script](https://www.martinfowler.com/eaaCatalog/transactionScript.html) pattern: it will orchestrate the calls to individual microservices and return the weather for all cities. To do this, we will use [Spring Cloud OpenFeign](https://spring.io/projects/spring-cloud-openfeign).
 
-Note how the code we create in this section is endpoint-agnostic. All we specify is the name of the services we want to invoke in the `@FeignClient` annotation. OpenFeign and the Azure Spring Apps discovery service then work together behind the scenes to connect our new microservice to the services we've created previously.
+In Azure Container Apps, services within the same environment can communicate with each other using their internal fully qualified domain names (FQDNs). For example, `city-service` can be accessed at `http://city-service.internal.<environment-name>.azurecontainerapps.io`. You can configure OpenFeign clients to use these internal URLs for inter-service communication.
 
 ## Create a Spring Boot Microservice
 
@@ -150,22 +150,46 @@ spring.cloud.openfeign.client.config.default.connectTimeout=160000000
 spring.cloud.openfeign.client.config.default.readTimeout=160000000
 ```
 
-## Create the application on Azure Spring Apps
+## Create the application on Azure Container Apps
 
-As before, create a specific `all-cities-weather-service` application in your Azure Spring Apps instance:
+As before, create a specific `all-cities-weather-service` application in your Azure Container Apps environment:
 
 ```bash
-az spring app create -n all-cities-weather-service --runtime-version Java_17
+az containerapp create \
+  --name all-cities-weather-service \
+  --resource-group $AZ_RESOURCE_GROUP \
+  --environment $AZ_CONTAINERAPP_ENV \
+  --image <your-registry>/all-cities-weather-service:latest \
+  --target-port 8080 \
+  --ingress external \
+  --min-replicas 1 \
+  --max-replicas 3 \
+  --env-vars \
+    CITY_SERVICE_URL=http://city-service.internal.$AZ_CONTAINERAPP_ENV.azurecontainerapps.io \
+    WEATHER_SERVICE_URL=http://weather-service.internal.$AZ_CONTAINERAPP_ENV.azurecontainerapps.io
 ```
 
 ## Deploy the application
 
-You can now build your "all-cities-weather-service" project and send it to Azure Spring Apps:
+You can now build your "all-cities-weather-service" project and deploy it to Azure Container Apps:
 
 ```bash
 cd all-cities-weather-service
 ./mvnw clean package -DskipTests
-az spring app deploy -n all-cities-weather-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+
+# Build and push the container image
+az acr build \
+  --registry <your-registry> \
+  --image all-cities-weather-service:latest \
+  --file Dockerfile \
+  .
+
+# Update the container app
+az containerapp update \
+  --name all-cities-weather-service \
+  --resource-group $AZ_RESOURCE_GROUP \
+  --image <your-registry>.azurecr.io/all-cities-weather-service:latest
+
 cd ..
 ```
 
@@ -180,8 +204,8 @@ https://<Your gateway URL>/ALL-CITIES-WEATHER-SERVICE
 You should get the JSON output with the weather for all the cities:
 
 ```json
-[{"city":"Paris, France","description":"It's always sunny on Azure Spring Apps","icon":"weather-sunny"},
-{"city":"London, UK","description":"It's always sunny on Azure Spring Apps","icon":"weather-sunny"}]
+[{"city":"Paris, France","description":"It's always sunny on Azure Container Apps","icon":"weather-sunny"},
+{"city":"London, UK","description":"It's always sunny on Azure Container Apps","icon":"weather-sunny"}]
 ```
 
 ---

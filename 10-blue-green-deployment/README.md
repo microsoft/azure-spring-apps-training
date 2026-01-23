@@ -1,10 +1,8 @@
 # 10 - Blue/Green deployment
 
-__This guide is part of the [Azure Spring Apps training](../README.md)__
+__This guide is part of the [Azure Container Apps training](../README.md)__
 
-The blue-green deployment pattern allows you to test latest application changes on production infrastructure, but without exposing the changes to consumers until your testing is complete. In this section, we'll perform a blue-green deployment with Azure CLI. Although we will go through the deployment steps manually, the Azure CLI commands we'll use can be automated in a CI/CD pipeline.
-
->🛑 This API is currently in transition. It's recommended that for the time being, you skip this guide and proceed directly to the next one: [11 - Configure CI/CD](../11-configure-ci-cd/README.md)
+The blue-green deployment pattern allows you to test latest application changes on production infrastructure, but without exposing the changes to consumers until your testing is complete. In this section, we'll perform a blue-green deployment using Azure Container Apps revisions. Although we will go through the deployment steps manually, the Azure CLI commands we'll use can be automated in a CI/CD pipeline.
 
 ---
 
@@ -37,7 +35,7 @@ public class WeatherController {
     @GetMapping("/city")
     public Optional<Weather> getWeatherForCity(@RequestParam("name") String cityName) {
         return weatherRepository.findById(cityName).map(weather -> {
-            weather.setDescription("It's always sunny on Azure Spring Apps");
+            weather.setDescription("It's always sunny on Azure Container Apps");
             weather.setIcon("weather-sunny");
             return weather;
         });
@@ -45,61 +43,75 @@ public class WeatherController {
 }
 ```
 
-## Deploy the new application to a new "green" deployment
+## Deploy the new application to a new "green" revision
 
-Build a new version of the application and deploy it to a new `deployment` called `green`:
+Azure Container Apps uses revisions for managing different versions of your application. Build a new version of the application and deploy it as a new revision with the suffix `green`:
 
 ```bash
 cd weather-service
 ./mvnw clean package -DskipTests
-az spring app deployment create --name green --app weather-service --runtime-version Java_17 --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+
+# Create a new revision with the suffix 'green' but don't send traffic to it yet
+az containerapp update \
+  --name weather-service \
+  --resource-group $AZ_RESOURCE_GROUP \
+  --image <your-container-registry>/weather-service:green \
+  --revision-suffix green \
+  --set-env-vars <your-env-vars>
+
 cd ..
 ```
 
-Once the application is deployed, if you go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) you will still have the same data, as the new version of the microservice is now in a staging area and not in production yet.
+Once the application is deployed, if you go to [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) you will still have the same data, as the new revision is deployed but not receiving traffic yet.
 
-Navigate to the Azure Spring Apps instance in [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+Navigate to the Azure Container Apps instance in [the Azure portal](https://portal.azure.com):
 
-- Look for your Azure Spring Apps instance in your resource group
-- Go to "Apps"
-  - Select the `weather-service` microservice
-  - Click on "Deployments" in the menu. You should now see the "green" deployment, under the "default" deployment:
+- Look for your Container Apps environment in your resource group
+- Select the `weather-service` container app
+- Click on "Revision management" in the menu. You should now see the "green" revision alongside your previous revision
 
-![Deployment Pane](media/02-deployment-pane.png)
-
-You can test the `green` deployment by invoking the same URL as in section 7, but replacing the deployment name `default` with `green`:
+You can view all revisions using the CLI:
 
 ```bash
-curl "https://***.test.azuremicroservices.io/weather-service/green/weather/city?name=Paris%2C%20France"
+az containerapp revision list \
+  --name weather-service \
+  --resource-group $AZ_RESOURCE_GROUP \
+  -o table
 ```
 
 And you should see the result of the recent modification:
 
 ```json
-{"city":"Paris, France","description":"It's always sunny on Azure Spring Apps","icon":"weather-sunny"}
+{"city":"Paris, France","description":"It's always sunny on Azure Container Apps","icon":"weather-sunny"}
 ```
 
-Note: we're not testing the green deployment through the `gateway` application. The purpose of a green deployment is to test changes to a microservice before routing production traffic to it. Therefore, if you access `weather-service` through the public Gateway URL, as you did in section 8, you will be routed to the original version of the service.
+Note: we're not testing the green revision through the `gateway` application yet. The purpose of a green deployment is to test changes to a microservice before routing production traffic to it.
 
-To put this `green` deployment into production, you can use the command line:
+To shift traffic to the `green` revision, you can use the command line:
 
 ```bash
-az spring app set-deployment -n weather-service -d green
+az containerapp ingress traffic set \
+  --name weather-service \
+  --resource-group $AZ_RESOURCE_GROUP \
+  --revision-weight <green-revision-name>=100
 ```
 
-Another solution is to use [the Azure portal](https://portal.azure.com/?WT.mc_id=azurespringcloud-github-judubois):
+Another solution is to use [the Azure portal](https://portal.azure.com):
 
-- Find your Azure Spring Apps instance
-- Click on the "Apps" menu
-- Select the `weather-service` application and click on "Deployments"
+- Find your Container App
+- Click on the "Revision management" menu
+- Select traffic splitting to route traffic between revisions
 
-> If you want to reuse a deployment name, you need first to delete the previous deployment under that name:
->
-> ```bash
-> az spring app deployment delete --name green --app weather-service
-> ```
+You can also perform a gradual rollout by splitting traffic between revisions:
 
-Once you have swapped deployments and see that `green` is active, you need to wait a few seconds for the Spring Cloud Service Registry to synchronize and use this new version from the `gateway` application. You will then be able to see the new modified data:
+```bash
+az containerapp ingress traffic set \
+  --name weather-service \
+  --resource-group $AZ_RESOURCE_GROUP \
+  --revision-weight <green-revision-name>=50 <blue-revision-name>=50
+```
+
+Once you have shifted traffic to the green revision, you will be able to see the new modified data:
 
 ![Green deployment](media/01-green-deployment.png)
 
