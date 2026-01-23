@@ -162,12 +162,13 @@ cd ..
 
 ## Get Cosmos DB connection details
 
-Get the Cosmos DB connection information that we'll use as environment variables:
+Get the Cosmos DB connection information that we'll use as environment variables. These commands assume you're using the Cosmos DB account created in section 00:
 
 ```bash
-export COSMOS_DB_NAME=$(az cosmosdb list --query '[0].name' -o tsv)
-export COSMOS_DB_URI=$(az cosmosdb show --name $COSMOS_DB_NAME --query documentEndpoint -o tsv)
-export COSMOS_DB_KEY=$(az cosmosdb keys list --name $COSMOS_DB_NAME --query primaryMasterKey -o tsv)
+# Get the Cosmos DB account name (adjust if you have multiple accounts)
+export COSMOS_DB_NAME=$(az cosmosdb list --resource-group $AZ_RESOURCE_GROUP --query '[0].name' -o tsv)
+export COSMOS_DB_URI=$(az cosmosdb show --name $COSMOS_DB_NAME --resource-group $AZ_RESOURCE_GROUP --query documentEndpoint -o tsv)
+export COSMOS_DB_KEY=$(az cosmosdb keys list --name $COSMOS_DB_NAME --resource-group $AZ_RESOURCE_GROUP --query primaryMasterKey -o tsv)
 ```
 
 ## Deploy the application

@@ -48,7 +48,8 @@ az mysql db create \
 echo "Your MySQL username is: ${MYSQL_USERNAME}"
 
 # Set MySQL password (use the password you specified in section 00)
-export MYSQL_PASSWORD="super\$ecr3t"  # Replace with your password if different
+# Default is super$ecr3t - replace with your actual password
+export MYSQL_PASSWORD="super\$ecr3t"
 
 ```
 

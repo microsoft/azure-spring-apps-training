@@ -48,13 +48,13 @@ spring:
     gateway:
       routes:
         - id: city-service
-          uri: https://city-service.internal.${CONTAINER_APP_ENV_DNS_SUFFIX}
+          uri: http://city-service
           predicates:
             - Path=/city-service/**
           filters:
             - StripPrefix=1
         - id: weather-service
-          uri: https://weather-service.internal.${CONTAINER_APP_ENV_DNS_SUFFIX}
+          uri: http://weather-service
           predicates:
             - Path=/weather-service/**
           filters:
@@ -68,7 +68,7 @@ spring:
 
 ```
 
-Note: The `CONTAINER_APP_ENV_DNS_SUFFIX` environment variable will be set automatically by Azure Container Apps and resolves to the internal DNS suffix for the environment.
+Note: In Azure Container Apps, services within the same environment can communicate directly using the service name as the hostname (e.g., `http://city-service`).
 
 ## Create a Dockerfile
 

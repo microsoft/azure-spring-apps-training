@@ -3,13 +3,13 @@ spring:
     gateway:
       routes:
         - id: city-service
-          uri: https://city-service.internal.${CONTAINER_APP_ENV_DNS_SUFFIX}
+          uri: http://city-service
           predicates:
             - Path=/city-service/**
           filters:
             - StripPrefix=1
         - id: weather-service
-          uri: https://weather-service.internal.${CONTAINER_APP_ENV_DNS_SUFFIX}
+          uri: http://weather-service
           predicates:
             - Path=/weather-service/**
           filters:
