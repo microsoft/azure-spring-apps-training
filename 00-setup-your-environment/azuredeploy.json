@@ -28,28 +28,27 @@
     },
     "resources": [
         {
-            "type": "Microsoft.DBforMySQL/servers",
-            "apiVersion": "2017-12-01",
+            "type": "Microsoft.DBForMySql/flexibleServers",
+            "apiVersion": "2023-06-30",
             "name": "[parameters('db_for_mysql_name')]",
             "location": "[parameters('location')]",
             "sku": {
-                "name": "B_Gen5_1",
-                "tier": "Basic",
-                "family": "Gen5",
-                "capacity": 1
+                "name": "Standard_B1ms",
+                "tier": "Burstable"
             },
             "properties": {
                 "administratorLogin" : "sqlAdmin",
                 "administratorLoginPassword" : "[parameters('mysql_admin_password')]",
                 "createMode" : "Default",
-                "storageProfile": {
-                    "storageMB": 5120,
-                    "backupRetentionDays": 7,
-                    "geoRedundantBackup": "Disabled",
-                    "storageAutoGrow": "Enabled"
+                "storage": {
+                    "storageSizeGB": 20,
+                    "iops": 360,
+                    "autoGrow": "Enabled",
+                    "autoIoScaling": "Enabled",
+                    "logOnDisk": "Disabled",
+                    "storageRedundancy": "LocalRedundancy"
                 },
-                "version": "5.7",
-                "sslEnforcement": "Enabled"
+                "version": "8.0.21"
             }
         },
         {
