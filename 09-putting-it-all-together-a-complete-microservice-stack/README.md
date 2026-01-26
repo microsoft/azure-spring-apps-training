@@ -1,6 +1,6 @@
 # 09 - Putting it all together, a complete microservice stack
 
-__This guide is part of the [Azure Spring Apps training](../README.md)__
+__This guide is part of the [Azure Container Apps training](../README.md)__
 
 Now that we have made two microservices publicly available, we will incorporate a user interface to see them in action. Then, we will use Azure Monitor to monitor the flow of traffic to and among our services and to track metrics.
 
@@ -17,7 +17,7 @@ We now have a complete microservices stack:
 In order to finish this architecture, we need to add a front-end to it:
 
 - We've already built a VueJS application, that is available in the ["weather-app" folder](weather-app/).
-- This front-end could be hosted in Azure Spring Apps, using the same domain name (this won't be the case in this guide, and that's why we enabled CORS in our gateway earlier).
+- This front-end could be hosted in Azure Container Apps, using the same domain name (this won't be the case in this guide, and that's why we enabled CORS in our gateway earlier).
 - If you are familiar with NodeJS and Vue CLI, you can run this application locally by typing `npm install && vue ui`.
 
 In order to simplify this part, which is not relevant to understanding Spring Cloud, we have already built a running front-end:
@@ -32,7 +32,7 @@ Go to [https://spring-training.azureedge.net/](https://spring-training.azureedge
 
 ## Review the distributed tracing to better understand the architecture
 
-Distributed tracing is enabled by default on Azure Spring Apps, so your microservices and gateway are already being monitored.
+Azure Container Apps integrates with Azure Monitor and Application Insights for distributed tracing. Your microservices and gateway are being monitored through this integration.
 
 Now, you can use the VueJS application on [https://spring-training.azureedge.net/](https://spring-training.azureedge.net/) to generate some traffic on the microservices stack.
 
@@ -58,11 +58,21 @@ For even more detailed data, navigate to the `Dependencies` tab in the `Performa
 
 Now that distributed tracing is enabled, we can scale applications depending on our needs.
 
-- Go to [the Azure portal](https://portal.azure.com/?WT.mc_id=java-0000-judubois).
-- Go to the overview page of your Azure Spring Apps server and select "Apps" in the menu.
-  - Select one service and click on "Scale Out" in the menu. Select the service that you want to scale out.
-  - Modify the number of instances to manually scale the service. You can also set custom autoscaling based on metrics. 
-  ![Application scaling](media/04-scale-out.png)
+You can scale your Container Apps using the Azure CLI. For example, to scale the `weather-service`:
+
+```bash
+az containerapp update \
+  --name weather-service \
+  --resource-group $AZ_RESOURCE_GROUP \
+  --min-replicas 1 \
+  --max-replicas 5
+```
+
+You can also configure scaling in the Azure Portal:
+- Navigate to your Container App in the Azure Portal
+- Select "Scale" from the menu
+- Configure the minimum and maximum number of replicas
+- Set up scale rules based on HTTP traffic, CPU, memory, or custom metrics
 
 ---
 

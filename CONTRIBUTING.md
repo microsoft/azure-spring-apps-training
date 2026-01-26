@@ -1,4 +1,4 @@
-# Contributing to the Azure Spring Apps training
+# Contributing to the Azure Container Apps training
 
 As this training is [Open Source](LICENSE.txt), contributions are highly welcome!
 

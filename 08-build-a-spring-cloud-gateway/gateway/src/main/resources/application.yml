@@ -1,9 +1,19 @@
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
+      routes:
+        - id: city-service
+          uri: http://city-service
+          predicates:
+            - Path=/city-service/**
+          filters:
+            - StripPrefix=1
+        - id: weather-service
+          uri: http://weather-service
+          predicates:
+            - Path=/weather-service/**
+          filters:
+            - StripPrefix=1
       globalcors:
         corsConfigurations:
           '[/**]':

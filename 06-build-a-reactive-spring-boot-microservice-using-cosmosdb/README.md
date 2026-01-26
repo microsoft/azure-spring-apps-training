@@ -1,6 +1,6 @@
 # 06 - Build a reactive Spring Boot microservice using Cosmos DB
 
-__This guide is part of the [Azure Spring Apps training](../README.md)__
+__This guide is part of the [Azure Container Apps training](../README.md)__
 
 In this section, we'll build an application that uses a [Cosmos DB database](https://docs.microsoft.com/en-us/azure/cosmos-db/?WT.mc_id=azurespringcloud-github-judubois) in order to access a globally-distributed database with optimum performance.
 
@@ -13,7 +13,7 @@ We'll use the reactive programming paradigm to build our microservice in this se
 From Section 00, you should already have a Cosmos DB account named `sclabc-<unique string>`.
 
 - Click on the `Data Explorer` menu item
-  - Expand the container named `azure-spring-apps-cosmosdb`.
+  - Expand the container named `azure-container-apps-cosmosdb`.
   - In that container, expand the container named `City`.
   - Click on `Items` and use the `New Item` button to create some sample items using the contents below:
 
@@ -41,7 +41,7 @@ To create our microservice, we will invoke the Spring Initalizr service from the
 curl https://start.spring.io/starter.tgz -d type=maven-project -d dependencies=webflux,cloud-eureka,cloud-config-client -d baseDir=city-service -d bootVersion=3.1.3 -d javaVersion=17 | tar -xzvf -
 ```
 
-> We use the `Spring WebFlux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters.
+> We use the `Spring WebFlux`, `Eureka Discovery Client` and the `Config Client` Spring Boot starters. Note: For Azure Container Apps, we won't be using service discovery, but we keep these dependencies for consistency with the original code.
 
 ## Add the Azure Cosmos DB API
 
@@ -79,7 +79,7 @@ class City {
 Then, in the same location, create a new `CityController.java` file that
 contains the code that will be used to query the database.
 
-> The CityController class will get its Cosmos DB configuration from the Azure Spring Apps Service Connector that we will configure later.
+> The CityController class will get its Cosmos DB configuration from environment variables that we will configure later.
 
 ```java
 package com.example.demo;
@@ -131,65 +131,81 @@ public class CityController {
 }
 ```
 
-## Create the application on Azure Spring Apps
+## Create a Dockerfile
 
-As in [02 - Build a simple Spring Boot microservice](../02-build-a-simple-spring-boot-microservice/README.md), create a specific `city-service` application in your Azure Spring Apps instance:
+Create a `Dockerfile` in the `city-service` directory, similar to the one in section 02:
 
 ```bash
-az spring app create -n city-service --runtime-version Java_17
+cd city-service
+cat > Dockerfile << 'EOF'
+FROM eclipse-temurin:17-jdk-alpine as build
+WORKDIR /workspace/app
+
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+
+RUN ./mvnw package -DskipTests
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+
+FROM eclipse-temurin:17-jre-alpine
+VOLUME /tmp
+ARG DEPENDENCY=/workspace/app/target/dependency
+COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.example.demo.DemoApplication"]
+EOF
+cd ..
 ```
 
-## Connect the Azure Cosmos DB database to the application
+## Get Cosmos DB connection details
 
-Azure Spring Apps can automatically connect the Cosmos DB database we created to our microservice.
+Get the Cosmos DB connection information that we'll use as environment variables. These commands assume you're using the Cosmos DB account created in section 00:
 
-- Go to `Apps` in your Azure Spring Apps instance.
-- Select the `city-service` application
-- Go to `Service Connector`
-- Click on `+ Create`
-- Choose `Cosmos DB` as the Service type
-- Give your Connection a name, for example "cosmos_city"
-- Select the `NoSQL` API type
-- Select the Cosmos DB account and Database we created in the initial 00 setup step
-- Verify that the Client type is `SpringBoot`
-- Click the `Next: Authentication` button
-
-![Connect to Cosmos DB database 1 of 4](media/03-service-connector-cosmos.png)
-
-- Select `Connection string` for the authentication type
-- Expand the `Advanced` tag below to verify the property names injected into the connected app
-- Click the `Next: Networking` button
-
-![Connect to Cosmos DB database 2 of 4](media/04-service-connector-cosmos.png)
-
-- Leave `Configure firewall rules to enable access to target service` selected
-- Click the `Next: Review + Create` button
-
-![Connect to Cosmos DB database 3 of 4](media/05-service-connector-cosmos.png)
-
-- Once validation passes, click the `Create` button to create the Service Connector
-
-![Connect to Cosmos DB database 4 of 4](media/06-service-connector-cosmos.png)
+```bash
+# Get the Cosmos DB account name (adjust if you have multiple accounts)
+export COSMOS_DB_NAME=$(az cosmosdb list --resource-group $AZ_RESOURCE_GROUP --query '[0].name' -o tsv)
+export COSMOS_DB_URI=$(az cosmosdb show --name $COSMOS_DB_NAME --resource-group $AZ_RESOURCE_GROUP --query documentEndpoint -o tsv)
+export COSMOS_DB_KEY=$(az cosmosdb keys list --name $COSMOS_DB_NAME --resource-group $AZ_RESOURCE_GROUP --query primaryMasterKey -o tsv)
+```
 
 ## Deploy the application
 
-You can now build your "city-service" project and send it to Azure Spring Apps:
+You can now build your "city-service" project and deploy it to Azure Container Apps:
 
 ```bash
 cd city-service
 ./mvnw clean package -DskipTests
-az spring app deploy -n city-service --artifact-path target/demo-0.0.1-SNAPSHOT.jar
+
+az containerapp create \
+    --name city-service \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --environment $AZ_CONTAINERAPP_ENV \
+    --source . \
+    --target-port 8080 \
+    --ingress internal \
+    --env-vars \
+        AZURE_COSMOS_URI=$COSMOS_DB_URI \
+        AZURE_COSMOS_KEY=$COSMOS_DB_KEY \
+        AZURE_COSMOS_DATABASE=azure-container-apps-cosmosdb
+
 cd ..
 ```
 
 ## Test the project in the cloud
 
-- Go to `Apps` in your Azure Spring Apps instance.
-  - Verify that `city-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
-  - Select `city-service` to have more information on the microservice.
-- Copy/paste the "Test Endpoint" that is provided.
+Since the city-service has internal ingress, you can test it using the Azure Container Apps exec command:
 
-You can now use cURL to test the `/cities` endpoint, and it should give you the list of cities you created. For example, if you only created `Paris, France` and `London, UK` as is shown in this guide, you should get:
+```bash
+az containerapp exec \
+    --name city-service \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --command "wget -qO- http://localhost:8080/cities"
+```
+
+You should get the list of cities you created. For example, if you only created `Paris, France` and `London, UK` as is shown in this guide, you should get:
 
 ```json
 [[{"name":"Paris, France"},{"name":"London, UK"}]]

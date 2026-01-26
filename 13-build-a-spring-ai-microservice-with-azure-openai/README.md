@@ -66,35 +66,52 @@ Next, start the service by running `./mvnw spring-boot:run`.
 Finally, open `http://localhost:8080` in a browser to access the application.
 
 
-## Deploy to Azure Spring Apps
+## Deploy to Azure Container Apps
 
-Use the following command to specify the app name on Azure Spring Apps and to allocate the required resources:
+Use the following command to create the container app in your Azure Container Apps environment:
 
 ```bash
-az spring app create \
+az containerapp create \
     --name ai-weather-service \
+    --resource-group $AZ_RESOURCE_GROUP \
+    --environment $AZ_CONTAINERAPP_ENV \
+    --image <your-registry>/ai-weather-service:latest \
+    --target-port 8080 \
+    --ingress external \
     --cpu 2 \
     --memory 4Gi \
     --min-replicas 2 \
     --max-replicas 2 \
-    --assign-endpoint true
+    --env-vars \
+      SPRING_AI_AZURE_OPENAI_API_KEY=${SPRING_AI_AZURE_OPENAI_API_KEY} \
+      SPRING_AI_AZURE_OPENAI_ENDPOINT=${SPRING_AI_AZURE_OPENAI_ENDPOINT}
 ```
 
 Build the jar package using the command: `./mvnw clean package`.
 
-Use the following command to deploy the *.jar* file for the app:
+Build and deploy the container image:
 
 ```bash
-az spring app deploy \
+# Build and push the container image
+az acr build \
+    --registry <your-registry> \
+    --image ai-weather-service:latest \
+    --file Dockerfile \
+    .
+
+# Update the container app
+az containerapp update \
     --name ai-weather-service \
-    --artifact-path target/demo-0.0.1-SNAPSHOT.jar \
-    --env SPRING_AI_AZURE_OPENAI_API_KEY=${SPRING_AI_AZURE_OPENAI_API_KEY} SPRING_AI_AZURE_OPENAI_ENDPOINT=${SPRING_AI_AZURE_OPENAI_ENDPOINT} \
-    --runtime-version Java_17
+    --resource-group $AZ_RESOURCE_GROUP \
+    --image <your-registry>.azurecr.io/ai-weather-service:latest \
+    --set-env-vars \
+      SPRING_AI_AZURE_OPENAI_API_KEY=${SPRING_AI_AZURE_OPENAI_API_KEY} \
+      SPRING_AI_AZURE_OPENAI_ENDPOINT=${SPRING_AI_AZURE_OPENAI_ENDPOINT}
 ```
 
 ## Test the project in the cloud
 
-- Go to "Apps" in your Azure Spring Apps instance.
-  - Verify that `ai-weather-service` has a `Registration status` which says `1/1`. This shows that it is correctly registered in Spring Cloud Service Registry.
-  - Select `ai-weather-service` to see more information about the microservice.
-- Click the "URL" that is provided to open it in another browser tab, then type `Basel` into the `Question` prompt box. Click the `Ask AI` button to see the results!
+- Go to your Azure Container Apps environment in the Azure Portal.
+  - Select the `ai-weather-service` container app to see more information about the microservice.
+  - Navigate to the "Ingress" section to find the application URL.
+- Click the URL to open it in another browser tab, then type `Basel` into the `Question` prompt box. Click the `Ask AI` button to see the results!
